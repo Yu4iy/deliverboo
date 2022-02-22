@@ -4,6 +4,7 @@
 	  HOME
   </h1>
   <h2>test nuccia</h2>
+  <h2>test sofia</h2>
 </div>
 </template>
 
