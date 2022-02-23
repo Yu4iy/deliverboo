@@ -1,19 +1,16 @@
 <template>
-<div>
-  <h1>
-	  HOME
-  </h1>
-  <h2>test nuccia</h2>
-  <h2>test sofia</h2>
-</div>
+    <div>
+        <h1>HOME</h1>
+        <h2>test nuccia</h2>
+        <h2>test sofia</h2>
+        <h2>test ele</h2>
+    </div>
 </template>
 
 <script>
 export default {
-	name:'Home',
-}
+    name: "Home",
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
