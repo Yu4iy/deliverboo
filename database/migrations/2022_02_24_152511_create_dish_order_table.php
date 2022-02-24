@@ -25,7 +25,7 @@ class CreateDishOrderTable extends Migration
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')
                 ->references('id')
-                ->on('order')
+                ->on('orders')
                 ->onDelete('cascade');
         });
     }
