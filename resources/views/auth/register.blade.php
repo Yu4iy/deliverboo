@@ -15,10 +15,10 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
 
                                 @error('name')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="text-danger">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
@@ -29,10 +29,10 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email">
 
                                 @error('email')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="text-danger">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
@@ -43,10 +43,10 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
 
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="text-danger">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
@@ -57,7 +57,7 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
                             </div>
                         </div>
 
@@ -65,56 +65,56 @@
                             <label for="restaurant_name" class="col-md-4 col-form-label text-md-right">Restaurant Name</label>
 
                             <div class="col-md-6">
-                                <input id="restaurant-name" type="text" class="form-control" name="restaurant_name" required>
+                                <input id="restaurant-name" type="text" class="form-control @error('name') is-invalid @enderror" name="restaurant_name">
+                                @error('restaurant_name')
+                                    <span class="text-danger">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
-                            @error('restaurant_name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
                         </div>
 
                         <div class="form-group row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">Address</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control" name="address" required>
+                                <input id="address" type="text" class="form-control @error('name') is-invalid @enderror" name="address">
+                                @error('adress')
+                                    <span class="text-danger">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
-                            @error('adress')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
                         </div>
 
                         <div class="form-group row">
                             <label for="city" class="col-md-4 col-form-label text-md-right">City</label>
 
                             <div class="col-md-6">
-                                <input id="city" type="text" class="form-control" name="city" required>
+                                <input id="city" type="text" class="form-control @error('name') is-invalid @enderror" name="city">
+                                @error('city')
+                                    <span class="text-danger">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
-                            @error('city')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
                         </div>
 
                         <div class="form-group row">
                             <label for="iva" class="col-md-4 col-form-label text-md-right">IVA</label>
 
                             <div class="col-md-6">
-                                <input id="iva" type="text" class="form-control" name="iva" required>
+                                <input id="iva" type="text" class="form-control @error('name') is-invalid @enderror" name="iva">
+                                @error('iva')
+                                    <span class="text-danger">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
-                            @error('iva')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
                         </div>
 
                         <div class="form-group row">
@@ -137,14 +137,14 @@
                             <label for="delivery_price" class="col-md-4 col-form-label text-md-right">Delivery Price</label>
 
                             <div class="col-md-6">
-                                <input id="delivery_price" type="number" min=0 step="0.01" class="form-control" name="delivery_price" required>
+                                <input id="delivery_price" type="number" min=0 step="0.01" class="form-control @error('name') is-invalid @enderror" name="delivery_price">
+                                @error('delivery_price')
+                                    <span class="text-danger">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
-                            @error('delivery_price')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
                         </div>
 
                         <div class="form-group row mb-0">
