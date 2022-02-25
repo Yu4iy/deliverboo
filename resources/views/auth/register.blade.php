@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+{{-- @dd($categories[1]) --}}
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -65,7 +67,7 @@
                             <label for="restaurant_name" class="col-md-4 col-form-label text-md-right">Restaurant Name</label>
 
                             <div class="col-md-6">
-                                <input id="restaurant-name" type="text" class="form-control @error('name') is-invalid @enderror" name="restaurant_name">
+                                <input id="restaurant-name" type="text" value="{{ old('restaurant_name') }}" class="form-control @error('name') is-invalid @enderror" name="restaurant_name">
                                 @error('restaurant_name')
                                     <span class="text-danger">
                                         <strong>{{ $message }}</strong>
@@ -79,7 +81,7 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">Address</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control @error('name') is-invalid @enderror" name="address">
+                                <input id="address" type="text" value="{{ old('address') }}" class="form-control @error('name') is-invalid @enderror" name="address">
                                 @error('adress')
                                     <span class="text-danger">
                                         <strong>{{ $message }}</strong>
@@ -93,7 +95,7 @@
                             <label for="city" class="col-md-4 col-form-label text-md-right">City</label>
 
                             <div class="col-md-6">
-                                <input id="city" type="text" class="form-control @error('name') is-invalid @enderror" name="city">
+                                <input id="city" type="text" value="{{ old('city') }}" class="form-control @error('name') is-invalid @enderror" name="city">
                                 @error('city')
                                     <span class="text-danger">
                                         <strong>{{ $message }}</strong>
@@ -107,7 +109,7 @@
                             <label for="iva" class="col-md-4 col-form-label text-md-right">IVA</label>
 
                             <div class="col-md-6">
-                                <input id="iva" type="text" class="form-control @error('name') is-invalid @enderror" name="iva">
+                                <input id="iva" type="text" value="{{ old('iva') }}" class="form-control @error('name') is-invalid @enderror" name="iva">
                                 @error('iva')
                                     <span class="text-danger">
                                         <strong>{{ $message }}</strong>
@@ -121,7 +123,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-right">Description</label>
 
                             <div class="col-md-6">
-                                <textarea class="form-control" name="description" id="description" cols="30" rows="10"></textarea>
+                                <textarea class="form-control" name="description" id="description" cols="30" rows="10">{{ old('description') }}</textarea>
                             </div>
                         </div>
 
@@ -129,23 +131,37 @@
                             <label for="image" class="col-md-4 col-form-label text-md-right">Upload Image</label>
 
                             <div class="col-md-6">
-                                <input type="file" name="image" id="image">
+                                <input type="file" value="{{ old('image') }}" name="image" id="image">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="delivery_price" class="col-md-4 col-form-label text-md-right">Delivery Price</label>
-
                             <div class="col-md-6">
-                                <input id="delivery_price" type="number" min=0 step="0.01" class="form-control @error('name') is-invalid @enderror" name="delivery_price">
+                                <input id="delivery_price" type="number" value="{{ old('delivery_price') }}" min=0 step="0.01" class="form-control @error('name') is-invalid @enderror" name="delivery_price">
                                 @error('delivery_price')
                                     <span class="text-danger">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
+									 {{-- @foreach ($categories as $category)
+										 <h1>{{$category->name}}</h1>
+									 @endforeach --}}
 
-                        </div>
+                        </div>			
+								
+								
+								<div class="mb-4 text-md-center"  >
+									@foreach ($categories as $category)
+										<span class="d-inline-block mr-3" >
+											<label for="category{{ $loop->iteration }}">{{ $category->name }}</label>
+											<input type="checkbox" name="categories[]" id="category{{ $loop->iteration }}" value="{{ $category->id }}"
+											@if ( in_array($category->id, old('categories', []))) checked @endif >
+										</span>
+									@endforeach
+								</div>
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
