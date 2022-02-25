@@ -1,6 +1,7 @@
 <?php
 
 return [
+    // 1
     [
         'name' => 'Ettore Bianchi',
         'email' => 'ettore.bianchi@test.com',
@@ -13,6 +14,7 @@ return [
         'image' => 'https://images.pexels.com/photos/4828141/pexels-photo-4828141.jpeg?cs=srgb&dl=pexels-polina-tankilevitch-4828141.jpg&fm=jpg',
         'delivery_price' => 2.50,
     ],
+    // 2
     [
         'name' => 'Lucia Rossi',
         'email' => 'lucia.rossi@test.com',
@@ -25,6 +27,7 @@ return [
         'image' => 'https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         'delivery_price' => 1.90,
     ],
+// 3
     [
         'name' => 'Mariangela Sabato',
         'email' => 'mariangela.sabato@test.com',
@@ -37,6 +40,7 @@ return [
         'image' => 'https://images.pexels.com/photos/10756726/pexels-photo-10756726.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         'delivery_price' => 2.00,
     ],
+    // 4
     [
         'name' => 'Andrea Bambury',
         'email' => 'andrea.bambury@test.com',
@@ -49,6 +53,7 @@ return [
         'image' => 'https://images.pexels.com/photos/2323391/pexels-photo-2323391.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         'delivery_price' => 1.90,
     ],
+    // 5
     [
         'name' => 'Manuel Delsoglio',
         'email' => 'manuel.delsoglio@test.com',
@@ -61,6 +66,7 @@ return [
         'image' => 'https://images.pexels.com/photos/1146760/pexels-photo-1146760.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
         'delivery_price' => 2.10,
     ],
+    // 6
       [
         'name' => 'Lao Tzu',
         'email' => 'lao.tzu@test.com',
