@@ -5,14 +5,21 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Category;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
+
+
 class RegisterController extends Controller
 {
+
+
+		// return view('auth.login', compact('categories'));
+
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -38,6 +45,7 @@ class RegisterController extends Controller
      *
      * @return void
      */
+	 
     public function __construct()
     {
         $this->middleware('guest');
@@ -45,7 +53,7 @@ class RegisterController extends Controller
 
     /**
      * Get a validator for an incoming registration request.
-     *
+     * 
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
@@ -62,6 +70,7 @@ class RegisterController extends Controller
             'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png'],
             'description' => ['nullable', 'string'],
             'delivery_price' => ['required', 'numeric', 'min:0'],
+				'categories'=>['nullable'], ['exists:categories,id']
         ]);
     }
 
@@ -71,20 +80,28 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
+	 
     protected function create(array $data)
     {
-        if(array_key_exists('image', $data)) {
-            $img_path = Storage::put('restaurant-images', $data['image']);
+		 //  dd($data
+		 
+		 
+		 
+		 if(array_key_exists('image', $data)) {
+			$img_path = Storage::put('restaurant-images', $data['image']);
             $data['image'] = $img_path;
         } else {
-            $data['image'] = null;
+			  $data['image'] = null;
         }
 
         if(array_key_exists('description', $data)) {
-            $description = $data['description'];
+			  $description = $data['description'];
         } else {
             $description = null;
         }
+		  
+		  
+
 
         $slug = Str::slug($data['restaurant_name'], '-');
         $counter = 1;
@@ -92,17 +109,18 @@ class RegisterController extends Controller
 
         //check uniqueness of slug in table users
         while(User::where('slug', $slug)->first()) {
-            //gen new slug
-            $slug = $base_slug . '-' . $counter;
-            $counter++;
-        }
+			  //gen new slug
+			  $slug = $base_slug . '-' . $counter;
+			  $counter++;
+			}
+			
+			//set new slug
+			$data['slug'] = $slug;
 
-        //set new slug
-        $data['slug'] = $slug;
-
-        //create new user in table 'users'
-        return User::create([
-            'name' => $data['name'],
+	
+			//create new user in table 'users'
+			$user = User::create([
+				'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'restaurant_name' =>$data['restaurant_name'],
@@ -112,7 +130,21 @@ class RegisterController extends Controller
             'iva' => $data['iva'],
             'image' => $data['image'],
             'description' => $description,
-            'delivery_price' => $data['delivery_price']
-        ]);
-    }
+            'delivery_price' => $data['delivery_price'],
+			]);
+			// $user = new User();
+			if(array_key_exists('categories', $data)) {
+				$user->categories()->attach($data['categories']);
+				return $user;
+			}
+			
+		}
+		
+		public function showRegistrationForm(){
+			$categories = Category::all();
+			return view('auth.register', compact('categories'));
+	
+		 }
+
+
 }

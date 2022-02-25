@@ -26,7 +26,7 @@ class User extends Authenticatable
         'iva',
         'image',
         'description',
-        'delivery_price'
+        'delivery_price',
     ];
 
     /**
@@ -50,4 +50,8 @@ class User extends Authenticatable
     public function categories() {
         return $this->belongsToMany('App\Category');
     }
+
+	 public function dishes() {
+		return $this->hasMany('App\Dish');
+  }
 }

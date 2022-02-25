@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+{{-- @dd($categories[1]) --}}
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -135,7 +137,6 @@
 
                         <div class="form-group row">
                             <label for="delivery_price" class="col-md-4 col-form-label text-md-right">Delivery Price</label>
-
                             <div class="col-md-6">
                                 <input id="delivery_price" type="number" value="{{ old('delivery_price') }}" min=0 step="0.01" class="form-control @error('name') is-invalid @enderror" name="delivery_price">
                                 @error('delivery_price')
@@ -144,8 +145,23 @@
                                     </span>
                                 @enderror
                             </div>
+									 {{-- @foreach ($categories as $category)
+										 <h1>{{$category->name}}</h1>
+									 @endforeach --}}
 
-                        </div>
+                        </div>			
+								
+								
+								<div class="mb-4 text-md-center"  >
+									@foreach ($categories as $category)
+										<span class="d-inline-block mr-3" >
+											<label for="category{{ $loop->iteration }}">{{ $category->name }}</label>
+											<input type="checkbox" name="categories[]" id="category{{ $loop->iteration }}" value="{{ $category->id }}"
+											@if ( in_array($category->id, old('categories', []))) checked @endif >
+										</span>
+									@endforeach
+								</div>
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
