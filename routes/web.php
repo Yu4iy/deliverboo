@@ -25,9 +25,18 @@ Route::middleware('auth')
 	->name('admin.')
 	->prefix('admin')
 	->group(function(){
+			//admin home
 			Route::get('/', 'HomeController@index')->name('home');
 
+			//dishes cruds
 			Route::resource('/dishes', 'DishController');
+
+			// trash
+			Route::get('/trash', 'DishController@getTrash')->name('dishes.trash');
+    
+			Route::match(['get', 'post'], '/restore/{id}', 'DishController@restore')->name('dishes.restore');
+			
+			Route::match(['get', 'delete'], '/delete/{id}', 'DishController@forceDelete')->name('dishes.forceDelete');
 	});
 
 Route::get("{any?}", function() {
