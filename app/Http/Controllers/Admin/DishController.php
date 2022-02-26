@@ -49,8 +49,8 @@ class DishController extends Controller
         
         //store image
         if(array_key_exists('image', $data)) {
-            $data['image'] = Storage::put('dishes-images', $data['image']);
-            
+            $img_path= Storage::put('dishes-images', $data['image']);
+            $data['image'] = $img_path;
         }
 
          //new instance of Dish
