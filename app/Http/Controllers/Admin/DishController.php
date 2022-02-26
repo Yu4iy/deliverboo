@@ -45,15 +45,18 @@ class DishController extends Controller
         //validation
         $request->validate($this->validation_rules());
         $data = $request->all();
-
+        $data['user_id']= Auth::id();
+        
         //store image
         if(array_key_exists('image', $data)) {
             $data['image'] = Storage::put('dishes-images', $data['image']);
+            
         }
 
-        //new instance of Dish
+         //new instance of Dish
         $new_dish = new Dish();
 
+        // Generazione slug
         $slug = Str::slug($data['name'], '-');
         $counter = 1;
         $base_slug = $slug;
@@ -64,6 +67,8 @@ class DishController extends Controller
             $slug = $base_slug . '-' . $counter;
             $counter++;
         }
+         //set new slug
+			$data['slug'] = $slug;
 
         //fill columns
         $new_dish->fill($data);
@@ -71,8 +76,8 @@ class DishController extends Controller
         //save new dish
         $new_dish->save();
 
-        //redirect to details page
-        return redirect()->route('admin.dishes.show', $new_dish->slug);
+        //redirect to archive page
+        return redirect()->route('admin.dishes.index')->with('message',"Piatto creato con successo");
     }
 
     /**
@@ -97,6 +102,7 @@ class DishController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Dish $dish)
+
     {
         return view('admin.dishes.edit', compact('dish'));
     }
@@ -202,7 +208,7 @@ class DishController extends Controller
             'ingredients' =>'required|string',
             'description' => 'nullable|string',
             'price' => 'required|numeric|regex:/^[0-9]?[0-9]+[.]+[0-9]+[0-9]+$/',
-            'image' => 'nullable|file|mimes:jpeg,jpg,png',
+            'image' => 'nullable|file|mimes:jpeg, jpg, png',
             'is_visible' => 'required|boolean'
         ];
     }
