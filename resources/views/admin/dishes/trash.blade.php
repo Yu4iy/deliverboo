@@ -2,8 +2,9 @@
 
 @section('content')
     <section class="trash container">
-        <h1>Trashed</h1>
-        <table>
+        <h1>Trash</h1>
+        @if(!$trashed->isEmpty())
+        <table class="table">
             <thead>
                 <tr>
                     <th>
@@ -18,23 +19,26 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($trashed as $trash)
+                @foreach ($trashed as $trash_item)
                     <tr>
                         <td>
-                            {{ $trash->id }}
+                            {{ $trash_item->id }}
                         </td>
                         <td>
-                            {{ $trash->name }}
+                            {{ $trash_item->name }}
                         </td>
                         <td>
-                            <a href="{{ route('admin.dishes.restore', $trash->id) }}" class="btn btn-success">Restore</a>
+                            <a href="{{ route('admin.dishes.restore', $trash_item->id) }}" class="btn btn-success">Restore</a>
                         </td>
                         <td>
-                            <a href="{{ route('admin.dishes.forceDelete', $trash->id) }}" class="btn btn-danger">Delete</a>
+                            <a href="{{ route('admin.dishes.forceDelete', $trash_item->id) }}" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+        @else
+        <h4>Il cestino è vuoto</h4>
+        @endif
     </section>   
 @endsection

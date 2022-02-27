@@ -37,7 +37,10 @@
                             <form action="{{ route('admin.dishes.destroy', $dish->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <a class="btn" type="submit"><i class="fa-solid fa-trash-can"></i></a>
+                                <button class="btn" type="submit" 
+                                    onclick="return confirm('Vuoi spostare questo elemento nel cestino?')">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
                             </form>
                     </div>
                 </div>
