@@ -11,19 +11,10 @@
 @import "partials/index";
 @import "partials/create";
 @import "partials/edit";
+@import "partials/header";
 
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-}
-
-.navbar-light {
-    .navbar-nav {
-        .nav-item {
-            .nav-link.active {
-                color: red !important;
-            }
-        }
-    }
 }
