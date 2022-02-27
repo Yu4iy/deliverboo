@@ -1,0 +1,15 @@
+.form-create {
+    .btn {
+        background: #00ccbc;
+        color: #fff;
+        font-weight: 700;
+        padding: 8px 10px;
+        border-radius: 5px;
+        border: 1px solid #00ccbc;
+    }
+    .btn:hover {
+        background: #fff;
+        border: 1px solid #00ccbc;
+        color: #00ccbc;
+    }
+}
