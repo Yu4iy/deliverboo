@@ -69,7 +69,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="cars">Il piatto è visibile?</label>
+                    <label class="form-label" for="is_visible">Il piatto è visibile?</label>
                     <select name="is_visible" id="is_visible" class="form-control">
                         <option value="1">Si</option>
                         <option value="0">No</option>

@@ -104,6 +104,7 @@ class DishController extends Controller
     public function edit(Dish $dish)
 
     {
+    
         return view('admin.dishes.edit', compact('dish'));
     }
 
@@ -153,7 +154,7 @@ class DishController extends Controller
         $dish->update($data);
 
         //redirect to details page
-        return redirect()->route('admin.dishes.show', $dish->slug);
+        return redirect()->route('admin.dishes.index');
     }
 
     /**
