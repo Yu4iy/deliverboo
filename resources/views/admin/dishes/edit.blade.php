@@ -75,9 +75,8 @@
                 <div class="mb-3">
                     <label class="form-label" for="is_visible">Il piatto è visibile?</label>
                     <select name="is_visible" id="is_visible" class="form-control mb-4">
-
-                        <option value="1">Si</option>
-                        <option value="0">No</option>
+                        <option @if ($dish->is_visible == 1)selected @endif value="1">Si</option>
+                        <option @if ($dish->is_visible == 0)selected @endif value="0">No</option>
                     </select>
                 </div>
 
