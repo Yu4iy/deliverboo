@@ -58,7 +58,8 @@ align-items: center;
 		}
 
 		&__nav {
-			a{
+			a, button {
+				color: $blue;
 				padding: 8px 14px;
 				border: none;
 				margin-right: 8px;
