@@ -17,7 +17,6 @@ class DishesTableSeeder extends Seeder
     {
         $dishes = config('dishes_data');
 		foreach($dishes as $dish){
-			$dish['image'] = Storage::put('dishes-images', $dish['image']);
 			$new_dish = new Dish();
 
 			$new_dish->name = $dish['name'];
