@@ -10,7 +10,10 @@
                 <div class="menu-row__title">Menu List</div>
                 <div class="menu-row__nav">
                     <a href="{{route('admin.dishes.create')}}">Aggiungi</a>
-                    <a href="">Ripristina</a>
+                    <a href="{{ route('admin.dishes.trash') }}">
+                        Eliminati di Recente
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -27,10 +30,15 @@
             <div class="menu-item">
                 <div class="menu-item__row">
                     <h3 class="menu-item__title">{{$dish->name}}</h3>
-                    <div class="menu-item__nav">
-                        <a href="{{route('admin.dishes.edit', $dish->id)}}"><i
-                                class="fa-solid fa-pen-to-square"></i></a>
-                        <a href=""><i class="fa-solid fa-trash-can"></i></a>
+                    <div class="menu-item__nav d-flex">
+                        <a href="{{route('admin.dishes.edit', $dish->id)}}">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                            <form action="{{ route('admin.dishes.destroy', $dish->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <a class="btn" type="submit"><i class="fa-solid fa-trash-can"></i></a>
+                            </form>
                     </div>
                 </div>
                 <div class="menu-main">

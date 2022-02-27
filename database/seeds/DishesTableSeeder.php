@@ -4,6 +4,7 @@ use App\Dish;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class DishesTableSeeder extends Seeder
 {
@@ -14,14 +15,15 @@ class DishesTableSeeder extends Seeder
      */
 	 public function run()
     {
-      $dishes = config('dishes_data');
+        $dishes = config('dishes_data');
 		foreach($dishes as $dish){
+			$dish['image'] = Storage::put('dishes-images', $dish['image']);
 			$new_dish = new Dish();
 
 			$new_dish->name = $dish['name'];
 			$new_dish->ingredients = $dish['ingredients']; 
 			$new_dish->description = $dish['description']; 
-			$new_dish->price = $dish['price']; 
+			$new_dish->price = $dish['price'];
 			$new_dish->image = $dish['image']; 
 			$new_dish->is_visible = $dish['is_visible']; 
 			$new_dish->user_id = $dish['user_id']; 

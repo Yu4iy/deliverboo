@@ -174,7 +174,7 @@ class DishController extends Controller
     public function getTrash()
     {
         //get trashed dishes
-        $trashed = Dish::onlyTrashed()->get();
+        $trashed = Dish::where('user_id', Auth::id())->onlyTrashed()->get();
 
         //return admin/dishes/trash.blade
         return view('admin.dishes.trash', compact('trashed'));
