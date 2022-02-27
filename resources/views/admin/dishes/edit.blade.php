@@ -60,7 +60,7 @@
                 </div>
 
                 <!-- Image dish  -->
-                <div class="mb-4">
+                <div class="mb-4 image-container">
                     <label class="form-label" for="image"> <strong>Immagine del piatto</strong></label>
                     @if($dish->image)
                     <img class="mb-3 edit-iage" width="200" src="{{asset('storage/' . $dish->image)}}"
@@ -74,7 +74,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="is_visible">Il piatto è visibile?</label>
-                    <select name="is_visible" id="is_visible" class="form-control mb-3">
+                    <select name="is_visible" id="is_visible" class="form-control mb-4">
 
                         <option value="1">Si</option>
                         <option value="0">No</option>
