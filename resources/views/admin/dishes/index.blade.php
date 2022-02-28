@@ -34,21 +34,19 @@
                         <a href="{{route('admin.dishes.edit', $dish->id)}}">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
-                            <form action="{{ route('admin.dishes.destroy', $dish->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn" type="submit" 
-                                    onclick="return confirm('Vuoi spostare questo elemento nel cestino?')">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </button>
-                            </form>
+                        <button class="btn" type="submit" data-toggle="modal" data-target="#exampleModal">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+
                     </div>
                 </div>
                 <div class="menu-main">
                     <ul class="menu-main__desc">
                         <li><strong>Ingridients: </strong>{{$dish->ingredients}}</li>
                         <li><strong>Prezzo: </strong>{{$dish->price}}&#8364;</li>
-                        <li><strong>Visibile: </strong>@if($dish->is_visible) <span class="text-success">Si</span> @else  <span class="text-danger" >No</span> @endif</li>
+                        <li><strong>Visibile: </strong>@if($dish->is_visible) <span class="text-success">Si</span> @else
+                            <span class="text-danger">No</span> @endif
+                        </li>
                         <li><strong>Descrizione: </strong>@if($dish->description) {{$dish->description}} @else
                             aggiungere descrizione @endif</li>
                     </ul>
@@ -65,56 +63,35 @@
                 </div>
             </div>
             @endforeach
-
-
-
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cestina</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="x">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Vuoi spostare questo elemento nel cestino?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <form action="{{ route('admin.dishes.destroy', $dish->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-delete" type="submit">
+                            Si
+                        </button>
+                    </form>
 
-
-
-    {{-- <h1 class="mb-4">My Menu</h1>
-
-            <table class="w-100">
-                <thead class="mb-3">
-                    <tr>
-                        <td>
-                            ID
-                        </td>
-                        <td>
-                            Name
-                        </td>
-                        <td colspan="3">
-                            Actions
-                        </td>
-                    </tr>
-                </thead>
-    
-                <tbody>
-                    @foreach ($dishes as $dish )
-                        <tr class="mb-2">
-                            <td>
-                                {{ $dish->id }}
-    </td>
-    <td>
-        {{ $dish->name }}
-    </td>
-    <td>
-        <a href="{{ route('admin.dishes.show', $dish->slug) }}" class="btn btn-success">Show</a>
-    </td>
-    <td>
-        <a href="{{ route('admin.dishes.edit', $dish->id) }}" class="btn btn-primary">Edit</a>
-    </td>
-    <td>
-        <form action="{{ route('admin.dishes.destroy', $dish->id) }}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button class="btn btn-danger" type="submit">Delete</button>
-        </form>
-    </td>
-    </tr>
-    @endforeach
-    </tbody>
-    </table>--}}
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 @endsection
