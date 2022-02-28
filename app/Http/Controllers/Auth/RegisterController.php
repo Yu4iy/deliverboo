@@ -70,7 +70,7 @@ class RegisterController extends Controller
             'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png'],
             'description' => ['nullable', 'string'],
             'delivery_price' => ['required', 'numeric', 'min:0'],
-			'categories'=>['nullable'], ['exists:categories,id'],
+			'categories'=>['required','exists:categories,id'],
         ]);
     }
 

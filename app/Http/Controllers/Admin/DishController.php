@@ -20,7 +20,6 @@ class DishController extends Controller
     public function index()
     {
         $dishes = Dish::where('user_id', Auth::id())->get();
-
         return view('admin.dishes.index', compact('dishes'));
     }
 
@@ -208,7 +207,7 @@ class DishController extends Controller
             'name' => 'required|string|max:50',
             'ingredients' =>'required|string',
             'description' => 'nullable|string',
-            'price' => 'required|numeric|regex:/^[0-9]?[0-9]+[.]+[0-9]+[0-9]+$/',
+            'price' => 'required|numeric',
             'image' => 'nullable|file|mimes:jpeg, jpg, png',
             'is_visible' => 'required|boolean'
         ];
