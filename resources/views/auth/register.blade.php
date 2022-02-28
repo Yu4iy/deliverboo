@@ -67,7 +67,7 @@
                             <label for="restaurant_name" class="col-md-4 col-form-label text-md-right">Restaurant Name</label>
 
                             <div class="col-md-6">
-                                <input id="restaurant-name" type="text" value="{{ old('restaurant_name') }}" class="form-control @error('name') is-invalid @enderror" name="restaurant_name">
+                                <input id="restaurant-name" type="text" value="{{ old('restaurant_name') }}" class="form-control @error('restaurant_name') is-invalid @enderror" name="restaurant_name">
                                 @error('restaurant_name')
                                     <span class="text-danger">
                                         <strong>{{ $message }}</strong>
@@ -81,8 +81,8 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">Address</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" value="{{ old('address') }}" class="form-control @error('name') is-invalid @enderror" name="address">
-                                @error('adress')
+                                <input id="address" type="text" value="{{ old('address') }}" class="form-control @error('address') is-invalid @enderror" name="address">
+                                @error('address')
                                     <span class="text-danger">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -95,7 +95,7 @@
                             <label for="city" class="col-md-4 col-form-label text-md-right">City</label>
 
                             <div class="col-md-6">
-                                <input id="city" type="text" value="{{ old('city') }}" class="form-control @error('name') is-invalid @enderror" name="city">
+                                <input id="city" type="text" value="{{ old('city') }}" class="form-control @error('city') is-invalid @enderror" name="city">
                                 @error('city')
                                     <span class="text-danger">
                                         <strong>{{ $message }}</strong>
@@ -109,7 +109,7 @@
                             <label for="iva" class="col-md-4 col-form-label text-md-right">IVA</label>
 
                             <div class="col-md-6">
-                                <input id="iva" type="text" value="{{ old('iva') }}" class="form-control @error('name') is-invalid @enderror" name="iva">
+                                <input id="iva" type="text" value="{{ old('iva') }}" class="form-control @error('iva') is-invalid @enderror" name="iva">
                                 @error('iva')
                                     <span class="text-danger">
                                         <strong>{{ $message }}</strong>
@@ -138,7 +138,7 @@
                         <div class="form-group row">
                             <label for="delivery_price" class="col-md-4 col-form-label text-md-right">Delivery Price</label>
                             <div class="col-md-6">
-                                <input id="delivery_price" type="number" value="{{ old('delivery_price') }}" min=0 step="0.01" class="form-control @error('name') is-invalid @enderror" name="delivery_price">
+                                <input id="delivery_price" type="number" value="{{ old('delivery_price') }}" min=0 step="0.01" class="form-control @error('delivery_price') is-invalid @enderror" name="delivery_price">
                                 @error('delivery_price')
                                     <span class="text-danger">
                                         <strong>{{ $message }}</strong>
