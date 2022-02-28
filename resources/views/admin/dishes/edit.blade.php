@@ -43,7 +43,7 @@
                 <div class="mb-3">
                     <label for="price" class="form-label">Prezzo*</label>
                     <input class="form-control" id="price" type="number" value="{{ old('price', $dish->price) }}"
-                        name="price" required min="0" max="99999">
+                        name="price" required min="0" max="99999" step="0.01">
                     @error('price')
                     <div class="text-danger">{{$message}}</div>
                     @enderror
