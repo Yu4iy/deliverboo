@@ -42,8 +42,8 @@
 
                 <div class="mb-3">
                     <label for="price" class="form-label">Prezzo*</label>
-                    <input class="form-control" id="price" type="number" value="{{ old('price', $dish->price) }}" min=0
-                        step="0.01" name="price">
+                    <input class="form-control" id="price" type="text" value="{{ old('price', $dish->price) }}"
+                        name="price">
                     @error('price')
                     <div class="text-danger">{{$message}}</div>
                     @enderror
@@ -75,8 +75,8 @@
                 <div class="mb-3">
                     <label class="form-label" for="is_visible">Il piatto è visibile?</label>
                     <select name="is_visible" id="is_visible" class="form-control mb-4">
-                        <option @if ($dish->is_visible == 1)selected @endif value="1">Si</option>
-                        <option @if ($dish->is_visible == 0)selected @endif value="0">No</option>
+                        <option value="0" {{old('is_visible', $dish->is_visible) == '0' ? 'selected' : ''}}>No</option>
+                        <option value="1" {{old('is_visible', $dish->is_visible) == '1' ? 'selected' : ''}}>Si</option>
                     </select>
                 </div>
 

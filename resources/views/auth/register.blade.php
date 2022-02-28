@@ -14,7 +14,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}*</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}*</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email">
@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}*</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}*</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
@@ -64,7 +64,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="restaurant_name" class="col-md-4 col-form-label text-md-right">Restaurant Name</label>
+                            <label for="restaurant_name" class="col-md-4 col-form-label text-md-right">Restaurant Name*</label>
 
                             <div class="col-md-6">
                                 <input id="restaurant-name" type="text" value="{{ old('restaurant_name') }}" class="form-control @error('restaurant_name') is-invalid @enderror" name="restaurant_name">
@@ -78,7 +78,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">Address</label>
+                            <label for="address" class="col-md-4 col-form-label text-md-right">Address*</label>
 
                             <div class="col-md-6">
                                 <input id="address" type="text" value="{{ old('address') }}" class="form-control @error('address') is-invalid @enderror" name="address">
@@ -92,7 +92,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="city" class="col-md-4 col-form-label text-md-right">City</label>
+                            <label for="city" class="col-md-4 col-form-label text-md-right">City*</label>
 
                             <div class="col-md-6">
                                 <input id="city" type="text" value="{{ old('city') }}" class="form-control @error('city') is-invalid @enderror" name="city">
@@ -106,7 +106,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="iva" class="col-md-4 col-form-label text-md-right">IVA</label>
+                            <label for="iva" class="col-md-4 col-form-label text-md-right">IVA*</label>
 
                             <div class="col-md-6">
                                 <input id="iva" type="text" value="{{ old('iva') }}" class="form-control @error('iva') is-invalid @enderror" name="iva">
@@ -136,7 +136,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="delivery_price" class="col-md-4 col-form-label text-md-right">Delivery Price</label>
+                            <label for="delivery_price" class="col-md-4 col-form-label text-md-right">Delivery Price*</label>
                             <div class="col-md-6">
                                 <input id="delivery_price" type="number" value="{{ old('delivery_price') }}" min=0 step="0.01" class="form-control @error('delivery_price') is-invalid @enderror" name="delivery_price">
                                 @error('delivery_price')
@@ -151,8 +151,10 @@
 
                         </div>			
 								
-								
-								<div class="mb-4 text-md-center"  >
+							<div class="form-group">
+                                <label class="col-md-4 col-form-label text-md-right">Categories*</label>                                
+                            </div>	
+								<div class="mb-4 text-md-center">
 									@foreach ($categories as $category)
 										<span class="d-inline-block mr-3" >
 											<label for="category{{ $loop->iteration }}">{{ $category->name }}</label>
@@ -160,6 +162,11 @@
 											@if ( in_array($category->id, old('categories', []))) checked @endif >
 										</span>
 									@endforeach
+                                    @error('categories')
+                                    <span class="text-danger d-block">
+                                        <strong >{{ $message }}</strong>
+                                    </span>
+                                    @enderror
 								</div>
 
 
