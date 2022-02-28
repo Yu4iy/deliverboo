@@ -23,7 +23,7 @@
 
                 <div class="mb-3">
                     <label for="name" class="form-label">Nome piatto*</label>
-                    <input class="form-control" type="text" id="name" name="name" value="{{old('name', $dish->name)}}">
+                    <input class="form-control" type="text" id="name" name="name" value="{{old('name', $dish->name)}}" required maxlength="50">
                     <!-- Visualizzazione mirata per l'errore -->
                     @error('name')
                     <div class="text-danger">{{$message}}</div>
@@ -33,7 +33,7 @@
                 <div class="mb-3">
                     <label for="ingredients" class="form-label">Ingredienti*</label>
                     <input class="form-control" type="text" id="ingredients" name="ingredients"
-                        value="{{old('ingredients', $dish->ingredients)}}">
+                        value="{{old('ingredients', $dish->ingredients)}}" required>
                     <!-- Visualizzazione mirata per l'errore -->
                     @error('ingredients')
                     <div class="text-danger">{{$message}}</div>
@@ -42,8 +42,8 @@
 
                 <div class="mb-3">
                     <label for="price" class="form-label">Prezzo*</label>
-                    <input class="form-control" id="price" type="text" value="{{ old('price', $dish->price) }}"
-                        name="price">
+                    <input class="form-control" id="price" type="number" value="{{ old('price', $dish->price) }}"
+                        name="price" required min="0" max="99999">
                     @error('price')
                     <div class="text-danger">{{$message}}</div>
                     @enderror
@@ -66,7 +66,7 @@
                     <img class="mb-3 edit-iage" width="200" src="{{asset('storage/' . $dish->image)}}"
                         alt="{{$dish->name}}">
                     @endif
-                    <input type="file" name="image" id="image" class="form-control-file">
+                    <input type="file" name="image" id="image" class="form-control-file" accept="image/png, image/jpeg, image/jpg">
                     <!-- Visualizzazione mirata per l'errore -->
                     @error('image')
                     <div class="text-danger">{{$message}}</div>
