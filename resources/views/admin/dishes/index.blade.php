@@ -27,7 +27,7 @@
 
         <div class="menu-items">
             @foreach ($dishes as $dish )
-            <div class="menu-item">
+            <div class="menu-item @if(!$dish->is_visible) menu-item_novisible @endif">
                 <div class="menu-item__row">
                     <h3 class="menu-item__title">{{$dish->name}}</h3>
                     <div class="menu-item__nav d-flex">
@@ -48,7 +48,7 @@
                     <ul class="menu-main__desc">
                         <li><strong>Ingridients: </strong>{{$dish->ingredients}}</li>
                         <li><strong>Prezzo: </strong>{{$dish->price}}&#8364;</li>
-                        <li><strong>Visibile: </strong>@if($dish->is_visible) Si @else No @endif</li>
+                        <li><strong>Visibile: </strong>@if($dish->is_visible) <span class="text-success">Si</span> @else  <span class="text-danger" >No</span> @endif</li>
                         <li><strong>Descrizione: </strong>@if($dish->description) {{$dish->description}} @else
                             aggiungere descrizione @endif</li>
                     </ul>

@@ -73,8 +73,18 @@ align-items: center;
 				&:hover{
 					background: rgb(224, 224, 224);
 				}
+				&:hover i{
+					color:#00ccbc;
+				}
 			}
 		}
+}
+.menu-items .menu-item_novisible{
+	color: #00000060;
+	box-shadow: rgba(60, 64, 67, 0.178) 0px 1px 2px 0px, rgba(60, 64, 67, 0.082) 0px 1px 3px 1px;
+	img{
+		filter: grayscale(100%);
+	}
 }
 .menu-main {
 		display: flex;
@@ -89,7 +99,7 @@ align-items: center;
 
 		&__img {
 			width: 30%;
-			background: red;
+			background: rgb(133, 132, 132);
 			img{
 				// object-fit: contain;
 				object-fit: cover;
