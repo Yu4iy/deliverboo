@@ -66,11 +66,11 @@ class RegisterController extends Controller
             'restaurant_name' => ['required', 'string', 'max:50'],
             'address' => ['required', 'string'],
             'city' => ['required', 'string', 'max:50'],
-            'iva' => ['required', 'string', 'size:11', 'unique:users'],
+            'iva' => ['required', 'numeric', 'regex:/[0-9]{11}/', 'unique:users'],
             'image' => ['nullable', 'file', 'mimes:jpeg,jpg,png'],
             'description' => ['nullable', 'string'],
             'delivery_price' => ['required', 'numeric', 'min:0'],
-				'categories'=>['nullable'], ['exists:categories,id']
+			'categories'=>['nullable'], ['exists:categories,id'],
         ]);
     }
 
