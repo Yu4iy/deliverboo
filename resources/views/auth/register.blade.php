@@ -175,13 +175,13 @@
                         <div class="form-group">
                             <label class="col-md-4 col-form-label text-md-right">Categories*</label>
                         </div>
-                        <div class="mb-4 text-md-center">
+                        <div class="mb-4 text-md-center" id="form-checkbox">
                             @foreach ($categories as $category)
                             <span class="d-inline-block mr-3">
                                 <label for="category{{ $loop->iteration }}">{{ $category->name }}</label>
-                                <input type="checkbox" name="categories[]" id="category{{ $loop->iteration }}"
+                                <input type="checkbox" name="categories[]" id="category{{ $loop->iteration }}" class="checkbox"
                                     value="{{ $category->id }} " @if ( in_array($category->id, old('categories', [])))
-                                checked @endif >
+                                checked @endif>
                             </span>
                             @endforeach
                             @error('categories')
@@ -191,10 +191,9 @@
                             @enderror
                         </div>
 
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" id="btn-submit">
                                     {{ __('Register') }}
                                 </button>
                             </div>
@@ -205,4 +204,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/checkbox-validation.js') }}" defer></script>
 @endsection
