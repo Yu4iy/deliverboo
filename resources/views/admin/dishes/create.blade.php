@@ -23,7 +23,8 @@
 
                 <div class="mb-3">
                     <label for="name" class="form-label">Nome piatto*</label>
-                    <input class="form-control" type="text" id="name" name="name" value="{{old('name')}}" required maxlength="50">
+                    <input class="form-control" type="text" id="name" name="name" value="{{old('name')}}" required
+                        maxlength="50">
                     <!-- Visualizzazione mirata per l'errore -->
                     @error('name')
                     <div class="text-danger">{{$message}}</div>
@@ -33,7 +34,8 @@
                 <div class="mb-3">
                     <label for="ingredients" class="form-label">Ingredienti*</label>
                     <input class="form-control" type="text" id="ingredients" name="ingredients"
-                        value="{{old('ingredients')}}" required>
+                        value="{{old('ingredients')}}" pattern="[a-zA-Z ,]+" required>
+
                     <!-- Visualizzazione mirata per l'errore -->
                     @error('ingredients')
                     <div class="text-danger">{{$message}}</div>
@@ -62,7 +64,8 @@
                 <!-- Image dish  -->
                 <div class="mb-4">
                     <label class="form-label" for="image"> <strong>Immagine del piatto</strong></label>
-                    <input type="file" name="image" id="image" class="form-control-file" accept="image/png, image/jpeg, image/jpg">
+                    <input type="file" name="image" id="image" class="form-control-file"
+                        accept="image/png, image/jpeg, image/jpg">
                     <!-- Visualizzazione mirata per l'errore -->
                     @error('image')
                     <div class="text-danger">{{$message}}</div>
@@ -81,4 +84,8 @@
             </form>
         </div>
 </section>
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/test.js') }}" defer></script>
 @endsection
