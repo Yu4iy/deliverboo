@@ -103,7 +103,7 @@
                                         target="_blank"
                                         class="name-team"
                                     >
-                                        Sofia Durante
+                                        Sofia Maria Durante
                                         <i
                                             class="fa-solid fa-terminal icon-team"
                                         ></i>
