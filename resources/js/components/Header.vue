@@ -135,4 +135,17 @@ header {
         }
     }
 }
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .container {
+        .navbar {
+            .container-brand {
+                width: 65%;
+            }
+            .navbar-collapse {
+                width: 35%;
+            }
+        }
+    }
+}
 </style>
