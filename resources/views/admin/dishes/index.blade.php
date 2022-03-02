@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- @dd($dishes) --}}
+
 <section class="dishes-menu">
-    {{-- @dd($dishes) --}}
+
     <div class="menu">
         <div class="container">
             <div class="menu-row">
@@ -22,10 +22,30 @@
             <div class="alert alert-success">
                 {{ session()->get('message') }}
             </div>
-            @endif
+            < @elseif (session()->get('message-edit'))
+                <div class="alert alert-success">
+                    <strong>{{session('message-edit')}}</strong> modificato con successo.
+                </div>
+                @elseif (session()->get('message-restore'))
+                <div class="alert alert-success">
+                    {{ session()->get('message-restore') }}
+                </div>
+                @elseif (session()->get('deleted'))
+                <div class="alert alert-danger">
+                    <strong>{{session('deleted')}}</strong> eliminato con successo.
+                </div>
+                @endif
         </div>
 
+
         <div class="menu-items">
+            @if ($dishes->isEmpty())
+            <div class="menu-empty">
+                <p>Non ci sono ancora piatti nel tuo menu!
+                    <i class="fa-solid fa-utensils icon-empty"></i>
+                </p>
+            </div>
+            @else
             @foreach ($dishes as $dish )
             <div class="menu-item @if(!$dish->is_visible) menu-item_novisible @endif">
                 <div class="menu-item__row">
@@ -63,6 +83,7 @@
                 </div>
             </div>
             @endforeach
+
         </div>
     </div>
     <!-- Modal -->
@@ -93,5 +114,6 @@
             </div>
         </div>
     </div>
+    @endif
 </section>
 @endsection
