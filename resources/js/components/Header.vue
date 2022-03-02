@@ -90,7 +90,6 @@ header {
 }
 .container {
     background: #fff;
-    padding: 16px 0;
     .navbar {
         .container-brand {
             width: 70%;
@@ -99,7 +98,7 @@ header {
             font-size: 22px;
             font-weight: 700;
             .logo {
-                max-width: 60px;
+                max-width: 40px;
             }
         }
         .navbar-collapse {
@@ -107,7 +106,7 @@ header {
             .nav-item {
                 border: 0.5px solid #acacac;
                 margin-right: 20px;
-                font-size: 18px;
+                font-size: 16px;
                 padding: 0 15px;
                 .nav-link:hover {
                     color: #00ccbc;
