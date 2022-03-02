@@ -1,0 +1,27 @@
+.card {
+    display: block;
+    .card-header {
+        .icon-user {
+            color: $deliveboo;
+            font-size: 30px;
+        }
+    }
+    .card-body {
+        .btn-dashboard {
+            background: #00ccbc;
+            color: #fff;
+            font-weight: 700;
+            padding: 8px 10px;
+            border-radius: 5px;
+            border: none;
+            margin-top: 20px;
+        }
+        .link-dashboard {
+            color: #00ccbc;
+        }
+        .link-dashboard:hover {
+            color: #00ccbc;
+            text-decoration: none;
+        }
+    }
+}
