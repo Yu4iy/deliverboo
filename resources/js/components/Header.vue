@@ -1,7 +1,7 @@
 <template>
     <header>
         <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container-fluid">
                     <router-link :to="{ name: 'home' }" class="container-brand">
                         <img
@@ -81,7 +81,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
+header {
+    position: fixed;
+    width: 100%;
+    background: #fff;
+    box-shadow: rgba(60, 64, 67, 0.178) 0px 1px 2px 0px,
+        rgba(60, 64, 67, 0.082) 0px 1px 3px 1px;
+}
 .container {
+    background: #fff;
     padding: 16px 0;
     .navbar {
         .container-brand {
