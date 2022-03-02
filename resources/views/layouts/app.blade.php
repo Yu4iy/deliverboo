@@ -89,6 +89,8 @@
         </main>
     </div>
     @yield('scripts')
+    {{-- Script Js --}}
+
 </body>
 
 </html>
