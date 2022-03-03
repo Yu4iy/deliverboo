@@ -1,3 +1,13 @@
+/* .navbar-light {
+    .navbar-nav {
+        .nav-item {
+            .nav-link.active {
+                color: $deliveboo;
+            }
+        }
+    }
+} */
+
 .navbar-light {
     .navbar-nav {
         .nav-item {
@@ -7,3 +17,80 @@
         }
     }
 }
+
+header {
+    position: fixed;
+    z-index: 200;
+    width: 100%;
+    background: #fff;
+    box-shadow: rgba(60, 64, 67, 0.178) 0px 1px 2px 0px,
+        rgba(60, 64, 67, 0.082) 0px 1px 3px 1px;
+        .container-header {
+            background: #fff;
+            .navbar {
+                a {
+                    cursor: default;
+                }
+                .container-brand {
+                    width: 70%;
+                    color: #00ccbc;
+                    text-decoration: none;
+                    font-size: 22px;
+                    font-weight: 700;
+                    .logo {
+                        max-width: 40px;
+                    }
+                }
+                .navbar-collapse {
+                    width: 30%;
+                    .nav-item {
+                        border: 0.5px solid #acacac;
+                        margin-right: 20px;
+                        font-size: 16px;
+                        padding: 0 15px;
+                        .nav-link:hover {
+                            color: #00ccbc;
+                        }
+                        .icon-header {
+                            color: #00ccbc;
+                            font-size: 18px;
+                            margin-right: 5px;
+                        }
+                    }
+                    .nav-item:last-child {
+                        margin-right: 0px;
+                    }
+                }
+            }
+        }
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+@media screen and (max-width: 991px) {
+    .container {
+        .navbar {
+            .navbar-collapse {
+                .nav-item {
+                    border: none;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .container {
+        .navbar {
+            .container-brand {
+                width: 65%;
+            }
+            .navbar-collapse {
+                width: 35%;
+            }
+        }
+    }
+}
+

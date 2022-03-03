@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -26,4 +26,20 @@
     <script src="{{asset('js/front-office.js')}}"></script>
 </body>
 
-</html>
+</html> --}}
+
+@extends('layouts.app')
+
+@section('vue')
+    <div id="root"></div>
+@endsection
+
+@section('scripts')
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+
+    <!-- Nostro Js -->
+    <script src="{{asset('js/front-office.js')}}"></script>
+@endsection

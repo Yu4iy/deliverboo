@@ -14,6 +14,7 @@ const mix = require("laravel-mix");
 mix.js("resources/js/app.js", "public/js")
     .js("resources/js/front-office.js", "public/js")
     .js("resources/js/checkbox-validation.js", "public/js")
+    .js("resources/js/useful-functions.js", "public/js")
     .sass("resources/sass/app.scss", "public/css")
     .options({
         processCssUrls: false,
