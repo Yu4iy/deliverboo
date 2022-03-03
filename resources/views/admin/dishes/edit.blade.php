@@ -68,7 +68,7 @@
                         alt="{{$dish->name}}">
                     @endif
                     <input type="file" name="image" id="image" class="form-control-file"
-                        accept="image/png, image/jpeg, image/jpg">
+                        accept="image/png, image/jpeg, image/jpg"><span>png, jpeg, jpg</span>
                     <!-- Visualizzazione mirata per l'errore -->
                     @error('image')
                     <div class="text-danger">{{$message}}</div>

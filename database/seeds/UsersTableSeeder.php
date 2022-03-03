@@ -27,7 +27,7 @@ class UsersTableSeeder extends Seeder
 			$new_user->description = $user['description']; 
 			$new_user->image = $user['image']; 
 			$new_user->delivery_price = $user['delivery_price']; 
-			$new_user->slug = Str::slug($user['name'], '-');
+			$new_user->slug = Str::slug($user['restaurant_name'], '-');
 			
 			$new_user->save();
 			
