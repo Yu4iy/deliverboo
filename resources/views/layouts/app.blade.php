@@ -27,16 +27,18 @@
 <body>
     <div id="app">
         <header>
-            <div class="container">
+            <div class="container container-header">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <div class="container-fluid">
                         <a href="/" class="container-brand">
-                            <img
-                                src="/storage/header/logo-deliveroo-icona.png"
-                                alt="deliveboo-logo"
-                                class="logo"
-                            />
-                            deliveboo
+                            <span class="cursor-pointer">
+                                <img
+                                    src="/storage/header/logo-deliveroo-icona.png"
+                                    alt="deliveboo-logo"
+                                    class="logo"
+                                />
+                                deliveboo
+                            </span>
                         </a>
                         <button
                             class="navbar-toggler"
@@ -56,7 +58,7 @@
                         @auth
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link @if (Request::route()->getName()==='admin.dishes.index')
+                                <a class="nav-link cursor-pointer @if (Request::route()->getName()==='admin.dishes.index')
                             active
                         @endif" href="{{ route('admin.dishes.index') }}">Dishes</a>
                             </li>
@@ -65,7 +67,7 @@
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 @guest
                                 <li class="nav-item">
-                                    <a class="nav-link" 
+                                    <a class="nav-link cursor-pointer" 
                                     aria-current="page"
                                     href="{{ route('login') }}">
                                         <i
@@ -77,7 +79,7 @@
                                 @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a
-                                        class="nav-link"
+                                        class="nav-link cursor-pointer"
                                         aria-current="page"
                                         href="{{ route('register') }}">
                                         <i
@@ -89,13 +91,13 @@
                                 @endif
                                 @else
                                 <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle cursor-pointer" href="#" role="button"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ Auth::user()->name }}
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        <a class="dropdown-item cursor-pointer" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                             document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
