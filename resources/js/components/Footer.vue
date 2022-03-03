@@ -103,10 +103,12 @@
                                         target="_blank"
                                         class="name-team"
                                     >
+                                        <div class="container-icon">
+                                            <i
+                                                class="fa-solid fa-terminal icon-team"
+                                            ></i>
+                                        </div>
                                         Sofia Maria Durante
-                                        <i
-                                            class="fa-solid fa-terminal icon-team"
-                                        ></i>
                                     </a>
                                 </li>
                                 <li class="menu-footer-item">
@@ -115,10 +117,12 @@
                                         target="_blank"
                                         class="name-team"
                                     >
+                                        <div class="container-icon">
+                                            <i
+                                                class="fa-solid fa-laptop-code icon-team"
+                                            ></i>
+                                        </div>
                                         Yuri Mohyliyuk
-                                        <i
-                                            class="fa-solid fa-laptop-code icon-team"
-                                        ></i>
                                     </a>
                                 </li>
                                 <li class="menu-footer-item">
@@ -127,10 +131,12 @@
                                         target="_blank"
                                         class="name-team"
                                     >
+                                        <div class="container-icon">
+                                            <i
+                                                class="fa-solid fa-code icon-team"
+                                            ></i>
+                                        </div>
                                         Elena Munaro
-                                        <i
-                                            class="fa-solid fa-code icon-team"
-                                        ></i>
                                     </a>
                                 </li>
                                 <li class="menu-footer-item">
@@ -139,10 +145,12 @@
                                         target="_blank"
                                         class="name-team"
                                     >
+                                        <div class="container-icon">
+                                            <i
+                                                class="fa-solid fa-file-code icon-team"
+                                            ></i>
+                                        </div>
                                         Eleonora Potente
-                                        <i
-                                            class="fa-solid fa-file-code icon-team"
-                                        ></i>
                                     </a>
                                 </li>
                                 <li class="menu-footer-item">
@@ -151,10 +159,12 @@
                                         target="_blank"
                                         class="name-team"
                                     >
+                                        <div class="container-icon">
+                                            <i
+                                                class="fa-solid fa-ghost icon-team"
+                                            ></i>
+                                        </div>
                                         Jacopo Ferroni
-                                        <i
-                                            class="fa-solid fa-ghost icon-team"
-                                        ></i>
                                     </a>
                                 </li>
                             </ul>
@@ -216,12 +226,18 @@ footer {
                                         max-width: 65%;
                                     }
                                     .icon-team {
-                                        margin-left: 10px;
+                                        margin-right: 15px;
                                     }
                                 }
                                 a:hover {
                                     color: #00ccbc;
                                     text-decoration: none;
+                                }
+                                a.name-team {
+                                    display: flex;
+                                    .container-icon {
+                                        width: 20%;
+                                    }
                                 }
                             }
                         }
@@ -269,6 +285,11 @@ footer {
                                             max-width: 50%;
                                         }
                                     }
+                                    a.name-team {
+                                        .container-icon {
+                                            width: 10%;
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -291,6 +312,11 @@ footer {
                                     a {
                                         .badge-footer {
                                             max-width: 30%;
+                                        }
+                                    }
+                                    a.name-team {
+                                        .container-icon {
+                                            width: 8%;
                                         }
                                     }
                                 }
