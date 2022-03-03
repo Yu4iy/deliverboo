@@ -81,7 +81,7 @@
 
                     <!-- bottom -->
                     <div class="restaurantList container-fluid mt-5 px-5">
-                        <ul class="row" v-if="bestRestaurants">
+                        <ul class="row" v-if="restaurants">
                             <!-- restaurant list -->
                             
                             <li class="Cards-Rest col-sm-6 col-md-4 my-3" v-for="bestRestaurant in restaurants" :key="`restaurant-${bestRestaurant.id}`">
@@ -113,6 +113,9 @@
                                 </router-link>   
                             </li>
                         </ul>
+                        <div v-else-if="restaurants.length == 0">
+                            Non ci sono ancora ristoranti per questa categoria!
+                        </div>
                         <div v-else>
                            <h4>Loading restaurants...</h4>
                         </div>
