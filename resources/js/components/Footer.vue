@@ -225,9 +225,9 @@ footer {
                                     .badge-footer {
                                         max-width: 65%;
                                     }
-                                    .icon-team {
-                                        margin-right: 15px;
-                                    }
+                                    // .icon-team {
+                                    //     margin-right: 15px;
+                                    // }
                                 }
                                 a:hover {
                                     color: #00ccbc;
@@ -300,7 +300,36 @@ footer {
     }
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    footer {
+        .footer-top {
+            .container {
+                .row {
+                    .col-footer {
+                        .content-col {
+                            .menu-footer {
+                                .menu-footer-item {
+                                    a {
+                                        .badge-footer {
+                                            max-width: 40%;
+                                        }
+                                    }
+                                    a.name-team {
+                                        .container-icon {
+                                            width: 8%;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
     footer {
         .footer-top {
             .container {
