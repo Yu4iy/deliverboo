@@ -13,8 +13,9 @@
 
 				<div v-for="(dish,index) in info.dishes" :key="`dishes-${dish.slug}`" class="menu-main__item">
 					<div class="menu-card ">
-							<div class="menu-card__wraper">
-								<img class="img-fluid menu-img" :src="dish.image" alt="">
+							<div class="menu-card__wraper" >
+								<img v-if="dish.image"  class="img-fluid menu-img" :src="`/storage/${dish.image}`" alt="" >
+								<img v-else src="https://www.nafservizi.it/wp-content/uploads/2020/10/default_image_01.png" alt="">
 							</div>
 							<div class="menu-card__desc">
 									<h3>{{dish.name}}</h3>
@@ -36,7 +37,7 @@
 					</div>
 					<div v-for="(cartDish, index) in cartDishes" :key="`cart-dishes-${index}`" class="menu-cart__item">
 						<div class="img-wrap">
-							<img :src="cartDish.image" alt="">
+							<img :src="`/storage/${cartDish.image}`" alt="">
 						</div>
 						<div class="menu-cart__info">
 							<h5>{{cartDish.name}}</h5>
@@ -73,7 +74,6 @@ export default {
 	 data(){
 		 return{
 			info:null,
-			slug:'manuel-delsoglio',
 			cartCounter:0,
 			cartDishes:[],
 			cartDish:{
@@ -86,7 +86,7 @@ export default {
 	 },
 	 methods: {
 		getResturant(){
-			axios.get(`http://127.0.0.1:8000/api/menu/${this.slug}`)
+			axios.get(`http://127.0.0.1:8000/api/menu/${this.$route.params.slug}`)
 			.then(response => (
 			this.info = response.data[0]))
 		},
@@ -138,7 +138,7 @@ export default {
 
 <style lang="scss" scoped>
 .menu {
-	padding: 0;
+	padding: 60px 0 0 0;
 }
 // MENU BANNER 
 .menu-banner {
