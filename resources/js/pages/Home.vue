@@ -20,9 +20,12 @@
                             CATEGORIE
                         </li>
                         <li class="mt-2 mx-2" v-for="category in categories" :key="`category-${category.slug}`">
-                            <router-link class="category" :to="{ name: 'advanced-search', params: {slug: category.slug }}">
+                            <!-- <router-link class="category" :to="{ name: 'advanced-search', params: {slug: category.slug }}">
                                 {{category.name}}
-                            </router-link>
+                            </router-link> -->
+                            <button class="category" @click="getFilteredRestaurants(category.slug)">
+                                {{category.name}}
+                            </button>
                         </li>
                     </ul>
                     
@@ -81,7 +84,7 @@
                         <ul class="row" v-if="bestRestaurants">
                             <!-- restaurant list -->
                             
-                            <li class="Cards-Rest col-sm-6 col-md-4 my-3" v-for="bestRestaurant in bestRestaurants" :key="`restaurant-${bestRestaurant.id}`">
+                            <li class="Cards-Rest col-sm-6 col-md-4 my-3" v-for="bestRestaurant in restaurants" :key="`restaurant-${bestRestaurant.id}`">
                                 <router-link class="Cards-Link-container" :to="{ name: 'restaurant-menu', params: {slug: bestRestaurant.slug }}">
                                     <!-- card -->
                                     <div class="Card">
@@ -145,6 +148,12 @@ export default {
       }
     },
 
+    computed: {
+        restaurants(){
+            return this.bestRestaurants;
+        }
+    },
+
     created() {
       this.getBestRestaurants();
       this.getCategoryRestaurant();
@@ -170,6 +179,24 @@ export default {
                 })
                 .catch(err => log.error(err));
           
+        },
+        getFilteredRestaurants(categorySlug) {
+            axios.get(`http://127.0.0.1:8000/api/restaurants/${categorySlug}`)
+                .then(res => {
+                    console.log(res.data);
+
+                    // senza impaginazione
+                    //  this.bestRestaurants = res.data;
+
+                    // con impaginazione
+                    this.bestRestaurants = res.data[0].users;
+                    console.log(this.bestRestaurants)
+                    /* this.pagination = {
+                       current: res.data.current_page,
+                       last: res.data.last_page
+                    }; */
+                })
+                .catch(err => log.error(err));
         },
         getCategoryRestaurant(){
             //chiamata axios
