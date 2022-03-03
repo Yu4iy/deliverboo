@@ -11,6 +11,8 @@
 
 	<div id="root"></div>
 
+
+	
 	<script src="{{asset('js/front-office.js')}}"></script>
 </body>
 </html>
