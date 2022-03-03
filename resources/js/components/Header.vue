@@ -69,11 +69,13 @@ export default {
 <style scoped lang="scss">
 header {
     position: fixed;
+    top: 0;
     z-index: 200;
     width: 100%;
     background: #fff;
     box-shadow: rgba(60, 64, 67, 0.178) 0px 1px 2px 0px,
         rgba(60, 64, 67, 0.082) 0px 1px 3px 1px;
+	z-index: 2000;
 }
 .container {
     background: #fff;

@@ -13,6 +13,8 @@ class RestaurantController extends Controller
 	{
 		$restaurants = Category::where('slug', $slug)->with('users:id,restaurant_name,slug,address,city,iva,description,image,delivery_price')->get();
 		return response()->json($restaurants);
+
+
 	}
 
 	public function show($slug)
@@ -20,4 +22,19 @@ class RestaurantController extends Controller
 		$dishes = User::where('slug', $slug)->select('id', 'restaurant_name', 'slug', 'address', 'city' ,'iva', 'description', 'image', 'delivery_price')->with('dishes')->get();
 		return response()->json($dishes);
 	}
+	
+	public function bestRestaurants()
+	{
+		$bestRestaurants = User::paginate(6);
+		return response()->json($bestRestaurants);
+
+	}
+
+	public function CategoryRestaurant()
+	{
+		$categories = Category::orderBy('name', 'asc')->get();
+		return response()->json($categories);
+
+	}
+
 }
