@@ -31,6 +31,19 @@
     display: flex;
     flex-wrap: wrap;
 }
+.menu-empty {
+    width: 100%;
+    text-align: center;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    .icon-empty {
+        color: #00ccbc;
+    }
+}
+
 .menu-item {
     background: #ffffff;
     padding: 15px 25px;
