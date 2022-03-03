@@ -1,5 +1,5 @@
 <template>
-   <div class="advanced-search">
+   <div v-if="category" class="advanced-search">
 		<div class="menu-banner">
 			<img  class="menu-banner__bg-img"  :src="category.image" :alt="category.name">
 			<div class="menu-banner__name">{{category.name }}</div>
@@ -160,6 +160,7 @@ export default {
 			color: #a1a1a1;
 			transition: linear 0.2s;
 			border: 2px solid #a1a1a186;
+			border-radius: 5px;
 			i{
 				// color: #00ccbc;
 				font-size: 15px;
