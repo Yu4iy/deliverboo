@@ -2,7 +2,6 @@
 
 @section('content')
 {{-- @dd($categories[1]) --}}
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -208,4 +207,5 @@
 
 @section('scripts')
 <script src="{{ asset('js/checkbox-validation.js') }}" defer></script>
+<script src="{{ asset('js/useful-functions.js') }}" defer></script>
 @endsection
