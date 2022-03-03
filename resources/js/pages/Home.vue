@@ -1,6 +1,6 @@
 <template>
      
-    <section class="mt-3">
+    <section>
   
         <!-- Banner -->
         <div class="homeBanner">
@@ -33,13 +33,13 @@
                     <!-- hamburgher -->
                     <a class="Hamb-Bottom mx-3 " href="#">
                         <span class="CategoryTitle mx-1">CATEGORIE:</span>
-                        <i class="fa-solid fa-bars">canc</i>
+                        <i class="fa-solid fa-bars"></i>
                     </a>
 
                     <div class="hamburger-menu">
                         <ul class="categoryList  px-4">
                             <li class="mt-2 mx-2" v-for="category in categories" :key="`category-${category.slug}`">
-                                <router-link class="category" :to="{ name: 'advanced-search', params: {slug: category.slug }}">
+                                <router-link @click="control()" class="category" :to="{ name: 'advanced-search', params: {slug: category.slug }}">
                                     {{category.name}}
                                 </router-link>
                             </li>
@@ -53,7 +53,7 @@
                     <div class="topContainer container-fluid mt-5">
                         <div class="row  align-items-center">
                             <!-- title -->
-                            <div class="Title col-sm-12 col-md-6 py-1 my-2">I Ristoranti in evidenza</div>
+                            <div class="Title col-sm-12 col-md-6 py-1 my-2">I nostri Ristoranti</div>
                             <!-- searchbar -->
                             <div class="SearchBar col-sm-12 col-md-6 my-2">
                                 <!-- search bar -->
@@ -81,11 +81,14 @@
 
                     <!-- bottom -->
                     <div class="restaurantList container-fluid mt-5 px-5">
+							  <span class="restaurant-list-warn">
+								  {{text}}
+							  </span>
                         <ul class="row" v-if="restaurants">
                             <!-- restaurant list -->
                             
                             <li class="Cards-Rest col-sm-6 col-md-4 my-3" v-for="bestRestaurant in restaurants" :key="`restaurant-${bestRestaurant.id}`">
-                                <router-link class="Cards-Link-container" :to="{ name: 'restaurant-menu', params: {slug: bestRestaurant.slug }}">
+										  <router-link class="Cards-Link-container" :to="{ name: 'restaurant-menu', params: {slug: bestRestaurant.slug }}">
                                     <!-- card -->
                                     <div class="Card">
                                         <!-- image -->
@@ -113,9 +116,6 @@
                                 </router-link>   
                             </li>
                         </ul>
-                        <div v-else-if="restaurants.length == 0">
-                            Non ci sono ancora ristoranti per questa categoria!
-                        </div>
                         <div v-else>
                            <h4>Loading restaurants...</h4>
                         </div>
@@ -147,7 +147,7 @@ export default {
       return {
           bestRestaurants: null,
           categories: null,
-
+			 text:null
       }
     },
 
@@ -193,6 +193,11 @@ export default {
 
                     // con impaginazione
                     this.bestRestaurants = res.data[0].users;
+						  if(res.data[0].users.length == 0){
+							  	this.text = 'Non ci sono ristoranti per questa categoria😢'
+						  }else{
+							  this.text = ''
+						  }
                     console.log(this.bestRestaurants)
                     /* this.pagination = {
                        current: res.data.current_page,
@@ -213,6 +218,7 @@ export default {
                 })
                 .catch(err => log.error(err));
         },
+
           
     }    
 };
@@ -264,6 +270,8 @@ ul{
                 font-size: 16px;
                 text-transform: uppercase;
                 transition: 0.3s;
+					 border:  none;
+					 background: transparent;
                 &:hover{
                     color: #00ccbc;
 
@@ -304,7 +312,6 @@ ul{
         }
         // bottom
         .restaurantList{
-            
             .Cards-Rest{
                 min-height: 400px;
 
@@ -374,7 +381,13 @@ ul{
 
 
 // hamburger menu
+.restaurant-list-warn{
+	font-size: 20px;
+	text-align: center;
+	font-weight: 700;
+	display: inline-block;
 
+}
 .hamburger-menu {
     position: absolute;
     top: 0;
