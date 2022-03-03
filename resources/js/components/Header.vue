@@ -57,20 +57,6 @@
                 </div>
             </nav>
         </div>
-        <!-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <router-link :to="{ name: 'home' }">
-                    <img
-                        src="/storage/header/logo-deliveroo-icona.png"
-                        alt="deliveboo-logo"
-                        class="logo"
-                    />
-                    Deliverboo
-                </router-link>
-                <a href="/login">Login</a>
-                <a href="/register">Register</a>
-            </div>
-        </nav> -->
     </header>
 </template>
 
@@ -83,6 +69,7 @@ export default {
 <style scoped lang="scss">
 header {
     position: fixed;
+    z-index: 200;
     width: 100%;
     background: #fff;
     box-shadow: rgba(60, 64, 67, 0.178) 0px 1px 2px 0px,
@@ -132,6 +119,19 @@ header {
                 .nav-item {
                     border: none;
                 }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .container {
+        .navbar {
+            .container-brand {
+                width: 65%;
+            }
+            .navbar-collapse {
+                width: 35%;
             }
         }
     }

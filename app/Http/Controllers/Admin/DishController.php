@@ -76,7 +76,7 @@ class DishController extends Controller
         $new_dish->save();
 
         //redirect to archive page
-        return redirect()->route('admin.dishes.index')->with('message',"Piatto creato con successo");
+        return redirect()->route('admin.dishes.index')->with('message', "Piatto creato con successo");
     }
 
     /**
@@ -157,7 +157,7 @@ class DishController extends Controller
         $dish->update($data);
 
         //redirect to details page
-        return redirect()->route('admin.dishes.index');
+        return redirect()->route('admin.dishes.index')->with('message-edit', $dish->name);
     }
 
     /**
@@ -190,7 +190,7 @@ class DishController extends Controller
         Dish::withTrashed()->find($id)->restore();
 
         //redirect to the menu
-        return redirect()->route('admin.dishes.index');
+        return redirect()->route('admin.dishes.index')->with('message-restore', 'Piatto ripristinato con successo!');
     }    
 
     public function forceDelete($id) {
