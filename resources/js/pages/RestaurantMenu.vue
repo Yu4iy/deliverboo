@@ -35,13 +35,18 @@
 						Basket empty
 					</div>
 					<div v-for="(cartDish, index) in cartDishes" :key="`cart-dishes-${index}`" class="menu-cart__item">
-						<h5>{{cartDish.name}} <strong>x{{cartDish.qunatiy}}</strong></h5>
-						<div>Price: {{cartDish.price}}$</div>
-						<div class="d-flex justify-content-between">
-							<div>
-								<button @click="decrement(cartDish,index)" class="btn btn-secondary">-</button>
-								<span class="btn btn-success">{{cartDish.qunatiy}}</span>
-								<button @click="increment(cartDish,index)" class="btn btn-secondary">+</button>
+						<div class="img-wrap">
+							<img :src="cartDish.image" alt="">
+						</div>
+						<div class="menu-cart__info">
+							<h5>{{cartDish.name}}</h5>
+							<div>Price: {{cartDish.price}}$</div>
+							<div class="d-flex justify-content-between">
+								<div>
+									<button @click="decrement(cartDish,index)" class="btn btn-secondary">-</button>
+									<span class="btn btn-success">{{cartDish.qunatiy}}</span>
+									<button @click="increment(cartDish,index)" class="btn btn-secondary">+</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -74,6 +79,7 @@ export default {
 			cartDish:{
 				name:'',
 				price:null,
+				image:'',
 				qunatiy:1
 			}
 		 }
@@ -91,6 +97,7 @@ export default {
 			{
 				name: elem.name,
 				price: elem.price,
+				image:elem.image,
 				qunatiy: 1
 		  	}
 
@@ -111,6 +118,7 @@ export default {
 			const newDishCart =	{
 											name: elem.name,
 											price: elem.price,
+											image: elem.image,
 											qunatiy: 0
 										}
 
@@ -123,12 +131,7 @@ export default {
 			}else{
 				this.cartDishes.push(newDishCart);
 			}
-
 		},
-
-
-
-
 	 }
 };
 </script>
@@ -251,6 +254,23 @@ border-radius: 10px;
 		border-radius: 5px;
 		padding: 10px 15px;
 		margin: 4px 0;
+		display: flex;
+		
+		.img-wrap{
+			flex: 0 0 34%;
+			position: relative;
+			min-height: auto;
+	
+			img{
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				position: absolute;
+				top: 0;
+				left: 0;
+				padding: 0 10px 0 0;
+			}
+		}
 	}
 }
 
