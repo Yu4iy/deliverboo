@@ -105,7 +105,7 @@ class DishController extends Controller
     {        
         foreach(Auth::user()->dishes as $user_dish) {
             if($dish->user_id != $user_dish['user_id']) {
-                abort(404);
+                abort(403);
             }
         }
         return view('admin.dishes.edit', compact('dish'));
