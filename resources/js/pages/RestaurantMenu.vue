@@ -3,14 +3,14 @@
 	<div v-if="this.info != null">
 		<div class="menu-banner">
 			<img  class="menu-banner__bg-img" :src="info.image" alt="">
-			<div class="menu-banner__name">{{info.name}}</div>
+			<div class="menu-banner__name">{{info.restaurant_name}}</div>
 			<div class="menu-banner__city">{{info.city}}</div>
 			<div class="menu-banner__adress">{{info.address}}</div>
 			<p class="menu-banner__desc">{{info.description}}</p>
 		</div>
+		<div class="menu-title"> <i class="fa-solid fa-utensils"></i> Menu</div>
 		<div class="menu-wraper">
 			<div class="menu-main">
-
 				<div v-for="(dish,index) in info.dishes" :key="`dishes-${dish.slug}`" class="menu-main__item">
 					<div class="menu-card ">
 							<div class="menu-card__wraper" >
@@ -23,7 +23,7 @@
 									<div>{{dish.price}}$</div>
 							</div>
 							<div class="d-flex justify-content-between btn-fix">
-								<button @click="addDishToCart(dish,index)" class="btn btn-success">+</button>
+								<button @click="addDishToCart(dish,index)" class="btn btn-brand-color"><i class="fa-solid fa-plus"></i></button>
 							</div>
 						</div>	
 				</div>
@@ -44,9 +44,9 @@
 							<div>Price: {{cartDish.price}}$</div>
 							<div class="d-flex justify-content-between">
 								<div>
-									<button @click="decrement(cartDish,index)" class="btn btn-secondary">-</button>
-									<span class="btn btn-success">{{cartDish.qunatiy}}</span>
-									<button @click="increment(cartDish,index)" class="btn btn-secondary">+</button>
+									<button @click="decrement(cartDish,index)" class="btn btn-secondary"><i class="fa-solid fa-minus"></i></button>
+									<span class="btn  btn-brand-color">{{cartDish.qunatiy}}</span>
+									<button @click="increment(cartDish,index)" class="btn btn-secondary"><i class="fa-solid fa-plus"></i></button>
 								</div>
 							</div>
 						</div>
@@ -54,7 +54,7 @@
 				</div>
 				<div class="d-flex justify-content-between flex-column">
 					<span class="my-2"><strong>Total: </strong>222$</span>
-					<button class="w-100 btn btn-success">BUY</button>
+					<button class="w-100 btn btn-brand-color">BUY</button>
 				</div>
 			</div>
 		</div>
@@ -181,7 +181,13 @@ export default {
 			margin: 5px 0 0 0;
 		}
 }
-
+.menu-title{
+	font-weight: 700;
+	padding: 30px 0;
+	font-size: 35px;
+	text-align: center;
+	color: rgba(0, 0, 0, 0.692);
+}
 .menu-wraper{
 	height: 100vh;
 	background: #f8fafc;
@@ -210,7 +216,7 @@ flex-direction: column;
 	border: 2px solid #eceeef;
 	border-radius: 20px;
 	padding: 0;
-	margin: 0 0 10px 0 ;
+	margin: 0 0 40px 0 ;
 	overflow: hidden;
 	position: relative;
 
@@ -222,7 +228,7 @@ flex-direction: column;
 		height: auto;
 	}
 	&__desc{
-		padding: 10px 15px;
+		padding: 10px 60px 10px 15px;
 	}
 }
 .btn-fix{
@@ -274,4 +280,10 @@ border-radius: 10px;
 	}
 }
 
+
+.btn-brand-color{
+	background: #32bab3;
+	color: #fff;
+	font-weight: 700;
+}
 </style>
