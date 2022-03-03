@@ -66,31 +66,34 @@ header {
 }
 
 .cursor-pointer {
-    cursor: pointer !important;
+   cursor: pointer !important;
+	
 }
 
 @media screen and (max-width: 991px) {
-    .container {
-        .navbar {
-            .navbar-collapse {
-                .nav-item {
-                    border: none;
-                }
-            }
-        }
-    }
+.container-header{
+	.navbar{	
+		.navbar-collapse {
+			.nav-item {
+				border: none
+				}
+			}
+		}
 }
 
+
+}
 @media screen and (min-width: 992px) and (max-width: 1199px) {
-    .container {
-        .navbar {
-            .container-brand {
-                width: 65%;
-            }
-            .navbar-collapse {
-                width: 35%;
-            }
-        }
-    }
+	header {
+		 .container-header {
+			  .navbar {
+					.container-brand {
+						 width: 60%;
+					}
+			  }
+		 }
+		 .navbar-collapse {
+			  width: 40%;
+		 }
+	}
 }
-

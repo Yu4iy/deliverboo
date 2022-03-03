@@ -138,7 +138,7 @@ export default {
 
 <style lang="scss" scoped>
 .menu {
-	padding: 60px 0 0 0;
+	padding: 0;
 }
 // MENU BANNER 
 .menu-banner {
