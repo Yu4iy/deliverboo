@@ -31,17 +31,21 @@
                     
 
                     <!-- hamburgher -->
-                    <a class="Hamb-Bottom mx-3 " href="#">
+                    <div class="Hamb-Bottom mx-3">
                         <span class="CategoryTitle mx-1">CATEGORIE:</span>
-                        <i class="fa-solid fa-bars"></i>
-                    </a>
+								<span class="burger-wraper-togle" @click="openModal = !openModal">
+										<span :class="{ 'burger__top-open': openModal, 'burger__top-close':!openModal}"></span>
+										<span :class="{ 'burger__midle-open': openModal, 'burger__midle-close':!openModal}"></span>
+										<span :class="{ 'burger__bottom-open': openModal, 'burger__bottom-close':!openModal }"></span>
+								</span>
+                    </div>
 
-                    <div class="hamburger-menu">
+                    <div class="hamburger-menu " :class="{ active: openModal }">
                         <ul class="categoryList  px-4">
                             <li class="mt-2 mx-2" v-for="category in categories" :key="`category-${category.slug}`">
-                                <router-link @click="control()" class="category" :to="{ name: 'advanced-search', params: {slug: category.slug }}">
-                                    {{category.name}}
-                                </router-link>
+										<button class="category" @click="getFilteredRestaurants(category.slug)">
+											{{category.name}}
+										</button>
                             </li>
                         </ul>
                     </div>
@@ -147,7 +151,8 @@ export default {
       return {
           bestRestaurants: null,
           categories: null,
-			 text:null
+			 text:null,
+			 openModal:false
       }
     },
 
@@ -389,10 +394,9 @@ ul{
 
 }
 .hamburger-menu {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: none;
+	display: none;
+   
+
 
 }
 
@@ -408,13 +412,17 @@ ul{
     }
     .Hamb-Bottom {
         display: block;
-        height: 100%;
         line-height: 70px;
-        text-align: center;
+        display: flex;
+		  align-items: center;
+		  justify-content: center;
         color: black;
         font-size: bolder;
         font-size: 20px;
         background-color: rgba(214, 214, 214, 0.604);
+		  padding: 0 15px;
+		  margin: 0 !important;
+		  position: relative;
         i{
             background-color: #99999983;
             padding: 10px;
@@ -424,7 +432,21 @@ ul{
 
     .hamburger-menu.active {
         display: block;
+		  
     }
+	 .hamburger-menu {
+		ul{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			background: #e3e4e4b4;
+			margin: 0 !important;
+			padding: 5px 5px;
+		}
+		li{
+		
+		}
+	 }
 
     .Title{
         text-align: center;
@@ -433,7 +455,119 @@ ul{
     .searchForm{
         text-align: center;
     }
+	 .burger-wraper-togle{
+		border: 1px solid #bdbabaa6;
+		border-radius: 5px	;
+		display: inline-block;
+		position: relative;
+		width: 40px;
+		height: 40px;
+		transition: linear 0.2s;
+		cursor: pointer;
+		&:hover{
+			background: rgba(255, 255, 255, 0.432);
+		}
+	 span{
+		background: #7f7f7f;
+				width: 30px;
+				height: 4px;
+				display: block;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				border-radius: 2px;
+				transform: translate(-50%,-50%);
+		&:first-child{
+			top: 25%;
+		}
+		&:last-child{
+			top: 74%;
+		}
+
+	}
 }
+}
+				.burger__top-close{
+					animation: burger_top-close 0.4s forwards;
+				}
+				.burger__midle-close{
+					animation: burger_midle-close 0.2s forwards;
+				}
+				.burger__bottom-close{
+					animation: burger_bottom-close 0.4s forwards;
+				}
+				.burger__top-open{
+					animation: burger_top 0.4s forwards;
+				}
+				.burger__midle-open{
+					animation: burger_midle 0.4s forwards;
+				}
+				
+				.burger__bottom-open{
+					animation: burger_bottom 0.4s forwards;
+				}
+
+		@keyframes burger_top {
+			0%   {
+				top: 25%;
+				transform-origin: center;
+			}
+			100% {
+				top: 14%;
+				left: 9px;
+				transform-origin: left;
+				transform: rotate(49deg);
+				}
+			}
+
+		@keyframes burger_midle {
+			0%   {opacity: 100;}
+			100% {opacity: 0;}
+			}
+			@keyframes burger_bottom {
+			0%   {
+				top: 74%;
+				}
+			100% {
+				transform: rotate(-49deg);
+				left: 3px;
+				top: 45%;
+				}
+			}
+
+
+			@keyframes burger_top-close {
+			0%   {
+				top: 14%;
+				left: 9px;
+				transform-origin: left;
+				transform: rotate(49deg);
+				}
+			100% {
+				top: 25%;
+
+				}
+			}
+			@keyframes burger_bottom-close {
+			0%   {
+				transform: rotate(-49deg);
+				left: 3px;
+				top: 45%;
+				}
+			100% {
+				top: 74%;
+				}
+			}
+	
+			@keyframes burger_midle-close {
+			0%   {
+				opacity: 0;
+				}
+			100% {
+				opacity: 100;
+				}
+			}
+			
 
 
 </style>
