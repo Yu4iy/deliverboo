@@ -25,7 +25,8 @@
 </head>
 
 <body>
-    <div id="app">
+	{{-- <div class=" main-wraper"> --}}
+    <div id="app ">
         <header>
             <div class="container container-header">
                 <nav class="navbar navbar-expand-lg navbar-light">
@@ -115,7 +116,7 @@
             </div>
         </header>
 
-        <main class="py-4">
+        <main class="py-4 main-main">
             @yield('content')
         </main>
     </div>
@@ -126,7 +127,7 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
     {{-- Script Js --}}
-
+	{{-- </div> --}}
 </body>
 
 </html>
