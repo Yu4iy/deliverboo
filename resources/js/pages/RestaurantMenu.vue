@@ -104,7 +104,8 @@
                                 >Total: {{ calculateTotal.toFixed(2) }}€</strong
                             ></span
                         >
-                        <button class="w-100 btn btn-brand-color">BUY</button>
+                        <!-- <button class="w-100 btn btn-brand-color">BUY</button> -->
+                        <a href="/checkout" class="w-100 btn btn-brand-color">BUY</a>
                     </div>
                 </div>
             </div>

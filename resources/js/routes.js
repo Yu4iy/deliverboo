@@ -28,11 +28,11 @@ const router = new VueRouter({
 			name: 'restaurant-menu',
 			component: RestaurantMenu,
 		},
-		{
+		/* {
 			path: '/checkout',
 			name: 'checkout',
 			component: Checkout,
-		},
+		}, */
 		{
 			path: '/success',
 			name: 'success',
