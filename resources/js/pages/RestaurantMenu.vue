@@ -36,8 +36,7 @@
                                 <h3>{{ dish.name }}</h3>
                                 <p>
                                     {{ dish.description || dish.ingredients }}
-                                </p>
-                                <!-- //*///////? -->
+                                </p> <!-- //*///////? -->
                                 <div>{{ dish.price }}€</div>
                             </div>
                             <div class="d-flex justify-content-between btn-fix">
@@ -153,6 +152,7 @@ export default {
                     `http://127.0.0.1:8000/api/menu/${this.$route.params.slug}`
                 )
                 .then((response) => (this.info = response.data[0]));
+					
         },
 
         addDishToCart(elem, index) {
@@ -161,6 +161,7 @@ export default {
                 price: elem.price,
                 image: elem.image,
                 qunatiy: 1,
+					 restaurant_slug:this.info.slug,
             };
 
             if (
@@ -185,24 +186,27 @@ export default {
                 price: elem.price,
                 image: elem.image,
                 qunatiy: 0,
+					 restaurant_slug:this.info.slug,
             };
 
             if (
                 this.cartDishes.filter((e) => e.name === newDishCart.name)
-                    .length > 0
+					
             ) {
                 if (this.cartDishes[index].qunatiy !== 1) {
-                    this.cartDishes[index].qunatiy--;
+                  this.cartDishes[index].qunatiy--;
                 } else if (this.cartDishes[index].qunatiy >= 0) {
-                    this.cartDishes.splice(index, 1);
+                  this.cartDishes.splice(index, 1);
                 }
             } else {
-                this.cartDishes.push(newDishCart);
+               this.cartDishes.push(newDishCart);
             }
+				
             this.saveCartDishes();
         },
         saveCartDishes() {
             const parsed = JSON.stringify(this.cartDishes);
+				
             localStorage.setItem("cartDishes", parsed);
         },
     },
@@ -270,7 +274,7 @@ export default {
     color: rgba(0, 0, 0, 0.692);
 }
 .menu-wraper {
-    height: 100vh;
+   //  height: 100vh;
     background: #f8fafc;
     display: grid;
     grid-template-columns: 1fr minmax(auto, 360px);
