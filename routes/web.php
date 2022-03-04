@@ -33,12 +33,14 @@ Route::middleware('auth')
 
 			// trash
 			Route::get('/trash', 'DishController@getTrash')->name('dishes.trash');
+
     
 			Route::match(['get', 'post'], '/restore/{id}', 'DishController@restore')->name('dishes.restore');
 			
 			Route::match(['get', 'delete'], '/delete/{id}', 'DishController@forceDelete')->name('dishes.forceDelete');
 	});
 
+Route::match(['get', 'post'], '/checkout', 'CheckoutController@index')->name('checkout');
 Route::get("{any?}", function() {
 	return view('guests.home');
 })->where('any', '.*');
