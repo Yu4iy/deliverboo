@@ -116,7 +116,7 @@
             </div>
         </header>
 
-        <main class="py-4 main-main">
+        <main class="main-main">
             @yield('content')
         </main>
     </div>

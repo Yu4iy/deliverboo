@@ -151,8 +151,9 @@ export default {
     },
     methods: {
 		test(){
-			const result = this.localData.filter(elem => elem.restaurant_slug === this.$route.params.slug)
+			const result = this.localData.filter(elem => elem.restaurant_slug === this.$route.params.slug)	
 			this.localData = result
+
 			
 			
 			
@@ -176,8 +177,7 @@ export default {
             };
 
             if (
-                this.localData.filter((e) => e.name === newDishCart.name)
-                    .length > 0
+                this.localData.filter((e) => e.name === newDishCart.name).length > 0
             ) {
                 this.localData[index].qunatiy++;
             } else {
@@ -185,6 +185,7 @@ export default {
             }
             this.saveCartDishes();
             console.log(this.localData);
+				this.localData.push()
         },
 
         increment(elem, index) {
