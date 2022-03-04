@@ -56,14 +56,14 @@
                     <div>
                         <h4 class="card-title">Your order</h4>
                         <div
-                            v-show="cartDishes.length == 0"
+                            v-show="localData.length == 0"
                             class="alert alert-secondary"
                             role="alert"
                         >
                             Basket empty
                         </div>
                         <div
-                            v-for="(cartDish, index) in cartDishes"
+                            v-for="(cartDish, index) in localData"
                             :key="`cart-dishes-${index}`"
                             class="menu-cart__item"
                         >
@@ -126,26 +126,37 @@ export default {
             info: null,
             cartCounter: 0,
             cartDishes: [],
+				localData: [],
             cartDish: {
-                name: "",
-                price: null,
-                image: "",
-                qunatiy: 1,
+               name: '',
+               price: null,
+               image: '',
+               qunatiy: 1,
+					restaurant_slug:'',
             },
         };
     },
     mounted() {
-        if (localStorage.getItem("cartDishes")) {
+        if (localStorage.getItem("localData")) {
             try {
-                this.cartDishes = JSON.parse(
-                    localStorage.getItem("cartDishes")
+                this.localData = JSON.parse(
+                    localStorage.getItem("localData")
                 );
+					//  console.log(this.localData);
+					this.test()
             } catch (e) {
-                localStorage.removeItem("cartDishes");
+                localStorage.removeItem("localData");
             }
         }
     },
     methods: {
+		test(){
+			const result = this.localData.filter(elem => elem.restaurant_slug === this.$route.params.slug)
+			this.localData = result
+			
+			
+			
+		},
         getResturant() {
             axios
                 .get(
@@ -165,15 +176,15 @@ export default {
             };
 
             if (
-                this.cartDishes.filter((e) => e.name === newDishCart.name)
+                this.localData.filter((e) => e.name === newDishCart.name)
                     .length > 0
             ) {
-                this.cartDishes[index].qunatiy++;
+                this.localData[index].qunatiy++;
             } else {
-                this.cartDishes.push(newDishCart);
+                this.localData.push(newDishCart);
             }
             this.saveCartDishes();
-            console.log(this.cartDishes);
+            console.log(this.localData);
         },
 
         increment(elem, index) {
@@ -190,31 +201,31 @@ export default {
             };
 
             if (
-                this.cartDishes.filter((e) => e.name === newDishCart.name)
+                this.localData.filter((e) => e.name === newDishCart.name)
 					
             ) {
-                if (this.cartDishes[index].qunatiy !== 1) {
-                  this.cartDishes[index].qunatiy--;
-                } else if (this.cartDishes[index].qunatiy >= 0) {
-                  this.cartDishes.splice(index, 1);
+                if (this.localData[index].qunatiy !== 1) {
+                  this.localData[index].qunatiy--;
+                } else if (this.localData[index].qunatiy >= 0) {
+                  this.localData.splice(index, 1);
                 }
             } else {
-               this.cartDishes.push(newDishCart);
+               this.localData.push(newDishCart);
             }
 				
             this.saveCartDishes();
         },
         saveCartDishes() {
-            const parsed = JSON.stringify(this.cartDishes);
+            const parsed = JSON.stringify(this.localData);
 				
-            localStorage.setItem("cartDishes", parsed);
+            localStorage.setItem("localData", parsed);
         },
     },
     computed: {
         calculateTotal() {
             let total = 0;
-            for (let i = 0; i < this.cartDishes.length; i++) {
-                total += this.cartDishes[i].price * this.cartDishes[i].qunatiy;
+            for (let i = 0; i < this.localData.length; i++) {
+                total += this.localData[i].price * this.localData[i].qunatiy;
             }
             return total;
         },
