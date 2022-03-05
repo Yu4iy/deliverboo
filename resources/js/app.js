@@ -26,7 +26,7 @@ import Cart from './components/Cart.vue'
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-Vue.component('Cart', Cart)
+Vue.component('Cart', require('./components/Cart.vue').default);
 const app = new Vue({
     el: '#app',
 });
