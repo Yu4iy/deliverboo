@@ -15,6 +15,7 @@
 @import "partials/dashboard";
 @import "partials/login";
 @import "partials/checkout";
+@import "partials/success";
 
 * {
     padding: 0;
@@ -31,6 +32,6 @@
 // 	flex-direction: column;
 // }
 
-.main-main{
-	padding-top:60px;
+.main-main {
+    padding-top: 60px;
 }

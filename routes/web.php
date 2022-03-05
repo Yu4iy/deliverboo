@@ -20,6 +20,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//success page
+Route::get('/success', 'SuccessController@index')->name('success');
+
 Route::middleware('auth')
 	->namespace('Admin')
 	->name('admin.')
@@ -30,6 +33,8 @@ Route::middleware('auth')
 
 			//dishes cruds
 			Route::resource('/dishes', 'DishController');
+
+			
 
 			// trash
 			Route::get('/trash', 'DishController@getTrash')->name('dishes.trash');
