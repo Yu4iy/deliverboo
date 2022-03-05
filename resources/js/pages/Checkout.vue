@@ -1,7 +1,7 @@
 <template>
     <div class="chekcout">
+		<h2 class="my-4">Checkout</h2>
 		<div class="container-fluid">
-			<h2 class="my-4">Checkout</h2>
 			<div class="row ">
 				<!-- MAIN  -->
 				<div class="col-md-12 col-lg-8 bgr p-5">
@@ -41,7 +41,6 @@
 							</div>
 						</div>
 					</form>
-
 				</div>
 
 				<!-- CART -->

@@ -131,6 +131,7 @@ export default {
             cartDishes: [],
 				localData: [],
             cartDish: {
+				
                name: '',
                price: null,
                image: '',
@@ -170,39 +171,33 @@ export default {
 					
         },
 
-        addDishToCart(elem, index) {
-            const newDishCart = {
-                name: elem.name,
-                price: elem.price,
-                image: elem.image,
-                qunatiy: 1,
-					 restaurant_slug:this.info.slug,
-            };
-
+        addDishToCart(dish, index) {
+            const dishCart = dish;
+				const addKey = {qunatiy: 1, restaurant_slug:this.info.slug};
+				const newDish = Object.assign(addKey, dishCart);
+				// let test = {
+            //     qunatiy: 1,
+				// 	 restaurant_slug:this.info.slug,
+            // };
+				console.log(dish);
             if (
-                this.localData.filter((e) => e.name === newDishCart.name).length > 0
+                this.localData.filter((e) => e.name === newDish.name).length > 0
             ) {
                 this.localData[index].qunatiy++;
             } else {
-                this.localData.push(newDishCart);
+                this.localData.push(newDish);
             }
             this.saveCartDishes();
-            console.log(this.localData);
-				this.localData.push()
+            // console.log(this.localData);
+				// this.localData.push()
         },
 
-        increment(elem, index) {
-            this.addDishToCart(elem, index);
+        increment(dish, index) {
+            this.addDishToCart(dish, index);
             this.saveCartDishes();
         },
-        decrement(elem, index) {
-            const newDishCart = {
-                name: elem.name,
-                price: elem.price,
-                image: elem.image,
-                qunatiy: 0,
-					 restaurant_slug:this.info.slug,
-            };
+        decrement(dish, index) {
+            const newDishCart = dish
 
             if (
                 this.localData.filter((e) => e.name === newDishCart.name)
