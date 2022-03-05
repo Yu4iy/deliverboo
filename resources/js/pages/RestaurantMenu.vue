@@ -36,7 +36,8 @@
                                 <h3>{{ dish.name }}</h3>
                                 <p>
                                     {{ dish.description || dish.ingredients }}
-                                </p> <!-- //*///////? -->
+                                </p>
+                                <!-- //*///////? -->
                                 <div>{{ dish.price }}€</div>
                             </div>
                             <div class="d-flex justify-content-between btn-fix">
@@ -75,7 +76,9 @@
                             </div>
                             <div class="menu-cart__info">
                                 <h5>{{ cartDish.name }}</h5>
-                                <div>Price: {{ cartDish.price }}€</div>
+                                <div>
+                                    Price: {{ roundPrice(cartDish.price) }}€
+                                </div>
                                 <div class="d-flex justify-content-between">
                                     <div>
                                         <button
@@ -105,7 +108,9 @@
                             ></span
                         >
                         <!-- <button class="w-100 btn btn-brand-color">BUY</button> -->
-                        <a href="/checkout" class="w-100 btn btn-brand-color">BUY</a>
+                        <a href="/checkout" class="w-100 btn btn-brand-color"
+                            >BUY</a
+                        >
                     </div>
                 </div>
             </div>
@@ -127,45 +132,40 @@ export default {
             info: null,
             cartCounter: 0,
             cartDishes: [],
-				localData: [],
+            localData: [],
             cartDish: {
-               name: '',
-               price: null,
-               image: '',
-               qunatiy: 1,
-					restaurant_slug:'',
+                name: "",
+                price: null,
+                image: "",
+                qunatiy: 1,
+                restaurant_slug: "",
             },
         };
     },
     mounted() {
         if (localStorage.getItem("localData")) {
             try {
-                this.localData = JSON.parse(
-                    localStorage.getItem("localData")
-                );
-					//  console.log(this.localData);
-					this.test()
+                this.localData = JSON.parse(localStorage.getItem("localData"));
+                //  console.log(this.localData);
+                this.test();
             } catch (e) {
                 localStorage.removeItem("localData");
             }
         }
     },
     methods: {
-		test(){
-			const result = this.localData.filter(elem => elem.restaurant_slug === this.$route.params.slug)	
-			this.localData = result
-
-			
-			
-			
-		},
+        test() {
+            const result = this.localData.filter(
+                (elem) => elem.restaurant_slug === this.$route.params.slug
+            );
+            this.localData = result;
+        },
         getResturant() {
             axios
                 .get(
                     `http://127.0.0.1:8000/api/menu/${this.$route.params.slug}`
                 )
                 .then((response) => (this.info = response.data[0]));
-					
         },
 
         addDishToCart(elem, index) {
@@ -174,11 +174,12 @@ export default {
                 price: elem.price,
                 image: elem.image,
                 qunatiy: 1,
-					 restaurant_slug:this.info.slug,
+                restaurant_slug: this.info.slug,
             };
 
             if (
-                this.localData.filter((e) => e.name === newDishCart.name).length > 0
+                this.localData.filter((e) => e.name === newDishCart.name)
+                    .length > 0
             ) {
                 this.localData[index].qunatiy++;
             } else {
@@ -186,7 +187,7 @@ export default {
             }
             this.saveCartDishes();
             console.log(this.localData);
-				this.localData.push()
+            this.localData.push();
         },
 
         increment(elem, index) {
@@ -199,28 +200,28 @@ export default {
                 price: elem.price,
                 image: elem.image,
                 qunatiy: 0,
-					 restaurant_slug:this.info.slug,
+                restaurant_slug: this.info.slug,
             };
 
-            if (
-                this.localData.filter((e) => e.name === newDishCart.name)
-					
-            ) {
+            if (this.localData.filter((e) => e.name === newDishCart.name)) {
                 if (this.localData[index].qunatiy !== 1) {
-                  this.localData[index].qunatiy--;
+                    this.localData[index].qunatiy--;
                 } else if (this.localData[index].qunatiy >= 0) {
-                  this.localData.splice(index, 1);
+                    this.localData.splice(index, 1);
                 }
             } else {
-               this.localData.push(newDishCart);
+                this.localData.push(newDishCart);
             }
-				
+
             this.saveCartDishes();
         },
         saveCartDishes() {
             const parsed = JSON.stringify(this.localData);
-				
+
             localStorage.setItem("localData", parsed);
+        },
+        roundPrice(el) {
+            return el.toFixed(2);
         },
     },
     computed: {
@@ -287,7 +288,7 @@ export default {
     color: rgba(0, 0, 0, 0.692);
 }
 .menu-wraper {
-   //  height: 100vh;
+    //  height: 100vh;
     background: #f8fafc;
     display: grid;
     grid-template-columns: 1fr minmax(auto, 360px);
