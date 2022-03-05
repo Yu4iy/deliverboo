@@ -26,7 +26,7 @@
 
 <body>
 	{{-- <div class=" main-wraper"> --}}
-    <div id="app ">
+    <div id="app">
         <header>
             <div class="container container-header">
                 <nav class="navbar navbar-expand-lg navbar-light">
@@ -116,7 +116,7 @@
             </div>
         </header>
 
-        <main class="main-main">
+        <main>
             @yield('content')
         </main>
     </div>

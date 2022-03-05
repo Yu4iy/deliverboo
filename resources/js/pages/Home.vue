@@ -8,7 +8,7 @@
         </div>
 
         <!-- restaurant list -->
-        <section class="RestaurantListContainer container-fluid my-3 py-3">
+        <section class="RestaurantListContainer container-fluid">
             <div class="row justify-content-between rslc">
                 <!-- sezione categorie sinistra -->
                 
@@ -52,7 +52,7 @@
                 </div>
 
                 <!-- sezione ristorante destra -->
-                <div class="RestaurantSection col-lg-10 col-md-12 px-4">
+                <div class="RestaurantSection col-lg-10 col-md-12 px-2">
                     <!-- top -->
                     <div class="topContainer container-fluid mt-5">
                         <div class="row  align-items-center">
@@ -84,7 +84,7 @@
                     </div>
 
                     <!-- bottom -->
-                    <div class="restaurantList container-fluid mt-5 px-5">
+                    <div class="restaurantList container-fluid mt-5 ">
 							  <span class="restaurant-list-warn">
 								  {{text}}
 							  </span>
