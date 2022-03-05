@@ -106,7 +106,7 @@
 										></span
 									>
 									<!-- <button class="w-100 btn btn-brand-color">BUY</button> -->
-									<a href="/checkout" class="w-100 btn btn-brand-color">CHECKOUT</a>
+									<a href="/cart" class="w-100 btn btn-brand-color">CHECKOUT</a>
 							</div>
 						</div>
 					</div>
