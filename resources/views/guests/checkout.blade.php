@@ -24,7 +24,7 @@
             <!-- MAIN  -->
             <div class="col-md-12 col-lg-8 bgr p-5">
                 <h4 class="border-bottom py-2">Inserisci dati</h4>
-                {{-- <form class="my-3">
+                <form class="my-3">
                     <div class="row px-3 py-2 ">
                         <div class="col mb-3">
                             <label for="name" class="form-label">Nome</label>
