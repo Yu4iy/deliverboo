@@ -57,7 +57,14 @@ Route::get('/cart', function() {
 
 Route::post('/checkout', 
 function(Request $request) {
-	dd($request);
+	/* $data = $request->all();
+	if($data['dishes']) {
+		foreach($data['dishes'] as &$dish) {
+			$dish = json_decode($dish);
+			dump($dish);
+		}
+	} */
+
 	$amount = $request->amount;
 	$nonce = $request->payment_method_nonce;
 
@@ -92,8 +99,8 @@ function(Request $request) {
 
 		$new_order->save();
 		//header("Location: transaction.php?id=" . $transaction->id);
-
 		return back()->with('success_message', 'La transazione è avvenuta con successo. ID transazione: ' . $transaction->id);
+		
 	} else {
 		$errorString = "";
 

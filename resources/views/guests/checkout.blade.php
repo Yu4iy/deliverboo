@@ -59,15 +59,8 @@
 										<label for="notes" class="form-label">Informazioni aggiuntive</label>
 										<textarea id="notes" class="form-control" rows="5" name="notes"></textarea>
 									</div>
-							</div>
-
-		
-					</div>
-
-					{{-- CART --}}
-					<div class="col-md-12 col-lg-4 bgb p-5">
-						<Cart></Cart>
-						<section>
+							</div>	
+                            <section>
 								<label for="amount">
 									<span class="input-label">Totale</span>
 									<div class="input-wrapper amount-wrapper">
@@ -81,6 +74,25 @@
 						</section>
 						<input id="nonce" name="payment_method_nonce" type="hidden" />
 						<button class="button" type="submit"><span>Completa il pagamento</span></button>
+					</div>
+
+					{{-- CART --}}
+					<div class="col-md-12 col-lg-4 bgb p-5">
+						<Cart></Cart>
+						{{-- <section>
+								<label for="amount">
+									<span class="input-label">Totale</span>
+									<div class="input-wrapper amount-wrapper">
+										<input id="amount" name="amount" type="tel" min="1" placeholder="Total" value="10">
+									</div>
+								</label>
+
+								<div class="bt-drop-in-wrapper">
+									<div id="bt-dropin"></div>
+								</div>
+						</section>
+						<input id="nonce" name="payment_method_nonce" type="hidden" />
+						<button class="button" type="submit"><span>Completa il pagamento</span></button> --}}
 					</div>
 				</div>
 		</form>
