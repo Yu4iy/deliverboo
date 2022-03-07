@@ -1,12 +1,22 @@
 <template>
     <div class="menu">
-        <div v-if="this.info != null">
+        <div>
             <div class="menu-banner">
-                <img class="menu-banner__bg-img" :src="info.image" alt="" />
-                <div class="menu-banner__name">{{ info.restaurant_name }}</div>
-                <div class="menu-banner__city">{{ info.city }}</div>
-                <div class="menu-banner__adress">{{ info.address }}</div>
-                <p class="menu-banner__desc">{{ info.description }}</p>
+                <img
+                    class="menu-banner__bg-img"
+                    :src="dataRestaurant.image"
+                    alt=""
+                />
+                <div class="menu-banner__name">
+                    {{ dataRestaurant.restaurant_name }}
+                </div>
+                <div class="menu-banner__city">{{ dataRestaurant.city }}</div>
+                <div class="menu-banner__adress">
+                    {{ dataRestaurant.address }}
+                </div>
+                <p class="menu-banner__desc">
+                    {{ dataRestaurant.description }}
+                </p>
             </div>
             <div class="menu-title">
                 <i class="fa-solid fa-utensils"></i> Menu
@@ -14,7 +24,7 @@
             <div class="menu-wraper container-menu">
                 <div class="menu-main">
                     <div
-                        v-for="(dish, index) in info.dishes"
+                        v-for="(dish, index) in info"
                         :key="`dishes-${dish.slug}`"
                         class="menu-main__item"
                     >
@@ -199,11 +209,9 @@
                             >
                         </div>
                     </div>
+                    <div v-show="info.length == 0">Is Empty</div>
                 </div>
             </div>
-        </div>
-        <div v-else>
-            <h1>MENU VUOTO</h1>
         </div>
     </div>
 </template>
@@ -219,14 +227,15 @@ export default {
             info: null,
             href: "/cart",
             cartCounter: 0,
-            // cartDishes: [],
+            cartDishes: [],
             localData: [],
+            dataRestaurant: null,
+            menuIsEmpty: "",
             cartDish: {
                 name: "",
                 price: null,
                 image: "",
                 qunatiy: 1,
-                //    restaurant_slug:'',
             },
         };
     },
@@ -254,7 +263,20 @@ export default {
                 .get(
                     `http://127.0.0.1:8000/api/menu/${this.$route.params.slug}`
                 )
-                .then((response) => (this.info = response.data[0]));
+                .then(
+                    (response) => (
+                        //  console.log(response.data[0])
+                        //  console.log('------------------------- ', response)
+
+                        (this.dataRestaurant = response.data[0]),
+                        (this.info = this.dataRestaurant.dishes.filter(
+                            (e) => e.is_visible == 1
+                        ))
+
+                        //  console.log(this.info);
+                        // this.info.filter((e) => e.name === newDish.name)
+                    )
+                );
         },
 
         addDishToCart(dish, index) {
