@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="pt-5">
         <Header />
         <main>
             <router-view></router-view>
@@ -21,4 +21,8 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.pts-5{
+	padding: 60px;
+}
+</style>
