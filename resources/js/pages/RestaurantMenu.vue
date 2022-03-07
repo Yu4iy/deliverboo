@@ -498,7 +498,9 @@ export default {
     object-fit: cover;
     position: absolute;
     top: 0;
-    left: 0;
+    
+	 left: 0;
+
 }
 
 // cart
