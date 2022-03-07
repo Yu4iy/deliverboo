@@ -60,7 +60,10 @@
 										<textarea id="notes" class="form-control" rows="5" name="notes"></textarea>
 									</div>
 							</div>	
-                            <section>
+							<div class="input-wrapper amount-wrapper">
+								<input id="amount" name="amount" type="tel" min="1" placeholder="Total" value="10">
+							</div>
+                            {{-- <section>
 								<label for="amount">
 									<span class="input-label">Totale</span>
 									<div class="input-wrapper amount-wrapper">
@@ -72,7 +75,8 @@
 									<div id="bt-dropin"></div>
 								</div>
 						</section>
-						<input id="nonce" name="payment_method_nonce" type="hidden" />
+						<input id="nonce" name="payment_method_nonce" type="hidden" /> --}}
+
 						<button class="button" type="submit"><span>Completa il pagamento</span></button>
 					</div>
 
@@ -134,7 +138,7 @@
 @endsection
 
 @section('scripts')
-<script src="https://js.braintreegateway.com/web/dropin/1.33.0/js/dropin.min.js"></script>
+{{-- <script src="https://js.braintreegateway.com/web/dropin/1.33.0/js/dropin.min.js"></script>
 <script defer>
     var form = document.querySelector('#payment-form');
     var client_token = '{{ $token }}';
@@ -165,5 +169,5 @@
         });
       });
     });
-</script>
+</script> --}}
 @endsection

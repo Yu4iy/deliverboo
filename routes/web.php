@@ -57,15 +57,32 @@ Route::get('/cart', function() {
 
 Route::post('/checkout', 
 function(Request $request) {
-	/* $data = $request->all();
+	$data = $request->all();
 	if($data['dishes']) {
 		foreach($data['dishes'] as &$dish) {
 			$dish = json_decode($dish);
 			dump($dish);
 		}
-	} */
+	}
+	dd($data);
+	//Register new Order in DB
+	$new_order = new Order();
+	$new_order->customer_name = $request->customer_name;
+	$new_order->customer_lastname = $request->customer_lastname;
+	$new_order->customer_email = $request->customer_email;
+	$new_order->customer_phone = $request->customer_phone;
+	$new_order->customer_address = $request->customer_address;
+	if($request->notes) {
+		$new_order->notes = $request->notes;
+	}
+	$new_order->total_price = $request->amount;
 
-	$amount = $request->amount;
+	$new_order->save();
+
+	$new_order->dishes()->attach($data['dishes']);
+	dd($data);
+
+	/* $amount = $request->amount;
 	$nonce = $request->payment_method_nonce;
 
 	$gateway = new Braintree\Gateway([
@@ -106,15 +123,15 @@ function(Request $request) {
 
 		foreach($result->errors->deepAll() as $error) {
 			$errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
-		}
+		} */
 
 		/* $_SESSION["errors"] = $errorString;
 		header("Location: index.php"); */
 
-		return back()->withErrors('Si è verificato un errore: '. $result->message);
-	}
+		/* return back()->withErrors('Si è verificato un errore: '. $result->message);
+	}*/
 }
-);
+); 
 
 Route::get("{any?}", function() {
 	return view('guests.home');
