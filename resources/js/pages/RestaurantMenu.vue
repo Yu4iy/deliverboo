@@ -86,7 +86,7 @@
 															<i class="fa-solid fa-minus"></i>
 														</button>
 														<span class="btn btn-brand-color">{{
-															cartDish.qunatiy
+															cartDish.quantity
 														}}</span>
 														<button
 															@click="increment(cartDish, index)"
@@ -135,7 +135,7 @@ export default {
                name: '',
                price: null,
                image: '',
-               qunatiy: 1,
+               quantity: 1,
 					restaurant_slug:'',
             },
         };
@@ -173,17 +173,17 @@ export default {
 
         addDishToCart(dish, index) {
             const dishCart = dish;
-				const addKey = {qunatiy: 1, restaurant_slug:this.info.slug};
+				const addKey = {quantity: 1, restaurant_slug:this.info.slug};
 				const newDish = Object.assign(addKey, dishCart);
 				// let test = {
-            //     qunatiy: 1,
+            //     quantity: 1,
 				// 	 restaurant_slug:this.info.slug,
             // };
 				console.log(dish);
             if (
                 this.localData.filter((e) => e.name === newDish.name).length > 0
             ) {
-                this.localData[index].qunatiy++;
+                this.localData[index].quantity++;
             } else {
                 this.localData.push(newDish);
             }
@@ -203,9 +203,9 @@ export default {
                 this.localData.filter((e) => e.name === newDishCart.name)
 					
             ) {
-                if (this.localData[index].qunatiy !== 1) {
-                  this.localData[index].qunatiy--;
-                } else if (this.localData[index].qunatiy >= 0) {
+                if (this.localData[index].quantity !== 1) {
+                  this.localData[index].quantity--;
+                } else if (this.localData[index].quantity >= 0) {
                   this.localData.splice(index, 1);
                 }
             } else {
@@ -224,7 +224,7 @@ export default {
         calculateTotal() {
             let total = 0;
             for (let i = 0; i < this.localData.length; i++) {
-                total += this.localData[i].price * this.localData[i].qunatiy;
+                total += this.localData[i].price * this.localData[i].quantity;
             }
             return total;
         },

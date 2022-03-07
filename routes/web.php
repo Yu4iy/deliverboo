@@ -61,10 +61,11 @@ function(Request $request) {
 	if($data['dishes']) {
 		foreach($data['dishes'] as &$dish) {
 			$dish = json_decode($dish);
+			$data['dishes_id'][] = $dish->id;
+			$data['dishes_quantity'][] = $dish->quantity;
 			dump($dish);
 		}
 	}
-	dd($data);
 	//Register new Order in DB
 	$new_order = new Order();
 	$new_order->customer_name = $request->customer_name;
@@ -79,8 +80,8 @@ function(Request $request) {
 
 	$new_order->save();
 
-	$new_order->dishes()->attach($data['dishes']);
-	dd($data);
+	$new_order->dishes()->attach($data['dishes_id']);
+	$new_order->dishes()->updateExistingPivot($dish, $data['dishes_id']);
 
 	/* $amount = $request->amount;
 	$nonce = $request->payment_method_nonce;
