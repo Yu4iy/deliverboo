@@ -13,7 +13,7 @@
 												/>
 										</div>
 										<div class="cart-item__info">
-												<h5>{{ item.name }} <strong>x{{item.qunatiy}}</strong> </h5>
+												<h5>{{ item.name }} <strong>x{{item.quantity}}</strong> </h5>
 												<div>Price: {{ item.price }}€</div>
 												<div>
 														<div>
@@ -76,7 +76,7 @@ export default {
 				calculateTotal() {
             let total = 0;
             for (let i = 0; i < this.localData.length; i++) {
-                total += this.localData[i].price * this.localData[i].qunatiy;
+                total += this.localData[i].price * this.localData[i].quantity;
             }
             return total;
         },
@@ -126,8 +126,8 @@ export default {
 			margin: 0 0 0 10px;
 		}
 }
-.btn {
+/* .btn {
 }
 .btn-brand-color {
-}
+} */
 </style>

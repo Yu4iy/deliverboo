@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Order;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +43,7 @@ Route::middleware('auth')
 			Route::match(['get', 'delete'], '/delete/{id}', 'DishController@forceDelete')->name('dishes.forceDelete');
 	});
 
-Route::get('/cart', function() {
+/* Route::get('/cart', function() {
 	$gateway = new Braintree\Gateway([
 		'environment' => config('services.braintree.enviroment'),
 		'merchantId' => config('services.braintree.merchantId'),
@@ -50,15 +51,47 @@ Route::get('/cart', function() {
 		'privateKey' => config('services.braintree.privateKey'),
 	]);
 	$token = $gateway->ClientToken()->generate();
-	return view('guests.checkout', [
-		'token' => $token,
-	]);
-})->name('cart');
+	return view('guests.checkout');
+})->name('cart'); */
 
-Route::post('/checkout', 
+/* Route::post('/checkout', 
 function(Request $request) {
-	dd($request);
-	$amount = $request->amount;
+	$data = $request->all();
+	if($data['dishes']) {
+		foreach($data['dishes'] as &$dish) {
+			$dish = json_decode($dish);
+		}
+	} */
+	//Register new Order in DB
+	/* $new_order = new Order();
+	$new_order->customer_name = $request->customer_name;
+	$new_order->customer_lastname = $request->customer_lastname;
+	$new_order->customer_email = $request->customer_email;
+	$new_order->customer_phone = $request->customer_phone;
+	$new_order->customer_address = $request->customer_address;
+	if($request->notes) {
+		$new_order->notes = $request->notes;
+	}
+	$new_order->total_price = $request->amount;
+
+	$new_order->save();
+
+	$order_id = Order::all()->last()->id;
+	dump($order_id);
+	foreach($data['dishes'] as $item) {
+		dump($item);
+		$dish_id = $item->id;
+		$quantity = $item->quantity;
+		DB::table('dish_order')->insert([
+			'dish_id' => $dish_id,
+			'order_id' => $order_id,
+			'quantity' => $quantity,
+		]);
+	}
+
+	return redirect()->route('home'); */
+
+	/* $amount = $request->amount;
 	$nonce = $request->payment_method_nonce;
 
 	$gateway = new Braintree\Gateway([
@@ -92,22 +125,22 @@ function(Request $request) {
 
 		$new_order->save();
 		//header("Location: transaction.php?id=" . $transaction->id);
-
 		return back()->with('success_message', 'La transazione è avvenuta con successo. ID transazione: ' . $transaction->id);
+		
 	} else {
 		$errorString = "";
 
 		foreach($result->errors->deepAll() as $error) {
 			$errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
-		}
+		} */
 
 		/* $_SESSION["errors"] = $errorString;
 		header("Location: index.php"); */
 
-		return back()->withErrors('Si è verificato un errore: '. $result->message);
-	}
-}
-);
+		/* return back()->withErrors('Si è verificato un errore: '. $result->message);
+	}*/
+/* }
+);  */
 
 Route::get("{any?}", function() {
 	return view('guests.home');

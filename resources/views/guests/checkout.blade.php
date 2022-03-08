@@ -59,15 +59,31 @@
 										<label for="notes" class="form-label">Informazioni aggiuntive</label>
 										<textarea id="notes" class="form-control" rows="5" name="notes"></textarea>
 									</div>
+							</div>	
+							<div class="input-wrapper amount-wrapper">
+								<input id="amount" name="amount" type="tel" min="1" placeholder="Total" value="10">
 							</div>
+                            {{-- <section>
+								<label for="amount">
+									<span class="input-label">Totale</span>
+									<div class="input-wrapper amount-wrapper">
+										<input id="amount" name="amount" type="tel" min="1" placeholder="Total" value="10">
+									</div>
+								</label>
 
-		
+								<div class="bt-drop-in-wrapper">
+									<div id="bt-dropin"></div>
+								</div>
+						</section>
+						<input id="nonce" name="payment_method_nonce" type="hidden" /> --}}
+
+						<button class="button" type="submit"><span>Completa il pagamento</span></button>
 					</div>
 
 					{{-- CART --}}
 					<div class="col-md-12 col-lg-4 bgb p-5">
 						<Cart></Cart>
-						<section>
+						{{-- <section>
 								<label for="amount">
 									<span class="input-label">Totale</span>
 									<div class="input-wrapper amount-wrapper">
@@ -80,7 +96,7 @@
 								</div>
 						</section>
 						<input id="nonce" name="payment_method_nonce" type="hidden" />
-						<button class="button" type="submit"><span>Completa il pagamento</span></button>
+						<button class="button" type="submit"><span>Completa il pagamento</span></button> --}}
 					</div>
 				</div>
 		</form>
@@ -122,7 +138,7 @@
 @endsection
 
 @section('scripts')
-<script src="https://js.braintreegateway.com/web/dropin/1.33.0/js/dropin.min.js"></script>
+{{-- <script src="https://js.braintreegateway.com/web/dropin/1.33.0/js/dropin.min.js"></script>
 <script defer>
     var form = document.querySelector('#payment-form');
     var client_token = '{{ $token }}';
@@ -153,5 +169,5 @@
         });
       });
     });
-</script>
+</script> --}}
 @endsection

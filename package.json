@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "braintree": "^3.10.0",
+        "vue-braintree": "^2.1.0",
         "vue-router": "^3.5.3"
     }
 }

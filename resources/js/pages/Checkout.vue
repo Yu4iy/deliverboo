@@ -6,38 +6,38 @@
 				<!-- MAIN  -->
 				<div class="col-md-12 col-lg-8 bgr p-5">
 					<h4 class="border-bottom py-2">Iserischi datti</h4>
-					<form class="my-3">
+					<form class="my-3" method="POST">
 						<div class="row px-3 py-2 ">
 							<div class="col mb-3">
 								<label for="name" class="form-label">Nome</label>
-								<input id="name" type="text" class="form-control" >
+								<input id="name" type="text" class="form-control" v-model="customer_name">
 							</div>
 							<div class="col mb-2">
 								<label for="surname" class="form-label">Cognome</label>
-								<input id="surname" type="text" class="form-control" >
+								<input id="surname" type="text" class="form-control" v-model="customer_lastname" >
 							</div>
 						</div>
 						<div class="row px-3 py-2">
 							<div class="col mb-2">
 								<label for="email" class="form-label">Email</label>
-								<input id="email" type="email" class="form-control" >
+								<input id="email" type="email" class="form-control" v-model="customer_email">
 							</div>
 							<div class="col mb-3">
 								<label for="phone" class="form-label">Cellulare</label>
-								<input id="phone" type="tel" class="form-control" >
+								<input id="phone" type="tel" class="form-control" v-model="customer_phone">
 							</div>
 						</div>
 						<div class="row px-3 py-2">
 							<div class="col mb-2">
 								<label for="adress" class="form-label">Citta - via - numero civico</label>
-								<input id="adress" type="text" class="form-control" >
+								<input id="address" type="text" class="form-control" v-model="customer_address">
 							</div>
 						</div>
 
 						<div class="row px-3 py-2">
 							<div class="mb-3 col">
 								<label for="notes" class="form-label">Informazioni aggiuntive</label>
-								<textarea id="notes" class="form-control" rows="5"></textarea>
+								<textarea id="notes" class="form-control" rows="5" v-model="notes"></textarea>
 							</div>
 						</div>
 					</form>
@@ -74,6 +74,16 @@
 						<div>
 							<strong>Total: 22€</strong>
 						</div>
+						<v-braintree v-if="clientToken"
+							class="bg-light"
+							:authorization="clientToken"
+							locale="it_IT"
+							btnText="Checkout"
+							btnClass="btn btn-success"
+							@success="onSuccess"
+							@error="onError"
+						>
+						</v-braintree>
 					</div>
 				</div>
 			</div>
@@ -82,14 +92,34 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     name: "Checkout",
 	 data(){
 		 return{
-			 localData:null
+			localData:null,
+			token: null,
+			customer_name: '',
+			customer_lastname: '',
+			customer_email: '',
+			customer_phone: '',
+			customer_address: '',
+			notes: '',
+		 }
+	 },
+	 computed: {
+		 clientToken() {
+			 return this.token
 		 }
 	 },
 	 mounted() {
+		axios.get('http://127.0.0.1:8000/api/get-token')
+		.then(res => {
+			this.token = res.data;
+		})
+		.catch(err => {
+			console.log(err)
+		})
         if (localStorage.getItem("localData")) {
             try {
                 this.localData = JSON.parse(
@@ -102,8 +132,33 @@ export default {
         }
     },
 	 methods:{
-		
-	 }
+		onSuccess (payload) {
+		let nonce = payload.nonce;
+		// Do something great with the nonce...
+			axios.post('http://127.0.0.1:8000/api/complete-order', {
+				customer_name : this.customer_name,
+				customer_lastname : this.customer_lastname,
+				customer_email : this.customer_email,
+				customer_phone : this.customer_phone,
+				customer_address : this.customer_address,
+				notes : this.notes,
+				dishes : this.localData,
+				amount : 15,
+				payment_method_nonce : nonce,
+			})
+			.then(res => {
+				console.log(res.data)
+			})
+			.catch(err => {
+				console.log(err)
+			})
+		},
+		onError (error) {
+		let message = error.message;
+		// Whoops, an error has occured while trying to get the nonce
+		console.log(message)
+		}
+	}
 };
 </script>
 
@@ -147,10 +202,12 @@ export default {
 			margin: 0 0 0 10px;
 		}
 }
-.btn {
+/* .btn {
+
 }
+
 .btn-brand-color {
-}
+} */
 
 
 
