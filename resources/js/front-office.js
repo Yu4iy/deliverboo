@@ -1,6 +1,8 @@
 // IMPORT DEPENDENCIES 
 import Vue from 'vue';
 import App from './views/App.vue';
+import vueBraintree from 'vue-braintree'
+Vue.use(vueBraintree)
 
 import router from './routes';
 // INIT VUE INSTANS

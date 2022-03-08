@@ -106,7 +106,8 @@
 										></span
 									>
 									<!-- <button class="w-100 btn btn-brand-color">BUY</button> -->
-									<a href="/cart" class="w-100 btn btn-brand-color">CHECKOUT</a>
+									<!-- <a href="/cart" class="w-100 btn btn-brand-color">CHECKOUT</a> -->
+                                    <router-link :to="{name: 'checkout'}">Checkout</router-link>
 							</div>
 						</div>
 					</div>

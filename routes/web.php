@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Order;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +43,7 @@ Route::middleware('auth')
 			Route::match(['get', 'delete'], '/delete/{id}', 'DishController@forceDelete')->name('dishes.forceDelete');
 	});
 
-Route::get('/cart', function() {
+/* Route::get('/cart', function() {
 	$gateway = new Braintree\Gateway([
 		'environment' => config('services.braintree.enviroment'),
 		'merchantId' => config('services.braintree.merchantId'),
@@ -50,10 +51,8 @@ Route::get('/cart', function() {
 		'privateKey' => config('services.braintree.privateKey'),
 	]);
 	$token = $gateway->ClientToken()->generate();
-	return view('guests.checkout', [
-		'token' => $token,
-	]);
-})->name('cart');
+	return view('guests.checkout');
+})->name('cart'); */
 
 Route::post('/checkout', 
 function(Request $request) {
@@ -61,9 +60,6 @@ function(Request $request) {
 	if($data['dishes']) {
 		foreach($data['dishes'] as &$dish) {
 			$dish = json_decode($dish);
-			$data['dishes_id'][] = $dish->id;
-			$data['dishes_quantity'][] = $dish->quantity;
-			dump($dish);
 		}
 	}
 	//Register new Order in DB
@@ -80,8 +76,20 @@ function(Request $request) {
 
 	$new_order->save();
 
-	$new_order->dishes()->attach($data['dishes_id']);
-	$new_order->dishes()->updateExistingPivot($dish, $data['dishes_id']);
+	$order_id = Order::all()->last()->id;
+	dump($order_id);
+	foreach($data['dishes'] as $item) {
+		dump($item);
+		$dish_id = $item->id;
+		$quantity = $item->quantity;
+		DB::table('dish_order')->insert([
+			'dish_id' => $dish_id,
+			'order_id' => $order_id,
+			'quantity' => $quantity,
+		]);
+	}
+
+	return redirect()->route('home');
 
 	/* $amount = $request->amount;
 	$nonce = $request->payment_method_nonce;

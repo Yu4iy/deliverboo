@@ -74,6 +74,18 @@
 						<div>
 							<strong>Total: 22€</strong>
 						</div>
+						<v-braintree v-if="clientToken"
+							class="bg-light"
+							:authorization="clientToken"
+							locale="it_IT"
+							@success="onSuccess"
+							@error="onError"
+						>
+							<template v-slot:button="slotProps"
+							>
+								<v-btn @click="slotProps.submit" class="btn btn-success">Checkout</v-btn>
+							</template>
+						</v-braintree>
 					</div>
 				</div>
 			</div>
@@ -82,14 +94,28 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     name: "Checkout",
 	 data(){
 		 return{
-			 localData:null
+			 localData:null,
+			 token: null,
+		 }
+	 },
+	 computed: {
+		 clientToken() {
+			 return this.token
 		 }
 	 },
 	 mounted() {
+		axios.get('http://127.0.0.1:8000/api/get-token')
+		.then(res => {
+			this.token = res.data;
+		})
+		.catch(err => {
+			console.log(err)
+		})
         if (localStorage.getItem("localData")) {
             try {
                 this.localData = JSON.parse(
@@ -102,8 +128,20 @@ export default {
         }
     },
 	 methods:{
-		
-	 }
+		onSuccess (payload) {
+		let nonce = payload.nonce;
+		// Do something great with the nonce...
+			axios.post('http://127.0.0.1:8000/api/complete-order', {
+				amount : 15,
+				payment_method_nonce : nonce,
+			})
+		},
+		onError (error) {
+		let message = error.message;
+		// Whoops, an error has occured while trying to get the nonce
+		console.log(message)
+		}
+	}
 };
 </script>
 
@@ -148,7 +186,9 @@ export default {
 		}
 }
 .btn {
+
 }
+
 .btn-brand-color {
 }
 
