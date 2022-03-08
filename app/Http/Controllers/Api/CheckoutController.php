@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 use Braintree;
 use App\Order;
 
+/* Email di Conferma */
+use App\Mail\SendConfirmedOrderEmail;
+use Illuminate\Support\Facades\Mail;
+
 class CheckoutController extends Controller
 {
     public function index() {
@@ -64,6 +68,9 @@ class CheckoutController extends Controller
                     'quantity' => $item['quantity'],
                 ]);
             }
+
+            Mail::to('account@mail.com')->send(new SendConfirmedOrderEmail());
+
             return response()->json('Transazione avvenuta correttamente!');
         } else {
             $errorString = "";
