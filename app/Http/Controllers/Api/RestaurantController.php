@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Category;
+// use App\Dish;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
@@ -19,9 +20,18 @@ class RestaurantController extends Controller
 
 	public function show($slug)
 	{
-		$dishes = User::where('slug', $slug)->select('id', 'restaurant_name', 'slug', 'address', 'city' ,'iva', 'description', 'image', 'delivery_price')->with('dishes')->get();
+		$dishes = User::where('slug', $slug)->select('id', 'restaurant_name', 'slug', 'address', 'city' ,'iva', 'description', 'image', 'delivery_price')->get();
+		$dishes->load(['dishes'=>function($elem){
+			$elem->where('is_visible', 1);
+		}]);
 		return response()->json($dishes);
 	}
+	// public function getDishes($id)
+	// {
+	// 	$dishInfo = Dish::where('user_id', $id)->where('is_visible', 1)->select('name','slug','ingredients','description','price', 'image')->get();
+	// 	return response()->json($dishInfo);
+
+	// }
 	
 	public function bestRestaurants()
 	{

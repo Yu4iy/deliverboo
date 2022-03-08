@@ -107,7 +107,21 @@
 									>
 									<!-- <button class="w-100 btn btn-brand-color">BUY</button> -->
 									<!-- <a href="/cart" class="w-100 btn btn-brand-color">CHECKOUT</a> -->
-                                    <router-link :to="{name: 'checkout'}">Checkout</router-link>
+                                    <router-link
+                                    :disabled="localData.length == 0"
+                                    :event="localData.length > 0 ? 'click' : ''"
+                                    :to="{name: 'checkout'}">
+                                        Checkout
+                                    </router-link>
+
+
+									<!-- <a
+                                @click.prevent="checkCart()"
+                                id="checkout"
+                                href="/cart"
+                                class="w-100 btn btn-brand-color">
+										  CHECKOUT
+									</a> -->
 							</div>
 						</div>
 					</div>
@@ -124,6 +138,7 @@ export default {
     name: "RestaurantMenu",
     created() {
         this.getResturant();
+		//   this.getDish();
     },
     data() {
         return {
@@ -131,8 +146,8 @@ export default {
             cartCounter: 0,
             cartDishes: [],
 				localData: [],
+				href:'/cart',
             cartDish: {
-				
                name: '',
                price: null,
                image: '',
@@ -155,10 +170,20 @@ export default {
         }
     },
     methods: {
+		//  CheckCartLogic
+		checkCart() {
+            console.log("stop event");
+            if (this.localData.length > 0) {
+                console.log("restart event");
+                /* window.location = this.href; */
+                
+            }
+        },
+
+
 		test(){
 			const result = this.localData.filter(elem => elem.restaurant_slug === this.$route.params.slug)	
 			this.localData = result
-
 			
 			
 			
@@ -168,10 +193,20 @@ export default {
                 .get(
                     `http://127.0.0.1:8000/api/menu/${this.$route.params.slug}`
                 )
-                .then((response) => (this.info = response.data[0]));
+                .then((response) => (
+						 this.info = response.data[0]
+						 ));
 					
         },
-
+		//   getDish() {
+		// 	  axios
+		// 	      .get(
+      //               `http://127.0.0.1:8000/api/menu/${this.$route.params.id}`
+      //           )
+      //           .then((response) => (
+		// 				console.log(response.data, '=======================================')
+		// 				 ));
+		//   },
         addDishToCart(dish, index) {
             const dishCart = dish;
 				const addKey = {quantity: 1, restaurant_slug:this.info.slug};
@@ -192,14 +227,12 @@ export default {
             // console.log(this.localData);
 				// this.localData.push()
         },
-
         increment(dish, index) {
             this.addDishToCart(dish, index);
             this.saveCartDishes();
         },
         decrement(dish, index) {
             const newDishCart = dish
-
             if (
                 this.localData.filter((e) => e.name === newDishCart.name)
 					
@@ -281,17 +314,14 @@ export default {
 		    font-size: 30px;
 		}
     }
-
     &__city {
         font-size: 20px;
         color: #fff;
     }
-
     &__adress {
         font-size: 20px;
         color: #fff;
     }
-
     &__desc {
         font-size: 16px;
         color: #fff;
@@ -366,7 +396,6 @@ export default {
 					p{
 						font-size: 12px;
 					}
-
 		}
     }
 }
@@ -388,9 +417,9 @@ export default {
     object-fit: cover;
     position: absolute;
     top: 0;
-    left: 0;
+    
+	 left: 0;
 }
-
 // cart
 .menu-cart {
     background: #f7f8f8;
@@ -411,12 +440,10 @@ export default {
         margin: 4px 0;
         display: flex;
 		  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
-
         .img-wrap {
             flex: 0 0 34%;
             position: relative;
             min-height: auto;
-
             img {
                 width: 100%;
                 height: 100%;
@@ -429,7 +456,6 @@ export default {
         }
     }
 }
-
 .btn-brand-color {
     background: #32bab3;
     color: #fff;

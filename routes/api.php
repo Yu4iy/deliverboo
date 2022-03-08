@@ -22,5 +22,7 @@ Route::namespace('Api')
 					Route::get('/category', 'RestaurantController@CategoryRestaurant');
 					Route::get('/get-token', 'CheckoutController@index');
 					Route::post('/complete-order', 'CheckoutController@sendOrder');
+					// Route::get('/menu/{slug}', 'RestaurantController@getDishes');
+					
 				});
 
