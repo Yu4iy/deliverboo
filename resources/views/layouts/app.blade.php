@@ -64,6 +64,11 @@
                             active
                         @endif" href="{{ route('admin.dishes.index') }}">Dishes</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link cursor-pointer @if (Request::route()->getName()==='orders')
+                            active
+                        @endif" href="{{ route('admin.orders') }}">Orders</a>
+                            </li>
                         </ul>
                         @endauth
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
