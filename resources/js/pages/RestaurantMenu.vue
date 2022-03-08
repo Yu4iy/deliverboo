@@ -106,7 +106,16 @@
 										></span
 									>
 									<!-- <button class="w-100 btn btn-brand-color">BUY</button> -->
-									<a href="/cart" class="w-100 btn btn-brand-color">CHECKOUT</a>
+									<!-- <a href="/cart" class="w-100 btn btn-brand-color">CHECKOUT</a> -->
+
+
+									<a
+                                @click.prevent="checkCart()"
+                                id="checkout"
+                                href="/cart"
+                                class="w-100 btn btn-brand-color">
+										  CHECKOUT
+									</a>
 							</div>
 						</div>
 					</div>
@@ -131,8 +140,8 @@ export default {
             cartCounter: 0,
             cartDishes: [],
 				localData: [],
+				href:'/cart',
             cartDish: {
-				
                name: '',
                price: null,
                image: '',
@@ -155,6 +164,16 @@ export default {
         }
     },
     methods: {
+		//  CheckCartLogic
+		checkCart() {
+            console.log("stop event");
+            if (this.localData.length > 0) {
+                console.log("restart event");
+                window.location = this.href;
+            }
+        },
+
+
 		test(){
 			const result = this.localData.filter(elem => elem.restaurant_slug === this.$route.params.slug)	
 			this.localData = result

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Category;
-use App\Dish;
+// use App\Dish;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
