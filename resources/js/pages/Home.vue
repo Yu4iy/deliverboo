@@ -92,7 +92,7 @@
                             <!-- restaurant list -->
                             
                             <li class="Cards-Rest col-sm-6 col-md-4 my-3" v-for="bestRestaurant in restaurants" :key="`restaurant-${bestRestaurant.id}`">
-										  <router-link class="Cards-Link-container" :to="{ name: 'restaurant-menu', params: {slug: bestRestaurant.slug }}">
+										  <router-link class="Cards-Link-container" :to="{ name: 'restaurant-menu', params: {slug: bestRestaurant.slug, id: bestRestaurant.id}}">
                                     <!-- card -->
                                     <div class="Card">
                                         <!-- image -->

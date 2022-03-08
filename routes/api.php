@@ -20,4 +20,6 @@ Route::namespace('Api')
 					Route::get('/menu/{slug}', 'RestaurantController@show');
 					Route::get('/bestRestaurants', 'RestaurantController@bestRestaurants');
 					Route::get('/category', 'RestaurantController@CategoryRestaurant');
+					// Route::get('/menu/{slug}', 'RestaurantController@getDishes');
+					
 				});

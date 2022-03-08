@@ -106,7 +106,16 @@
 										></span
 									>
 									<!-- <button class="w-100 btn btn-brand-color">BUY</button> -->
-									<a href="/cart" class="w-100 btn btn-brand-color">CHECKOUT</a>
+									<!-- <a href="/cart" class="w-100 btn btn-brand-color">CHECKOUT</a> -->
+
+
+									<a
+                                @click.prevent="checkCart()"
+                                id="checkout"
+                                href="/cart"
+                                class="w-100 btn btn-brand-color">
+										  CHECKOUT
+									</a>
 							</div>
 						</div>
 					</div>
@@ -123,6 +132,7 @@ export default {
     name: "RestaurantMenu",
     created() {
         this.getResturant();
+		//   this.getDish();
     },
     data() {
         return {
@@ -130,8 +140,8 @@ export default {
             cartCounter: 0,
             cartDishes: [],
 				localData: [],
+				href:'/cart',
             cartDish: {
-				
                name: '',
                price: null,
                image: '',
@@ -154,6 +164,16 @@ export default {
         }
     },
     methods: {
+		//  CheckCartLogic
+		checkCart() {
+            console.log("stop event");
+            if (this.localData.length > 0) {
+                console.log("restart event");
+                window.location = this.href;
+            }
+        },
+
+
 		test(){
 			const result = this.localData.filter(elem => elem.restaurant_slug === this.$route.params.slug)	
 			this.localData = result
@@ -166,9 +186,20 @@ export default {
                 .get(
                     `http://127.0.0.1:8000/api/menu/${this.$route.params.slug}`
                 )
-                .then((response) => (this.info = response.data[0]));
+                .then((response) => (
+						 this.info = response.data[0]
+						 ));
 					
         },
+		//   getDish() {
+		// 	  axios
+		// 	      .get(
+      //               `http://127.0.0.1:8000/api/menu/${this.$route.params.id}`
+      //           )
+      //           .then((response) => (
+		// 				console.log(response.data, '=======================================')
+		// 				 ));
+		//   },
         addDishToCart(dish, index) {
             const dishCart = dish;
 				const addKey = {qunatiy: 1, restaurant_slug:this.info.slug};
