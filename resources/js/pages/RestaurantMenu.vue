@@ -123,6 +123,7 @@ export default {
     name: "RestaurantMenu",
     created() {
         this.getResturant();
+		//   this.getDish();
     },
     data() {
         return {
@@ -166,9 +167,20 @@ export default {
                 .get(
                     `http://127.0.0.1:8000/api/menu/${this.$route.params.slug}`
                 )
-                .then((response) => (this.info = response.data[0]));
+                .then((response) => (
+						 this.info = response.data[0]
+						 ));
 					
         },
+		//   getDish() {
+		// 	  axios
+		// 	      .get(
+      //               `http://127.0.0.1:8000/api/menu/${this.$route.params.id}`
+      //           )
+      //           .then((response) => (
+		// 				console.log(response.data, '=======================================')
+		// 				 ));
+		//   },
         addDishToCart(dish, index) {
             const dishCart = dish;
 				const addKey = {qunatiy: 1, restaurant_slug:this.info.slug};
