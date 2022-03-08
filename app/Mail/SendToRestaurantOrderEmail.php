@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendConfirmedOrderEmail extends Mailable
+class SendToRestaurantOrderEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,6 +28,6 @@ class SendConfirmedOrderEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.confirmedClient');
+        return $this->view('mails.confirmedRestaurant');
     }
 }

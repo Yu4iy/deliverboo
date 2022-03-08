@@ -10,7 +10,9 @@ use App\Order;
 
 /* Email di Conferma */
 use App\Mail\SendConfirmedOrderEmail;
+use App\Mail\SendToRestaurantOrderEmail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
@@ -44,6 +46,13 @@ class CheckoutController extends Controller
             ]
         ]);
         if ($result->success) {
+
+            /* MailTrap */
+
+            /* TODO bisogna rendere dinamico il TO */
+            Mail::to('account@mail.com')->send(new SendConfirmedOrderEmail());
+            Mail::to(Auth::user()->email)->send(new SendToRestaurantOrderEmail());
+
             $transaction = $result->transaction;
             //Register new Order in DB
             $new_order = new Order();
@@ -68,8 +77,6 @@ class CheckoutController extends Controller
                     'quantity' => $item['quantity'],
                 ]);
             }
-
-            Mail::to('account@mail.com')->send(new SendConfirmedOrderEmail());
 
             return response()->json('Transazione avvenuta correttamente!');
         } else {
