@@ -64,7 +64,7 @@ class CheckoutController extends Controller
                     'quantity' => $item['quantity'],
                 ]);
             }
-            return response()->json('transazione avvenuta');
+            return response()->json('Transazione avvenuta correttamente!');
         } else {
             $errorString = "";
     
