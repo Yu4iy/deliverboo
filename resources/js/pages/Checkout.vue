@@ -1,5 +1,5 @@
 <template>
-    <div class="chekcout">
+    <div class="chekcout" v-if="successStatus === false">
 		<h2 class="my-4">Checkout</h2>
 		<div class="container-fluid">
 			<div class="row ">
@@ -89,12 +89,17 @@
 			</div>
 		</div>
     </div>
+	<Success v-else/>
 </template>
 
 <script>
 import axios from 'axios'
+import Success from './Success'
 export default {
     name: "Checkout",
+	components: {
+		Success
+	},
 	 data(){
 		 return{
 			localData:null,
@@ -105,11 +110,15 @@ export default {
 			customer_phone: '',
 			customer_address: '',
 			notes: '',
+			success: false,
 		 }
 	 },
 	 computed: {
 		 clientToken() {
 			 return this.token
+		 },
+		 successStatus() {
+			 return this.success
 		 }
 	 },
 	 mounted() {
@@ -152,6 +161,7 @@ export default {
 			.catch(err => {
 				console.log(err)
 			})
+			this.success = true;
 		},
 		onError (error) {
 		let message = error.message;
