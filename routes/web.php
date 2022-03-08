@@ -54,16 +54,16 @@ Route::middleware('auth')
 	return view('guests.checkout');
 })->name('cart'); */
 
-Route::post('/checkout', 
+/* Route::post('/checkout', 
 function(Request $request) {
 	$data = $request->all();
 	if($data['dishes']) {
 		foreach($data['dishes'] as &$dish) {
 			$dish = json_decode($dish);
 		}
-	}
+	} */
 	//Register new Order in DB
-	$new_order = new Order();
+	/* $new_order = new Order();
 	$new_order->customer_name = $request->customer_name;
 	$new_order->customer_lastname = $request->customer_lastname;
 	$new_order->customer_email = $request->customer_email;
@@ -89,7 +89,7 @@ function(Request $request) {
 		]);
 	}
 
-	return redirect()->route('home');
+	return redirect()->route('home'); */
 
 	/* $amount = $request->amount;
 	$nonce = $request->payment_method_nonce;
@@ -139,8 +139,8 @@ function(Request $request) {
 
 		/* return back()->withErrors('Si è verificato un errore: '. $result->message);
 	}*/
-}
-); 
+/* }
+);  */
 
 Route::get("{any?}", function() {
 	return view('guests.home');

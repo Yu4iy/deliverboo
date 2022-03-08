@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Braintree;
 use App\Order;
 
@@ -54,6 +55,16 @@ class CheckoutController extends Controller
             $new_order->total_price = $request->amount;
 
             $new_order->save();
+
+            $order_id = Order::all()->last()->id;
+            foreach($request->dishes as $item) {
+                DB::table('dish_order')->insert([
+                    'dish_id' => $item['id'],
+                    'order_id' => $order_id,
+                    'quantity' => $item['quantity'],
+                ]);
+            }
+            return response()->json('transazione avvenuta');
         } else {
             $errorString = "";
     

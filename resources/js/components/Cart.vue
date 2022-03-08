@@ -126,8 +126,8 @@ export default {
 			margin: 0 0 0 10px;
 		}
 }
-.btn {
+/* .btn {
 }
 .btn-brand-color {
-}
+} */
 </style>
