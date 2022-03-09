@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Dish;
+use Illuminate\Database\Eloquent\Builder;
+use App\Order;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -16,8 +16,9 @@ class HomeController extends Controller
 	}
 
 	public function getOrders() {
-		$dishes = Dish::where('user_id', Auth::id())->with('orders');
-		dd($dishes);
-		return view('admin.orders');
+		$orders = Order::whereHas('dishes', function(Builder $query) {
+			$query->where('user_id', Auth::id());
+		})->with('dishes')->get();
+		return view('admin.orders', compact('orders'));
 	}
 }
