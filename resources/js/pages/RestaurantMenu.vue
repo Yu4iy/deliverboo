@@ -183,10 +183,7 @@ export default {
 
 		test(){
 			const result = this.localData.filter(elem => elem.restaurant_slug === this.$route.params.slug)	
-			this.localData = result
-			
-			
-			
+			this.localData = result			
 		},
         getResturant() {
             axios
@@ -216,9 +213,22 @@ export default {
 				// 	 restaurant_slug:this.info.slug,
             // };
 				console.log(dish);
+    
+            /* console.log('dish------>',dish)
+            console.log('storage--->', JSON.parse(
+                    localStorage.getItem("localData"))) */
+            let locals = JSON.parse(
+                    localStorage.getItem("localData"))
+                    console.log('info', this.info)
+            if(locals.length > 0 && locals.filter(e => e.restaurant_slug === this.info.slug).length === 0) {
+                if(!confirm('sei sicuro?')) {
+                    return;
+                }                
+            }
             if (
                 this.localData.filter((e) => e.name === newDish.name).length > 0
             ) {
+                console.log(this.localData)
                 this.localData[index].quantity++;
             } else {
                 this.localData.push(newDish);

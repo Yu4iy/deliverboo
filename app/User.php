@@ -53,5 +53,5 @@ class User extends Authenticatable
 
 	 public function dishes() {
 		return $this->hasMany('App\Dish');
-  }
+    }
 }
