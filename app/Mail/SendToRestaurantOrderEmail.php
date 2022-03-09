@@ -10,6 +10,7 @@ use Illuminate\Queue\SerializesModels;
 class SendToRestaurantOrderEmail extends Mailable
 {
     use Queueable, SerializesModels;
+    
 
     /**
      * Create a new message instance.

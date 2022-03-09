@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Braintree;
 use App\Order;
+use App\User;
 
 /* Email di Conferma */
 use App\Mail\SendConfirmedOrderEmail;
 use App\Mail\SendToRestaurantOrderEmail;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
@@ -28,6 +28,11 @@ class CheckoutController extends Controller
     }
 
     public function sendOrder(Request $request) {
+        
+        $restaurant_id = $request->dishes[0]['user_id'];
+        $restaurant = User::where('id', $restaurant_id)->get();
+        $restaurant_email = $restaurant[0]['email'];
+
         $amount = $request->amount;
         $nonce = $request->payment_method_nonce;
 
@@ -47,13 +52,8 @@ class CheckoutController extends Controller
         ]);
         if ($result->success) {
 
-            /* MailTrap */
-
-            /* TODO bisogna rendere dinamico il TO */
-            Mail::to('account@mail.com')->send(new SendConfirmedOrderEmail());
-            Mail::to(Auth::user()->email)->send(new SendToRestaurantOrderEmail());
-
             $transaction = $result->transaction;
+
             //Register new Order in DB
             $new_order = new Order();
             $new_order->order_code = $transaction->id;
@@ -62,12 +62,19 @@ class CheckoutController extends Controller
             $new_order->customer_email = $request->customer_email;
             $new_order->customer_phone = $request->customer_phone;
             $new_order->customer_address = $request->customer_address;
+
             if($request->notes) {
                 $new_order->notes = $request->notes;
             }
             $new_order->total_price = $request->amount;
 
             $new_order->save();
+
+            /* MailTrap */
+            /* TODO bisogna rendere dinamico il TO */
+            Mail::to($request->customer_email)->send(new SendConfirmedOrderEmail());
+
+            Mail::to($restaurant_email)->send(new SendToRestaurantOrderEmail());
 
             $order_id = Order::all()->last()->id;
             foreach($request->dishes as $item) {
@@ -77,6 +84,7 @@ class CheckoutController extends Controller
                     'quantity' => $item['quantity'],
                 ]);
             }
+
 
             return response()->json('Transazione avvenuta correttamente!');
         } else {
