@@ -81,8 +81,12 @@ class CheckoutController extends Controller
                 ]);
             }
 
-            Mail::to($restaurant->email)->send(new SendToRestaurantOrderEmail());
-            Mail::to($request->customer_email)->send(new SendConfirmedOrderEmail());
+            Mail::to($request->customer_email)
+            /* later(now()->addSeconds(5), new SendConfirmedOrderEmail()); */
+            ->send(new SendConfirmedOrderEmail());
+            Mail::to($restaurant->email)
+            /* later(now()->addSeconds(5), new SendConfirmedOrderEmail()); */
+            ->send(new SendToRestaurantOrderEmail());
     
 
 
