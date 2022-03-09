@@ -69,8 +69,6 @@ class CheckoutController extends Controller
             $new_order->total_price = $request->amount;
 
             $new_order->save();
-            /* MailTrap */
-            /* TODO bisogna rendere dinamico il TO */
 
             $order_id = Order::all()->last()->id;
             foreach($request->dishes as $item) {
@@ -81,6 +79,8 @@ class CheckoutController extends Controller
                 ]);
             }
 
+            /* MailTrap */
+            /* TODO bisogna rendere dinamico il TO */
             Mail::to($request->customer_email)
             /* later(now()->addSeconds(5), new SendConfirmedOrderEmail()); */
             ->send(new SendConfirmedOrderEmail());
