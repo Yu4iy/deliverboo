@@ -32,8 +32,10 @@ class CheckoutController extends Controller
         $restaurant_id = $request->dishes[0]['user_id'];
         $restaurant = User::where('id', $restaurant_id)->first();
         /* $restaurant_email = $restaurant->email; */
-
-        $amount = $request->amount;
+        $amount = 0;
+        foreach($request->dishes as $dish) {
+            $amount += $dish['price'] * $dish['quantity'];
+        }
         $nonce = $request->payment_method_nonce;
 
         $gateway = new Braintree\Gateway([

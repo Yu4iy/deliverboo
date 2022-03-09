@@ -44,37 +44,8 @@
 				</div>
 
 				<!-- CART -->
-				<div class="col-md-12 col-lg-4 bgb">
-					<div class="cart-wraper">
-						<div>
-							<div class="cart-item" v-for="(item, index) in localData" :key="`cart-${index}`" >
-										<div class="cart-item__wraper-img">
-												<img
-														:src="`/storage/${item.image}`"
-														alt=""
-												/>
-										</div>
-										<div class="cart-item__info">
-												<h5>{{ item.name }} <strong>x{{item.qunatiy}}</strong> </h5>
-												<div>Price: {{ item.price }}€</div>
-												<div>
-														<div>
-															<button class="px-2 border-secondary  rounded">
-																<i class="fa-solid fa-minus"></i>
-															</button>
-									
-															<button class="px-2 border-secondary  rounded">
-																<i class="fa-solid fa-plus"></i>
-															</button>
-														</div>
-												</div>
-										</div>
-							</div>
-						</div>
-						<div>
-							<strong>Total: 22€</strong>
-						</div>
-						<v-braintree v-if="clientToken"
+				<div class="col-md-12 col-lg-4 bgb">					
+					<v-braintree v-if="clientToken"
 							class="bg-light"
 							:authorization="clientToken"
 							locale="it_IT"
@@ -82,9 +53,8 @@
 							btnClass="btn btn-success"
 							@success="onSuccess"
 							@error="onError"
-						>
-						</v-braintree>
-					</div>
+					>
+					</v-braintree>
 				</div>
 			</div>
 		</div>
@@ -98,7 +68,7 @@ import Success from './Success'
 export default {
     name: "Checkout",
 	components: {
-		Success
+		Success,
 	},
 	 data(){
 		 return{
@@ -119,7 +89,14 @@ export default {
 		 },
 		 successStatus() {
 			 return this.success
-		 }
+		 },
+		 calculateTotal() {
+            let total = 0;
+            for (let i = 0; i < this.localData.length; i++) {
+                total += this.localData[i].price * this.localData[i].quantity;
+            }
+            return total;
+        },
 	 },
 	 mounted() {
 		axios.get('http://127.0.0.1:8000/api/get-token')
@@ -139,6 +116,7 @@ export default {
                 localStorage.removeItem("localData");
             }
         }
+		this.saveCartDishes()
     },
 	 methods:{
 		onSuccess (payload) {
@@ -167,7 +145,12 @@ export default {
 		let message = error.message;
 		// Whoops, an error has occured while trying to get the nonce
 		console.log(message)
-		}
+		},
+		saveCartDishes() {
+            const parsed = JSON.stringify(this.localData);
+				
+            localStorage.setItem("localData", parsed);
+        },
 	}
 };
 </script>
