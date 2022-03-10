@@ -60,7 +60,7 @@
                                         </button>
                                         <button
                                             type="button"
-                                            class="btn btn-primary"
+                                            class="btn btn-delete"
                                             id="si"
                                             @click="addDishToCart(dish, index)"
                                         >
@@ -165,8 +165,7 @@
                                     {{ calculateTotal.toFixed(2) }}€</strong
                                 ></span
                             >
-                            <!-- <button class="w-100 btn btn-brand-color">BUY</button> -->
-                            <!-- <a href="/cart" class="w-100 btn btn-brand-color">CHECKOUT</a> -->
+
                             <router-link
                                 :disabled="localData.length == 0"
                                 :event="localData.length > 0 ? 'click' : ''"
@@ -175,14 +174,6 @@
                             >
                                 <strong>CHECKOUT</strong>
                             </router-link>
-
-                            <!-- <a
-                                @click.prevent="checkCart()"
-                                id="checkout"
-                                href="/cart"
-                                class="w-100 btn btn-brand-color">
-										  CHECKOUT
-									</a> -->
                         </div>
                     </div>
                 </div>
