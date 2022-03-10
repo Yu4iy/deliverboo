@@ -268,22 +268,6 @@ export default {
             // };
             console.log(dish);
 
-            /* console.log('dish------>',dish)
-            console.log('storage--->', JSON.parse(
-                    localStorage.getItem("localData"))) */
-            // let locals = JSON.parse(localStorage.getItem("localData"));
-            // console.log("info", this.info);
-            // if (
-            //     locals.length > 0 &&
-            //     locals.filter((e) => e.restaurant_slug === this.info.slug)
-            //         .length === 0
-            // ) {
-            //     this.openModal(dish, index);
-            //     return;
-            //     // if (!confirm("sei sicuro?")) {
-            //     //     return;
-            //     // }
-            // }
             if (
                 this.localData.filter((e) => e.name === newDish.name).length > 0
             ) {
@@ -330,11 +314,6 @@ export default {
             btnSi.addEventListener("click", function () {
                 console.log("click si");
                 $("#alertCart").modal("hide");
-                // const dishToAdd = dish;
-                // this.addDishToCart(dish, index);
-                // let localNew = JSON.parse(localStorage.getItem("localData"));
-                // console.log(dishToAdd);
-                // console.log(localNew);
             });
             const btnClose = document.getElementById("close-button");
             btnClose.addEventListener("click", function () {
