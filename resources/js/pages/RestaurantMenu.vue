@@ -18,6 +18,58 @@
                         :key="`dishes-${dish.slug}`"
                         class="menu-main__item"
                     >
+                        <!-- Modal -->
+                        <div
+                            class="modal fade"
+                            id="alertCart"
+                            tabindex="-1"
+                            role="dialog"
+                            aria-labelledby="alertCart"
+                            aria-hidden="true"
+                        >
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="alertCart">
+                                            Avviso
+                                        </h5>
+                                        <button
+                                            type="button"
+                                            class="close"
+                                            data-dismiss="modal"
+                                            aria-label="Close"
+                                            id="close-button"
+                                        >
+                                            <span aria-hidden="true"
+                                                >&times;</span
+                                            >
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Stai per ordinare da un altro
+                                        ristorante. Sei sicuro?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button
+                                            type="button"
+                                            class="btn btn-secondary"
+                                            data-dismiss="modal"
+                                            id="no"
+                                        >
+                                            No
+                                        </button>
+                                        <button
+                                            type="button"
+                                            class="btn btn-primary"
+                                            id="si"
+                                            @click="addDishToCart(dish, index)"
+                                        >
+                                            Si
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="menu-card">
                             <div class="menu-card__wraper">
                                 <img
@@ -42,7 +94,7 @@
                             </div>
                             <div class="d-flex justify-content-between btn-fix">
                                 <button
-                                    @click="addDishToCart(dish, index)"
+                                    @click="checkTestCart(dish, index)"
                                     class="btn btn-brand-color"
                                 >
                                     <i class="fa-solid fa-plus"></i>
@@ -138,57 +190,6 @@
         <div v-else>
             <h1>MENU VUOTO</h1>
         </div>
-        <!-- Button trigger modal -->
-        <button
-            type="button"
-            class="btn btn-primary"
-            data-toggle="modal"
-            data-target="#alertCart"
-        >
-            Launch demo modal
-        </button>
-        <!-- Modal -->
-        <div
-            class="modal fade"
-            id="alertCart"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="alertCart"
-            aria-hidden="true"
-        >
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="alertCart">Avviso</h5>
-                        <button
-                            type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                            id="close-button"
-                        >
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Stai per ordinare da un altro ristorante. Sei sicuro?
-                    </div>
-                    <div class="modal-footer">
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal"
-                            id="no"
-                        >
-                            No
-                        </button>
-                        <button type="button" class="btn btn-primary" id="si">
-                            Si
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </template>
 <script>
@@ -270,19 +271,19 @@ export default {
             /* console.log('dish------>',dish)
             console.log('storage--->', JSON.parse(
                     localStorage.getItem("localData"))) */
-            let locals = JSON.parse(localStorage.getItem("localData"));
-            console.log("info", this.info);
-            if (
-                locals.length > 0 &&
-                locals.filter((e) => e.restaurant_slug === this.info.slug)
-                    .length === 0
-            ) {
-                this.openModal(dish, index);
-                return;
-                // if (!confirm("sei sicuro?")) {
-                //     return;
-                // }
-            }
+            // let locals = JSON.parse(localStorage.getItem("localData"));
+            // console.log("info", this.info);
+            // if (
+            //     locals.length > 0 &&
+            //     locals.filter((e) => e.restaurant_slug === this.info.slug)
+            //         .length === 0
+            // ) {
+            //     this.openModal(dish, index);
+            //     return;
+            //     // if (!confirm("sei sicuro?")) {
+            //     //     return;
+            //     // }
+            // }
             if (
                 this.localData.filter((e) => e.name === newDish.name).length > 0
             ) {
@@ -317,7 +318,7 @@ export default {
             const parsed = JSON.stringify(this.localData);
             localStorage.setItem("localData", parsed);
         },
-        openModal(dish, index) {
+        openModal() {
             $("#alertCart").modal("toggle");
             const btnNo = document.getElementById("no");
             btnNo.addEventListener("click", function () {
@@ -328,14 +329,34 @@ export default {
             const btnSi = document.getElementById("si");
             btnSi.addEventListener("click", function () {
                 console.log("click si");
-                const dishCart = dish;
-        
-                this.localData.push(dishCart);
+                $("#alertCart").modal("hide");
+                // const dishToAdd = dish;
+                // this.addDishToCart(dish, index);
+                // let localNew = JSON.parse(localStorage.getItem("localData"));
+                // console.log(dishToAdd);
+                // console.log(localNew);
             });
             const btnClose = document.getElementById("close-button");
             btnClose.addEventListener("click", function () {
                 $("#alertCart").modal("hide");
             });
+        },
+        checkTestCart(dish, index) {
+            let locals = JSON.parse(localStorage.getItem("localData"));
+            console.log("info", this.info);
+            if (
+                locals.length > 0 &&
+                locals.filter((e) => e.restaurant_slug === this.info.slug)
+                    .length === 0
+            ) {
+                this.openModal();
+                return;
+                // if (!confirm("sei sicuro?")) {
+                //     return;
+                // }
+            } else {
+                this.addDishToCart(dish, index);
+            }
         },
     },
 
