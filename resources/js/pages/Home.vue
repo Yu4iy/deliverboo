@@ -356,6 +356,7 @@ export default {
 
                     // senza impaginazione
                     this.categories = res.data;
+                    console.log(this.categories)
                 })
                 .catch((err) => log.error(err));
         },

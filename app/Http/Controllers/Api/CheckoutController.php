@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Braintree;
+use Illuminate\Support\Facades\Validator;
 use App\Order;
 use App\User;
 
@@ -28,12 +29,27 @@ class CheckoutController extends Controller
     }
 
     public function sendOrder(Request $request) {
-        
+        $validator = Validator::make($request->all(), [
+            'customer_name' =>'required|max:50',
+            'customer_lastname' =>'required|max:50',
+            'customer_email' =>'required|email',
+            'customer_phone' =>'required|numeric|regex:/^[+]*[0-9]{10,13}$/',
+            'customer_address' => 'required|regex:/^[A-Za-z]{1,}+[,\s]+(([A-Za-z]+[.\s]+)*[A-Za-z]{1,}+[,\s]+)+[0-9]{1,3}+$/'
+        ]);
+        if($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ]);
+        }
+
         $restaurant_id = $request->dishes[0]['user_id'];
         $restaurant = User::where('id', $restaurant_id)->first();
         /* $restaurant_email = $restaurant->email; */
-
-        $amount = $request->amount;
+        $amount = 0;
+        foreach($request->dishes as $dish) {
+            $amount += ($dish['price'] * $dish['quantity']);
+        }
+       /*  $amount = $request->amount; */
         $nonce = $request->payment_method_nonce;
 
         $gateway = new Braintree\Gateway([
@@ -66,7 +82,7 @@ class CheckoutController extends Controller
             if($request->notes) {
                 $new_order->notes = $request->notes;
             }
-            $new_order->total_price = $request->amount;
+            $new_order->total_price = $amount;
 
             $new_order->save();
             /* MailTrap */
