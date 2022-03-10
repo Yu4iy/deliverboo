@@ -14,16 +14,20 @@
                 
                 <div class="CategoryListContainer col-lg-2 col-md-12">
                     <!-- visibile -->
-
                     <ul class="categoryList categoryNoHamb px-4">
                         <li class="CategoryTitle">
                             CATEGORIE
                         </li>
-                        <li class="mt-2 mx-2" v-for="category in categories" :key="`category-${category.slug}`">
+								<li >
+									<button @click="clear()" class="category">
+                              Cancella Filtri
+                           </button>
+								</li>
+                        <li class="mt-2 mx-2" v-for="(category, index) in categories" :key="`category-${category.slug}`">
                             <!-- <router-link class="category" :to="{ name: 'advanced-search', params: {slug: category.slug }}">
                                 {{category.name}}
                             </router-link> -->
-                            <button class="category" @click="getFilteredRestaurants(category.slug)">
+                            <button  class="category" @click="getFilteredRestaurants(category.slug, category.id,index) ">
                                 {{category.name}}
                             </button>
                         </li>
@@ -43,7 +47,7 @@
                     <div class="hamburger-menu " :class="{ active: openModal }">
                         <ul class="categoryList  px-4">
                             <li class="mt-2 mx-2" v-for="category in categories" :key="`category-${category.slug}`">
-										<button class="category" @click="getFilteredRestaurants(category.slug)">
+										<button class="category" @click="getFilteredRestaurants(category.slug, category.id, index)">
 											{{category.name}}
 										</button>
                             </li>
@@ -88,10 +92,10 @@
 							  <span class="restaurant-list-warn">
 								  {{text}}
 							  </span>
-                        <ul class="row" v-if="restaurants">
+                        <ul  v-if="restaurants">
                             <!-- restaurant list -->
-                            
-                            <li class="Cards-Rest col-sm-6 col-md-4 my-3" v-for="bestRestaurant in restaurants" :key="`restaurant-${bestRestaurant.id}`">
+                        <div class="row" v-if="tempArrayRestaurant.length == 0 ">
+								   <li class="Cards-Rest col-sm-6 col-md-4 my-3" v-for="bestRestaurant in bestRestaurants" :key="`restaurant-${bestRestaurant.id}`">
 										  <router-link class="Cards-Link-container" :to="{ name: 'restaurant-menu', params: {slug: bestRestaurant.slug, id: bestRestaurant.id}}">
                                     <!-- card -->
                                     <div class="Card">
@@ -119,7 +123,41 @@
                                     </div>
                                 </router-link>   
                             </li>
+								</div> 
+								<div class="row" v-else>
+                            <li class="Cards-Rest col-sm-6 col-md-4 my-3" v-for="bestRestaurant in tempArrayRestaurant" :key="`restaurant-${bestRestaurant.id}`">
+										  <router-link class="Cards-Link-container" :to="{ name: 'restaurant-menu', params: {slug: bestRestaurant.slug, id: bestRestaurant.id}}">
+                                    <!-- card -->
+                                    <div class="Card">
+                                        <!-- image -->
+                                        <figure class="img-cont" v-if="bestRestaurant.image">
+                                             <img class="img-fluid" :src="bestRestaurant.image" :alt="bestRestaurant.restaurant_name">
+                                         </figure>
+                                         <figure class="img-cont" v-else>
+                                             <img src="https://www.nafservizi.it/wp-content/uploads/2020/10/default_image_01.png" :alt="bestRestaurant.restaurant_name">
+                                         </figure>
+                                        
+
+                                        <!-- dati ristorante -->
+                                        <div class="card-details p-3 mx-2">
+                                            <!-- restauran-name -->
+                                            <h5>{{bestRestaurant.restaurant_name}}</h5>
+                                            <div>
+                                                <div class="card-City">{{bestRestaurant.city}}</div>
+                                                <div>{{bestRestaurant.address}}</div>
+                                                
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </router-link>   
+                            </li>
+								</div>
+
+									 
                         </ul>
+								
                         <div v-else>
                            <h4>Loading restaurants...</h4>
                         </div>
@@ -150,9 +188,11 @@ export default {
     data() {
       return {
           bestRestaurants: null,
+			 tempArrayRestaurant:[],
           categories: null,
 			 text:null,
-			 openModal:false
+			 openModal:false,
+
       }
     },
 
@@ -169,6 +209,15 @@ export default {
     },
 
     methods: {
+		 clear(){
+			this.tempArrayRestaurant = []
+			const btns = document.querySelectorAll('.category')
+			btns.forEach(element => {
+			element.classList.remove("active")	
+			});
+			this.text = ''
+		 },
+
         getBestRestaurants(page = 1){
             //chiamata axios
             axios.get(`http://127.0.0.1:8000/api/bestRestaurants?page=${page}`)
@@ -188,29 +237,87 @@ export default {
                 .catch(err => log.error(err));
           
         },
-        getFilteredRestaurants(categorySlug) {
+
+        getFilteredRestaurants(categorySlug, id, index) {
+			//   console.log(categorySlug,'__________________testCategory________');
+			// const triger = this.tempArrayRestaurant.some(person => person.pivot.category_id !== id)
+			// if(triger){
             axios.get(`http://127.0.0.1:8000/api/restaurants/${categorySlug}`)
                 .then(res => {
-                    console.log(res.data);
-
-                    // senza impaginazione
+						 
+						 // senza impaginazione
                     //  this.bestRestaurants = res.data;
 
                     // con impaginazione
-                    this.bestRestaurants = res.data[0].users;
-						  if(res.data[0].users.length == 0){
-							  	this.text = 'Non ci sono ristoranti per questa categoria😢'
-						  }else{
-							  this.text = ''
-						  }
-                    console.log(this.bestRestaurants)
+						//  this.tempArrayRestaurant.concat(test)
+                  const test =  res.data[0].users;
+						if(test.length == 0){
+							this.text = 'Non ci sono ristoranti per questa categoria😢'
+						}else{
+							this.text = ''
+						}
+						const btns = document.querySelectorAll('.category')
+						btns[index + 1].classList.add("active")
+				
+						console.log(id,"ID");
+						for (let i = 0; i < test.length; i++) {
+							let axiosObject = test[i]
+							
+							if (!this.tempArrayRestaurant.filter(e => e.id === axiosObject.id).length > 0) {
+								this.tempArrayRestaurant.push(axiosObject)
+							}
+				
+							
+
+						
+						}
+
+
+
+						//  console.log(test,'-----------------------------------------bestRestdddddddddaurants');
+					
+
+						//  test.forEach(element => {
+						// 	if(this.tempArrayRestaurant.filter((e) => e.id === element.id).length > 0 ){
+								
+						// 		console.log(element, 'ELEMENT');
+								
+									
+						// 		const newArray = this.tempArrayRestaurant.filter(item => item.pivot.category_id !== element.pivot.category_id)
+						// 		this.tempArrayRestaurant = newArray
+						// 		console.log(this.tempArrayRestaurant);
+						// 		// if(this.tempArrayRestaurant.filter((e) => e.pivot.category_id === element.pivot.category_id).length == 0 ){
+						// 		// 	this.tempArrayRestaurant.unshift(element)
+
+						// 		// }
+						// 	}else{
+						// 		// if(!tempArrayRestaurant.includes(element)){
+						// 			this.tempArrayRestaurant.unshift(element)
+						// 		// }
+
+						// 	}
+						//  });
+
+						 
+						//  this.tempArrayRestaurant.filter((e) => e.slug !== test.slug) ;
+
+						//   if(res.data[0].users.length == 0){
+						// 	  	this.text = 'Non ci sono ristoranti per questa categoria😢'
+						//   }else{
+						// 	  this.text = ''
+						//   }
+                  //   console.log(this.bestRestaurants)
                     /* this.pagination = {
                        current: res.data.current_page,
                        last: res.data.last_page
                     }; */
                 })
-                .catch(err => log.error(err));
-        },
+               //  .catch(err => log.error(err));
+      //   }else{
+		// 	  console.log('ERROR');
+		//   }
+		},
+
         getCategoryRestaurant(){
             //chiamata axios
             axios.get(`http://127.0.0.1:8000/api/category`)
@@ -277,11 +384,20 @@ ul{
                 transition: 0.3s;
 					 border:  none;
 					 background: transparent;
+					 padding: 5px 10px;
+					 transition: all linear 0.1s;
                 &:hover{
                     color: #00ccbc;
 
                 }
             }
+				 .active{
+						 background: #00ccbb3d;
+						 border-radius: 6px;
+						 border: 3px soldi #214845;
+						 
+					 }
+
         }
     }
 
