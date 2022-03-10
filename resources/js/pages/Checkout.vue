@@ -1,11 +1,11 @@
 <template>
-    <div class="chekcout" v-if="successStatus === false">
+    <div class="checkout" v-if="successStatus === false">
 		<h2 class="my-4">Checkout</h2>
 		<div class="container-fluid">
 			<div class="row ">
 				<!-- MAIN  -->
 				<div class="col-md-12 col-lg-8 bgr p-5">
-					<h4 class="border-bottom py-2">Iserischi datti</h4>
+					<h4 class="border-bottom py-2">Iserisci dati</h4>
 					<form class="my-3" method="POST">
 						<div class="row px-3 py-2 ">
 							<div class="col mb-3">
@@ -34,7 +34,7 @@
 							</div>
 							<div class="col mb-3">
 								<label for="phone" class="form-label">Cellulare*</label>
-								<input id="phone" type="tel" class="form-control" v-model="customer_phone" required placeholder="(+39)33344455556">
+								<input id="phone" type="tel" class="form-control" v-model="customer_phone" required placeholder="(+39)--">
 								<span class="text-danger" v-if="getErrors && getErrors.customer_phone">
 									{{ getErrors.customer_phone.join() || getErrors.customer_phone }}
 								</span>
@@ -43,7 +43,7 @@
 						<div class="row px-3 py-2">
 							<div class="col mb-2">
 								<label for="adress" class="form-label">Indirizzo*</label>
-								<input id="address" type="text" class="form-control" v-model="customer_address" required placeholder="Città, Via Nome, 18" title="Compila in questo formato: 'NomeCittà, Via Nome, 00'">
+								<input id="address" type="text" class="form-control" v-model="customer_address" required placeholder="Città, Via Nome, n°" title="Compila in questo formato: 'NomeCittà, Via Nome, 00'">
 								<span class="text-danger" v-if="getErrors && getErrors.customer_address">
 									{{ getErrors.customer_address.join() || getErrors.customer_address }}
 								</span>
@@ -53,7 +53,7 @@
 						<div class="row px-3 py-2">
 							<div class="mb-3 col">
 								<label for="notes" class="form-label">Informazioni aggiuntive</label>
-								<textarea id="notes" class="form-control" rows="5" v-model="notes" placeholder="Info utili"></textarea>
+								<textarea id="notes" class="form-control" rows="5" v-model="notes" placeholder="Hai qualche intolleranza, il citofono non funziona, etc..."></textarea>
 							</div>
 						</div>
 					</form>
@@ -71,15 +71,15 @@
 												/>
 										</div>
 										<div class="cart-item__info">
-												<h5>{{ item.name }} <strong>x{{item.quantity}}</strong> </h5>
+												<h5>{{ item.name }} <strong class="quantity">x{{item.quantity}}</strong> </h5>
 												<div>Price: {{ item.price }}€</div>
 												<div>
 														<div>
-															<button @click="decrement(item, index)" class="px-2 border-secondary  rounded">
+															<button @click="decrement(item, index)" class="px-2 border-secondary  rounded plu-min">
 																<i class="fa-solid fa-minus"></i>
 															</button>
 									
-															<button @click="increment(item, index)" class="px-2 border-secondary  rounded">
+															<button @click="increment(item, index)" class="px-2 border-secondary  rounded plu-min">
 																<i class="fa-solid fa-plus"></i>
 															</button>
 														</div>
@@ -257,51 +257,81 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.chekcout{
+.checkout{
 	// height: 100vh;
-	padding: 10px 0 0 0;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	padding: 10px 0 30px;
+	h2 {
+		color: #00ccbc;
+	}
 }
-.bgr{ background: rgba(131, 131, 131, 0.103);}
-.bgb{ padding: 20px 0; background: rgba(131, 131, 131, 0.555);}
+
+.bgr {
+	background: #f8fafc;
+}
+
+.bgb{
+	padding: 20px;
+	background: #f8fafc;
+	border-left: 4px solid #00ccbc;
+}
+
 .border-bottom{
 	border-bottom: 2px solid rgba(0, 0, 0, 0.76);
 }
+
 .cart-wraper{
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	height: 100%;
 }
+
 .cart-item {
 	display: flex;
 	margin: 10px;
-	background: rgb(141, 141, 141);
+	background: white;
+	border: 4px solid #00ccbc;
+	border-radius: 20px;
+	padding: 20px;
 	align-items: center;
 
-		&__wraper-img {
-			flex:  0 0 30%;
-			position: relative;
-			min-height: 100px;
-			img{
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				position: absolute;
-				top: 0;
-				left: 0;
-			}
+	&__wraper-img {
+		flex:  0 0 30%;
+		position: relative;
+		min-height: 100px;
+		img{
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			position: absolute;
+			top: 0;
+			left: 0;
 		}
+	}
 
-		&__info {
-			margin: 0 0 0 10px;
-		}
+	&__info {
+		margin: 0 0 0 10px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	h5 {
+		margin: 0px;
+	}
 }
-/* .btn {
 
+.plu-min {
+	color: black;
+	border: 2px solid black;
 }
 
-.btn-brand-color {
-} */
+.quantity {
+	margin-left: 10px;
+}
 
 
 
