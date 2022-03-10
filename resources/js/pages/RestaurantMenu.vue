@@ -171,8 +171,9 @@
                                 :disabled="localData.length == 0"
                                 :event="localData.length > 0 ? 'click' : ''"
                                 :to="{ name: 'checkout' }"
+                                class="w-100 btn btn-brand-color"
                             >
-                                Checkout
+                                <strong>CHECKOUT</strong>
                             </router-link>
 
                             <!-- <a
