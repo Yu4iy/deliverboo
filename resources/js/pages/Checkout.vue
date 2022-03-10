@@ -9,42 +9,43 @@
 					<form class="my-3" method="POST">
 						<div class="row px-3 py-2 ">
 							<div class="col mb-3">
-								<label for="name" class="form-label">Nome</label>
-								<input id="name" type="text" class="form-control" v-model="customer_name" required maxlength="50">
+								<label for="name" class="form-label">Nome*</label>
+								<input id="name" type="text" class="form-control" v-model="customer_name" required maxlength="50" placeholder="Nome">
 								<span class="text-danger" v-if="getErrors && getErrors.customer_name">
-									{{ getErrors.customer_name.join() }}
+									{{ getErrors.customer_name.join() || getErrors.customer_name }}
 								</span>
+								<span v-else>{{ getErrors.customer_name }}</span>
 							</div>
 							<div class="col mb-2">
-								<label for="surname" class="form-label">Cognome</label>
-								<input id="surname" type="text" class="form-control" v-model="customer_lastname" required maxlength="50">
+								<label for="surname" class="form-label">Cognome*</label>
+								<input id="surname" type="text" class="form-control" v-model="customer_lastname" required maxlength="50" placeholder="Cognome">
 								<span class="text-danger" v-if="getErrors && getErrors.customer_lastname">
-									{{ getErrors.customer_lastname.join() }}
+									{{ getErrors.customer_lastname.join() || getErrors.customer_lastname }}
 								</span>
 							</div>
 						</div>
 						<div class="row px-3 py-2">
 							<div class="col mb-2">
-								<label for="email" class="form-label">Email</label>
-								<input id="email" type="email" class="form-control" v-model="customer_email" required>
+								<label for="email" class="form-label">Email*</label>
+								<input id="email" type="email" class="form-control" v-model="customer_email" required placeholder="email@test.com">
 								<span class="text-danger" v-if="getErrors && getErrors.customer_email">
-									{{ getErrors.customer_email.join() }}
+									{{ getErrors.customer_email.join() || getErrors.customer_email}}
 								</span>
 							</div>
 							<div class="col mb-3">
-								<label for="phone" class="form-label">Cellulare</label>
-								<input id="phone" type="tel" class="form-control" v-model="customer_phone" required>
+								<label for="phone" class="form-label">Cellulare*</label>
+								<input id="phone" type="tel" class="form-control" v-model="customer_phone" required placeholder="(+39)33344455556">
 								<span class="text-danger" v-if="getErrors && getErrors.customer_phone">
-									{{ getErrors.customer_phone.join() }}
+									{{ getErrors.customer_phone.join() || getErrors.customer_phone }}
 								</span>
 							</div>
 						</div>
 						<div class="row px-3 py-2">
 							<div class="col mb-2">
-								<label for="adress" class="form-label">Indirizzo</label>
-								<input id="address" type="text" class="form-control" v-model="customer_address" required placeholder="Città, Via/Viale/Piazza/Corso Nome, 18" title="Compila in questo formato: 'NomeCittà, Via/Piazza/Viale/Corso Nome, 00'">
+								<label for="adress" class="form-label">Indirizzo*</label>
+								<input id="address" type="text" class="form-control" v-model="customer_address" required placeholder="Città, Via Nome, 18" title="Compila in questo formato: 'NomeCittà, Via Nome, 00'">
 								<span class="text-danger" v-if="getErrors && getErrors.customer_address">
-									{{ getErrors.customer_address.join() }}
+									{{ getErrors.customer_address.join() || getErrors.customer_address }}
 								</span>
 							</div>
 						</div>
@@ -52,7 +53,7 @@
 						<div class="row px-3 py-2">
 							<div class="mb-3 col">
 								<label for="notes" class="form-label">Informazioni aggiuntive</label>
-								<textarea id="notes" class="form-control" rows="5" v-model="notes"></textarea>
+								<textarea id="notes" class="form-control" rows="5" v-model="notes" placeholder="Info utili"></textarea>
 							</div>
 						</div>
 					</form>
@@ -70,15 +71,15 @@
 												/>
 										</div>
 										<div class="cart-item__info">
-												<h5>{{ item.name }} <strong>x{{item.qunatiy}}</strong> </h5>
+												<h5>{{ item.name }} <strong>x{{item.quantity}}</strong> </h5>
 												<div>Price: {{ item.price }}€</div>
 												<div>
 														<div>
-															<button class="px-2 border-secondary  rounded">
+															<button @click="decrement(item, index)" class="px-2 border-secondary  rounded">
 																<i class="fa-solid fa-minus"></i>
 															</button>
 									
-															<button class="px-2 border-secondary  rounded">
+															<button @click="increment(item, index)" class="px-2 border-secondary  rounded">
 																<i class="fa-solid fa-plus"></i>
 															</button>
 														</div>
@@ -87,7 +88,7 @@
 							</div>
 						</div>
 						<div>
-							<strong>Total: 22€</strong>
+							<strong>{{ calculateTotal.toFixed(2) }}</strong>
 						</div>
 						<v-braintree v-if="clientToken"
 							class="bg-light"
@@ -125,7 +126,7 @@ export default {
 			customer_phone: '',
 			customer_address: '',
 			notes: '',
-			errors: null,
+			errors: {},
 			success: false,
 		 }
 	 },
@@ -138,7 +139,14 @@ export default {
 		 },
 		 getErrors() {
 			 return this.errors
-		 }
+		 },
+		 calculateTotal() {
+            let total = 0;
+            for (let i = 0; i < this.localData.length; i++) {
+                total += this.localData[i].price * this.localData[i].quantity;
+            }
+            return total;
+        },
 	 },
 	 mounted() {
 		axios.get('http://127.0.0.1:8000/api/get-token')
@@ -170,14 +178,28 @@ export default {
     },
 	 methods:{
 		onSuccess (payload) {
-		/* if(
-			this.customer_name === '' ||
-			this.customer_lastname === '' ||
-			this.customer_email === '' ||
-			this.customer_phone ==='' ||
-			this.customer_address === '' 			
-		) {
-			return console.log('nooooooo')
+		/* if(this.customer_name === '') {
+			this.errors.customer_name = 'Questo campo è richiesto'
+			console.log(JSON.stringify(this.getErrors.customer_name))
+			this.errors.customer_name = JSON.parse(JSON.stringify(this.getErrors.customer_name));
+			
+			return
+		}
+		if(this.customer_lastname === '') {
+			this.errors.customer_lastname = 'Questo campo è richiesto'
+			return
+		}
+		if(this.customer_email === '') {
+			this.errors.customer_email = 'Questo campo è richiesto'
+			return
+		}
+		if(this.customer_phone === '') {
+			this.errors.customer_phone = 'Questo campo è richiesto'
+			return
+		}
+		if(this.customer_address === '') {
+			this.errors.customer_address = 'Questo campo è richiesto'
+			return
 		} */
 		let nonce = payload.nonce;
 		// Do something great with the nonce...
@@ -207,7 +229,29 @@ export default {
 		let message = error.message;
 		// Whoops, an error has occured while trying to get the nonce
 		console.log(message)
-		}
+		},
+        increment(dish, index) {
+            dish.quantity++
+            this.saveCartDishes();
+        },
+        decrement(dish, index) {
+            const newDishCart = dish;
+            if (this.localData.filter((e) => e.name === newDishCart.name)) {
+                if (this.localData[index].quantity !== 1) {
+                    this.localData[index].quantity--;
+                } else if (this.localData[index].quantity >= 0) {
+                    this.localData.splice(index, 1);
+                }
+            } else {
+                this.localData.push(newDishCart);
+            }
+
+            this.saveCartDishes();
+        },
+        saveCartDishes() {
+            const parsed = JSON.stringify(this.localData);
+            localStorage.setItem("localData", parsed);
+        },
 	}
 };
 </script>
