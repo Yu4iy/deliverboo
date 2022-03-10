@@ -21,7 +21,7 @@
                             CATEGORIE
                         </li>
 								<li >
-									<button @click="clear()" class="category">
+									<button @click="clear()" class=" categoriy-clear category w-100">
                               Cancella Filtri
                            </button>
 								</li>
@@ -30,7 +30,7 @@
                                 {{category.name}}
                             </router-link> -->
                             <button  class="category w-100" @click="getFilteredRestaurants(category.slug, category.id,index) ">
-                                {{category.name}}
+                                {{category.name}} <span class="category__count">{{category.users.length}}</span>
                             </button>
                         </li>
                     </ul>
@@ -67,7 +67,7 @@
                         <ul class="categoryList  px-4">
                             <li class="mt-2 mx-2" v-for="category in categories" :key="`category-${category.slug}`">
 										<button class="category" @click="getFilteredRestaurants(category.slug, category.id, index)">
-											{{category.name}}
+											{{category.name}} <span class="category__count">{{category.users.length}}</span>
 										</button>
                             </li>
                         </ul>
@@ -356,7 +356,6 @@ export default {
 
                     // senza impaginazione
                     this.categories = res.data;
-						  console.log(this.categories,'888888888888888888888');
                 })
                 .catch((err) => log.error(err));
         },
@@ -365,6 +364,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.categoriy-clear{
+	background: red;
+}
 ul {
     li {
         list-style: none;
@@ -410,14 +412,39 @@ ul {
 					 background: transparent;
 					 padding: 5px 10px;
 					 transition: all linear 0.1s;
+					 position: relative;
+					 text-align: start;
+					 background:#54b8b01c;
+					 border-radius: 6px;
+					 border: 1px solid #264f4f00;
+
+
+
+
+					 &__count{
+						 background: #54aca52b;
+						 position: absolute;
+						 right: 5px;
+						 border-radius: 100%;
+						 width: 25px;
+						 height: 25px;
+						 line-height: 25px;
+						 text-align: center;
+						 border: 1px solid #1b45453d;
+						 
+
+						 
+					 }
                 &:hover{
-                    color: #00ccbc;
+                    color: #011e1c;
+					 background:#439d9640;
+
                 }
             }
 				 .active{
-						 background: #00ccbb3d;
+						 background: #48989152;
 						 border-radius: 6px;
-						 border: 3px soldi #214845;
+						 border: 1px solid #264f4f72;
 						 
 					 }
 
@@ -611,6 +638,7 @@ ul {
         }
     }
 }
+
 .burger__top-close {
     animation: burger_top-close 0.4s forwards;
 }
