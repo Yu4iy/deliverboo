@@ -14,6 +14,10 @@
                         Eliminati di Recente
                         <i class="fa-solid fa-clock-rotate-left"></i>
                     </a>
+                    <a href="{{ route('admin.home') }}">
+                        Dashboard
+                        <i class="fa-solid fa-briefcase"></i>
+                    </a>
                 </div>
             </div>
         </div>
