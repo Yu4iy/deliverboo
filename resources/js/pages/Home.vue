@@ -29,7 +29,7 @@
                             <!-- <router-link class="category" :to="{ name: 'advanced-search', params: {slug: category.slug }}">
                                 {{category.name}}
                             </router-link> -->
-                            <button  class="category" @click="getFilteredRestaurants(category.slug, category.id,index) ">
+                            <button  class="category w-100" @click="getFilteredRestaurants(category.slug, category.id,index) ">
                                 {{category.name}}
                             </button>
                         </li>
@@ -108,9 +108,9 @@
 
                     <!-- bottom -->
                     <div class="restaurantList container-fluid mt-5 ">
-							  <span class="restaurant-list-warn">
+							  <!-- <span class="restaurant-list-warn">
 								  {{text}}
-							  </span>
+							  </span> -->
                         <ul  v-if="restaurants">
                             <!-- restaurant list -->
                         <div class="row" v-if="tempArrayRestaurant.length == 0 ">
@@ -280,11 +280,11 @@ export default {
                     // con impaginazione
 						//  this.tempArrayRestaurant.concat(test)
                   const test =  res.data[0].users;
-						if(test.length == 0){
-							this.text = 'Non ci sono ristoranti per questa categoria😢'
-						}else{
-							this.text = ''
-						}
+						// if(test.length == 0){
+						// 	this.text = 'Non ci sono ristoranti per questa categoria😢'
+						// }else{
+						// 	this.text = ''
+						// }
 						const btns = document.querySelectorAll('.category')
 						btns[index + 1].classList.add("active")
 				
@@ -356,6 +356,7 @@ export default {
 
                     // senza impaginazione
                     this.categories = res.data;
+						  console.log(this.categories,'888888888888888888888');
                 })
                 .catch((err) => log.error(err));
         },
@@ -389,7 +390,6 @@ ul {
     }
     // left
     .CategoryListContainer {
-        max-height: 1080px;
         overflow-y: auto;
         margin-top: 55px;
 
