@@ -5,7 +5,7 @@
 <section class="dishes-menu">
 
     <div class="menu">
-        <div class="container">
+        <div class="container pt-50">
             <div class="menu-row">
                 <div class="menu-row__title">Menu List</div>
                 <div class="menu-row__nav">

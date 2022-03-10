@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="trash container">
+    <section class="trash container pt-100">
         <h1>Trash</h1>
         @if(!$trashed->isEmpty())
         <table class="table">
