@@ -10,27 +10,42 @@
 						<div class="row px-3 py-2 ">
 							<div class="col mb-3">
 								<label for="name" class="form-label">Nome</label>
-								<input id="name" type="text" class="form-control" v-model="customer_name">
+								<input id="name" type="text" class="form-control" v-model="customer_name" required maxlength="50">
+								<span class="text-danger" v-if="getErrors && getErrors.customer_name">
+									{{ getErrors.customer_name.join() }}
+								</span>
 							</div>
 							<div class="col mb-2">
 								<label for="surname" class="form-label">Cognome</label>
-								<input id="surname" type="text" class="form-control" v-model="customer_lastname" >
+								<input id="surname" type="text" class="form-control" v-model="customer_lastname" required maxlength="50">
+								<span class="text-danger" v-if="getErrors && getErrors.customer_lastname">
+									{{ getErrors.customer_lastname.join() }}
+								</span>
 							</div>
 						</div>
 						<div class="row px-3 py-2">
 							<div class="col mb-2">
 								<label for="email" class="form-label">Email</label>
-								<input id="email" type="email" class="form-control" v-model="customer_email">
+								<input id="email" type="email" class="form-control" v-model="customer_email" required>
+								<span class="text-danger" v-if="getErrors && getErrors.customer_email">
+									{{ getErrors.customer_email.join() }}
+								</span>
 							</div>
 							<div class="col mb-3">
 								<label for="phone" class="form-label">Cellulare</label>
-								<input id="phone" type="tel" class="form-control" v-model="customer_phone">
+								<input id="phone" type="tel" class="form-control" v-model="customer_phone" required>
+								<span class="text-danger" v-if="getErrors && getErrors.customer_phone">
+									{{ getErrors.customer_phone.join() }}
+								</span>
 							</div>
 						</div>
 						<div class="row px-3 py-2">
 							<div class="col mb-2">
-								<label for="adress" class="form-label">Citta - via - numero civico</label>
-								<input id="address" type="text" class="form-control" v-model="customer_address">
+								<label for="adress" class="form-label">Indirizzo</label>
+								<input id="address" type="text" class="form-control" v-model="customer_address" required placeholder="Città, Via/Viale/Piazza/Corso Nome, 18" title="Compila in questo formato: 'NomeCittà, Via/Piazza/Viale/Corso Nome, 00'">
+								<span class="text-danger" v-if="getErrors && getErrors.customer_address">
+									{{ getErrors.customer_address.join() }}
+								</span>
 							</div>
 						</div>
 
@@ -110,6 +125,7 @@ export default {
 			customer_phone: '',
 			customer_address: '',
 			notes: '',
+			errors: null,
 			success: false,
 		 }
 	 },
@@ -119,6 +135,9 @@ export default {
 		 },
 		 successStatus() {
 			 return this.success
+		 },
+		 getErrors() {
+			 return this.errors
 		 }
 	 },
 	 mounted() {
@@ -139,9 +158,27 @@ export default {
                 localStorage.removeItem("localData");
             }
         }
+		var inputNumbers = document.querySelectorAll('input[type="tel"]');
+		const numbers = ['0','1','2','3','4','5','6','7','8','9','+'];
+		inputNumbers.forEach(el => {
+			el.addEventListener('keypress', function(e){
+			if(!numbers.includes(e.key)) {
+				e.preventDefault();
+			}
+			})
+		})	
     },
 	 methods:{
 		onSuccess (payload) {
+		/* if(
+			this.customer_name === '' ||
+			this.customer_lastname === '' ||
+			this.customer_email === '' ||
+			this.customer_phone ==='' ||
+			this.customer_address === '' 			
+		) {
+			return console.log('nooooooo')
+		} */
 		let nonce = payload.nonce;
 		// Do something great with the nonce...
 			axios.post('http://127.0.0.1:8000/api/complete-order', {
@@ -152,16 +189,19 @@ export default {
 				customer_address : this.customer_address,
 				notes : this.notes,
 				dishes : this.localData,
-				amount : 15,
+				/* amount : 15, */
 				payment_method_nonce : nonce,
 			})
 			.then(res => {
 				console.log(res.data)
+				if(res.data.errors) {
+					return this.errors = res.data.errors;
+				}
+				this.success = true;
 			})
 			.catch(err => {
 				console.log(err)
 			})
-			this.success = true;
 		},
 		onError (error) {
 		let message = error.message;
