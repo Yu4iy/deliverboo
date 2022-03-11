@@ -5,7 +5,7 @@
 			<div class="row ">
 				<!-- MAIN  -->
 				<div class="col-md-12 col-lg-8 bgr p-5">
-					<h4 class="border-bottom py-2">Iserisci dati</h4>
+					<h4 class="border-bottom py-2">Inserisci dati</h4>
 					<form class="my-3" method="POST">
 						<div class="row px-3 py-2 ">
 							<div class="col mb-3">
@@ -88,7 +88,7 @@
 							</div>
 						</div>
 						<div class="totalPrice">
-							<strong>{{ calculateTotal.toFixed(2) }}</strong>
+							<strong>{{ calculateTotal.toFixed(2) }} €</strong>
 						</div>
 						<v-braintree v-if="clientToken"
 							class="bg-light"
@@ -336,9 +336,17 @@ export default {
 .totalPrice {
 	display: flex;
 	justify-content: center;
+	strong {
+		text-align: center;
+		border: 2px solid #00ccbc;
+		border-radius: 10px;
+		padding: 10px 30px;
+	}
+
 }
 
 input, textarea {
-	border: 2px solid #00ccbc;;
+	border: 2px solid #00ccbc;
 }
+
 </style>
