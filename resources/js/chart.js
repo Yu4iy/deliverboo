@@ -1,29 +1,45 @@
-const labels = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-];
+console.log('wow');
 
-const data = {
-    labels: labels,
-    datasets: [{
-        label: 'My First dataset',
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
-        data: [0, 10, 5, 2, 20, 30, 45],
-    }]
-};
+const year = document.querySelector('.year');
+const month = document.querySelector('.month');
+const day = document.querySelector('.day');
 
-const config = {
-    type: 'line',
-    data: data,
-    options: {}
-};
+year.addEventListener('click', function() {
+    console.log('ciao');
 
-const myChart = new Chart(
-    document.getElementById('myChart'),
-    config
-);
+    const labels = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+    ];
+    
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'My First dataset',
+            backgroundColor: '#00ccbc',
+            borderColor: '#00ccbc',
+            data: [0, 10, 5, 2, 20, 30, 40],
+        }]
+    };
+    
+    const config = {
+        type: 'line',
+        data: data,
+        options: {}
+    };
+    
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+})

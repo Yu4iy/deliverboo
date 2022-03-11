@@ -87,5 +87,5 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/test.js') }}" defer></script>
+    <script src="{{ asset('js/test.js') }}" defer></script>
 @endsection

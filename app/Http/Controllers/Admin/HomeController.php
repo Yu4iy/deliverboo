@@ -25,6 +25,12 @@ class HomeController extends Controller
 
 
 	public function statistics() {
+
+		$orders = Order::whereHas('dishes', function(Builder $query) {
+			$query->where('user_id', Auth::id());
+		})->get();
+		$orders->load('dishes');
+
 		return view('admin.statistics');
 	}
 }
