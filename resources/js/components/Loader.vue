@@ -12,8 +12,8 @@
 </script>
 <style lang="scss" scoped>
 	.loader{
-		height: 80%;
-		width: 100%;
+		height: 80vh;
+		width: 100vw;
 		position: fixed;
 		z-index: 2;
 		background: #f8fafc;
