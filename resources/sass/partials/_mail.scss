@@ -1,0 +1,59 @@
+.container.header {
+    text-align: center;
+    padding: 15px 0;
+    .logo {
+        width: 200px;
+    }
+}
+
+.thanks {
+    background-color: #00ccbc;
+    padding: 30px 0;
+    text-align: center;
+    color: #fff;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.intro {
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+.dishes {
+    font-size: 18px;
+}
+
+.table-dishes {
+    margin: 15px 0;
+}
+
+.address {
+    margin: 20px 0 30px 0;
+}
+.address p {
+    font-size: 18px;
+}
+
+.icon-mail {
+    color: #00ccbc;
+    font-size: 18px;
+}
+
+.close-mail {
+    text-align: center;
+    font-size: 30px;
+}
+
+.close-mail .icon-mail {
+    font-size: 30px;
+}
+
+.container.footer {
+    padding: 30px;
+    padding: 20px;
+    margin-top: 30px;
+    color: #fff;
+    font-weight: 500;
+    background-color: #00ccbc;
+}
