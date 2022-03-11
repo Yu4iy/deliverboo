@@ -6881,16 +6881,14 @@ fieldset:disabled .btn {pointer-events:none;opacity:0.65}
   <p style="margin-bottom:1rem; margin-top:0">
 </p>
 <div class="container header" style="margin-left:auto; margin-right:auto; width:100%; padding:15px 0; text-align:center" width="100%" align="center">
-        <img src="/storage/mail/deliveroo-logo.svg" alt="logo deliveboo" class="logo" style="vertical-align:middle; width:200px" valign="middle" width="200">
+        <img src="https://loghi-famosi.com/wp-content/uploads/2021/03/Deliveroo-Logo.png" alt="logo deliveboo" class="logo" style="vertical-align:middle; width:200px" valign="middle" width="200">
       </div>
-   
-  
       <div class="container" style="margin-left:auto; margin-right:auto; width:100%" width="100%">
         <div class="row" style="display:flex; flex-wrap:wrap">
           <div class="col-12 thanks" style="flex:0 0 auto; width:100%; background-color:#00ccbc; color:#fff; font-size:25px; font-weight:600; padding:30px 0; text-align:center" width="100%" bgcolor="#00ccbc" align="center">Grazie per averci scelto!</div>
           <div class="col-12 intro" style="flex:0 0 auto; width:100%; font-size:18px; margin:20px 0" width="100%">
-            Ciao <strong style="font-weight:bolder">nome cliente</strong>, <br>
-            il tuo ordine numero 5467 è andato a buon fine.
+            Ciao <strong style="font-weight:bolder">{{$new_order->customer_name }} {{$new_order->customer_lastname}}</strong>, <br>
+            il tuo ordine numero <strong>{{$new_order->order_code}}</strong> è andato a buon fine.
           </div>
           <div class="col-12 dishes" style="flex:0 0 auto; width:100%; font-size:18px" width="100%">
             Nome ristorante sta preparando i tuoi piatti:
@@ -6913,22 +6911,6 @@ fieldset:disabled .btn {pointer-events:none;opacity:0.65}
                   <td style="border-color:inherit; border-style:solid; border-width:0">2</td>
                   <td style="border-color:inherit; border-style:solid; border-width:0">24.00 €</td>
                 </tr>
-                <tr style="border-color:inherit; border-style:solid; border-width:0">
-                  <th scope="row" style="text-align:-webkit-match-parent; border-color:inherit; border-style:solid; border-width:0" align="-webkit-match-parent">
-                    <img src="https://picsum.photos/id/1025/100" alt="nome piatto" style="vertical-align:middle" valign="middle">
-                  </th>
-                  <td style="border-color:inherit; border-style:solid; border-width:0">Salmon &amp; Tuna Poké</td>
-                  <td style="border-color:inherit; border-style:solid; border-width:0">2</td>
-                  <td style="border-color:inherit; border-style:solid; border-width:0">24.00 €</td>
-                </tr>
-                <tr style="border-color:inherit; border-style:solid; border-width:0">
-                  <th scope="row" style="text-align:-webkit-match-parent; border-color:inherit; border-style:solid; border-width:0" align="-webkit-match-parent">
-                    <img src="https://picsum.photos/id/1025/100" alt="nome piatto" style="vertical-align:middle" valign="middle">
-                  </th>
-                  <td style="border-color:inherit; border-style:solid; border-width:0">Salmon &amp; Tuna Poké</td>
-                  <td style="border-color:inherit; border-style:solid; border-width:0">2</td>
-                  <td style="border-color:inherit; border-style:solid; border-width:0">24.00 €</td>
-                </tr>
               </tbody>
             </table>
           </div>
@@ -6937,7 +6919,7 @@ fieldset:disabled .btn {pointer-events:none;opacity:0.65}
               Indirizzo di spedizione
               <i class="fa-solid fa-person-biking icon-mail" style='-moz-osx-font-smoothing:grayscale; -webkit-font-smoothing:antialiased; font-style:normal; font-variant:normal; line-height:1; text-rendering:auto; font-family:"Font Awesome 6 Free"; font-weight:900; color:#00ccbc; font-size:18px'></i>
             </h4>
-            <p style="margin-bottom:1rem; margin-top:0; font-size:18px">Frabosa Soprana, Via Frabosa Nuova 6, 12082</p>
+            <p style="margin-bottom:1rem; margin-top:0; font-size:18px">{{$new_order->customer_address}}</p>
           </div>
           <div class="col-12 close-mail" style="flex:0 0 auto; width:100%; font-size:30px; text-align:center" width="100%" align="center">
             Buon appetito!

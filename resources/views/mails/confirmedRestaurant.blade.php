@@ -6721,7 +6721,7 @@ fieldset:disabled .btn {pointer-events:none;opacity:0.65}
           <div class="col-12 thanks" style="flex:0 0 auto; width:100%; background-color:#00ccbc; color:#fff; font-size:25px; font-weight:600; padding:30px 0; text-align:center" width="100%" bgcolor="#00ccbc" align="center">Grazie per collaborare con noi!</div>
           <div class="col-12 intro" style="flex:0 0 auto; width:100%; font-size:18px; margin:20px 0" width="100%">
             Ciao <strong style="font-weight:bolder">nome ristorante</strong>, <br>
-            hai un nuovo ordine {{$new_order->order_code}}
+            hai un nuovo ordine: <strong>{{$new_order->order_code}}</strong> 
           <div class="col-12 dishes" style="flex:0 0 auto; width:100%; font-size:18px" width="100%">
             Ecco quello che dovrai preparare:
             <table class="table table-striped table-dishes" style="border-collapse:collapse; caption-side:bottom; border-color:#dee2e6; color:#212529; margin-bottom:1rem; vertical-align:top; width:100%; margin:15px 0" valign="top" width="100%">
@@ -6733,32 +6733,18 @@ fieldset:disabled .btn {pointer-events:none;opacity:0.65}
                   <th scope="col" style="text-align:-webkit-match-parent; border-color:inherit; border-style:solid; border-width:0" align="-webkit-match-parent">Prezzo</th>
                 </tr>
               </thead>
-              <tbody style="border-color:inherit; border-style:solid; border-width:0; vertical-align:inherit" valign="inherit">
-                <tr style="border-color:inherit; border-style:solid; border-width:0">
+              {{-- <tbody style="border-color:inherit; border-style:solid; border-width:0; vertical-align:inherit" valign="inherit">
+                @foreach ($new_order->dish as $dish)
+                    <tr style="border-color:inherit; border-style:solid; border-width:0">
                   <th scope="row" style="text-align:-webkit-match-parent; border-color:inherit; border-style:solid; border-width:0" align="-webkit-match-parent">
                     <img src="https://picsum.photos/id/1025/100" alt="nome piatto" style="vertical-align:middle" valign="middle">
                   </th>
-                  <td style="border-color:inherit; border-style:solid; border-width:0">Salmon Poké</td>
-                  <td style="border-color:inherit; border-style:solid; border-width:0">2</td>
-                  <td style="border-color:inherit; border-style:solid; border-width:0">24.00 €</td>
+                  <td style="border-color:inherit; border-style:solid; border-width:0">{{$dish->name}}</td>
+                  <td style="border-color:inherit; border-style:solid; border-width:0">{{$dish->pivot->quantity}}</td>
+                  <td style="border-color:inherit; border-style:solid; border-width:0">{{$dish->price}}</td>
                 </tr>
-                <tr style="border-color:inherit; border-style:solid; border-width:0">
-                  <th scope="row" style="text-align:-webkit-match-parent; border-color:inherit; border-style:solid; border-width:0" align="-webkit-match-parent">
-                    <img src="https://picsum.photos/id/1025/100" alt="nome piatto" style="vertical-align:middle" valign="middle">
-                  </th>
-                  <td style="border-color:inherit; border-style:solid; border-width:0">Salmon &amp; Tuna Poké</td>
-                  <td style="border-color:inherit; border-style:solid; border-width:0">2</td>
-                  <td style="border-color:inherit; border-style:solid; border-width:0">24.00 €</td>
-                </tr>
-                <tr style="border-color:inherit; border-style:solid; border-width:0">
-                  <th scope="row" style="text-align:-webkit-match-parent; border-color:inherit; border-style:solid; border-width:0" align="-webkit-match-parent">
-                    <img src="https://picsum.photos/id/1025/100" alt="nome piatto" style="vertical-align:middle" valign="middle">
-                  </th>
-                  <td style="border-color:inherit; border-style:solid; border-width:0">Salmon &amp; Tuna Poké</td>
-                  <td style="border-color:inherit; border-style:solid; border-width:0">2</td>
-                  <td style="border-color:inherit; border-style:solid; border-width:0">24.00 €</td>
-                </tr>
-              </tbody>
+                @endforeach            --}}
+             </tbody>
             </table>
           </div>
           <div class="col-12 address" style="flex:0 0 auto; width:100%; margin:20px 0 30px 0" width="100%">
