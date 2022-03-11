@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="dishes-menu">
+<section class="dishes-menu pt-50">
 
     <div class="menu">
         <div class="container">

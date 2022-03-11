@@ -5,14 +5,20 @@
 <section class="dishes-menu">
 
     <div class="menu">
-        <div class="container">
+        <div class="container pt-50">
             <div class="menu-row">
                 <div class="menu-row__title">Menu List</div>
                 <div class="menu-row__nav">
-                    <a href="{{route('admin.dishes.create')}}">Aggiungi</a>
+                    <a href="{{route('admin.dishes.create')}}">
+							<span class="mobile-dash">Aggiungi</span>
+							<i class="fas fa-plus"></i></a>
                     <a href="{{ route('admin.dishes.trash') }}">
-                        Eliminati di Recente
+								<span class="mobile-dash">Eliminati di Recente</span>
                         <i class="fa-solid fa-clock-rotate-left"></i>
+                    </a>
+                    <a href="{{ route('admin.home') }}">
+                        <span class="mobile-dash">Dashboard</span>
+                        <i class="fa-solid fa-briefcase"></i>
                     </a>
                 </div>
             </div>

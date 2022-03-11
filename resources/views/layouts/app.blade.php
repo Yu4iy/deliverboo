@@ -62,7 +62,12 @@
                         >
                         @auth
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
+                                <a class="nav-link cursor-pointer @if (Request::route()->getName()==='admin.home')
+                            active
+                        @endif" href="{{ route('admin.dishes.index') }}">Dashboard</a>
+                            </li> --}}
+                             <li class="nav-item">
                                 <a class="nav-link cursor-pointer @if (Request::route()->getName()==='admin.dishes.index')
                             active
                         @endif" href="{{ route('admin.dishes.index') }}">Dishes</a>
@@ -107,6 +112,8 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item cursor-pointer" href="{{ route('admin.home') }}"> Dashboard
+                                        </a>
                                         <a class="dropdown-item cursor-pointer" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                             document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
@@ -115,6 +122,7 @@
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
                                         </form>
+                                         
                                     </div>
                                 </li>
                                 @endguest
@@ -124,8 +132,7 @@
                 </nav>
             </div>
         </header>
-
-        <main class="pt-5">
+        <main>
             @yield('content')
         </main>
     </div>
@@ -137,7 +144,7 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
     {{-- Script Js --}}
-	{{-- </div> --}}
+
 </body>
 
 </html>
