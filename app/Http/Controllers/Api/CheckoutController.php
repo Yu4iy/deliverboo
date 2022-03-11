@@ -99,7 +99,7 @@ class CheckoutController extends Controller
             /* MailTrap */
             Mail::to($request->customer_email)
             /* later(now()->addSeconds(5), new SendConfirmedOrderEmail()); */
-            ->send(new SendConfirmedOrderEmail($new_order));
+            ->send(new SendConfirmedOrderEmail($new_order, $restaurant));
             Mail::to($restaurant->email)
             /* later(now()->addSeconds(5), new SendConfirmedOrderEmail()); */
             ->send(new SendToRestaurantOrderEmail($new_order, $restaurant));

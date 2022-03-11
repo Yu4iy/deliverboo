@@ -19,9 +19,10 @@ class SendConfirmedOrderEmail extends Mailable
      *
      * @return void
      */
-    public function __construct(Order $new_order)
+    public function __construct(Order $new_order, User $restaurant)
     {
         $this->new_order = $new_order;
+        $this->restaurant = $restaurant;
      
     }
 
@@ -35,6 +36,7 @@ class SendConfirmedOrderEmail extends Mailable
         return $this->subject('Conferma ordine avvenuto' )->view('mails.confirmedClient')
         ->with([
             'new_order' => $this->new_order,
+            'restaurant' => $this->restaurant,
         ]);
       
     }
