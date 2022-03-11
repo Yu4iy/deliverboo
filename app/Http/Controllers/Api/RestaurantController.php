@@ -42,7 +42,7 @@ class RestaurantController extends Controller
 
 	public function CategoryRestaurant()
 	{
-		$categories = Category::orderBy('name', 'asc')->get();
+		$categories = Category::orderBy('name', 'asc')->with('users')->get();
 		return response()->json($categories);
 
 	}
