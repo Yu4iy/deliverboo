@@ -61,8 +61,14 @@
             <p style="margin-bottom:1rem; margin-top:0; font-size:18px">{{$new_order->customer_name}}</p>
             <p style="margin-bottom:1rem; margin-top:0; font-size:18px">{{$new_order->customer_lastname}}</p>
             <p style="margin-bottom:1rem; margin-top:0; font-size:18px">{{$new_order->customer_address}}</p>
+            
             <p style="margin-bottom:1rem; margin-top:0; font-size:18px">{{$new_order->customer_phone}}</p>
             <p style="margin-bottom:1rem; margin-top:0; font-size:18px">{{$new_order->customer_email}}</p>
+            @if ($new_order->notes)
+            <p style="margin-bottom:1rem; margin-top:0; font-size:18px">Note: {{$new_order->notes}}</p>
+            @else 
+            <p style="margin-bottom:1rem; margin-top:0; font-size:18px">Note: Non ci sono note per questo ordine.</p>
+            @endif          
           </div>
           <div class="col-12 close-mail" style="flex:0 0 auto; width:100%; font-size:30px; text-align:center" width="100%" align="center">
             Buon lavoro!
