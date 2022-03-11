@@ -3,8 +3,15 @@ console.log('wow');
 const year = document.querySelector('.year');
 const month = document.querySelector('.month');
 
+const prova = document.querySelector('.prova');
+
+prova.addEventListener('click', function() {
+    const yearSelect = document.querySelector('.select-year');
+    yearSelect.classList.add('d-show');
+    console.log('sss');
+});
+
 year.addEventListener('click', function() {
-    console.log('ciao');
 
     const labels = [
         'January',
@@ -38,7 +45,7 @@ year.addEventListener('click', function() {
     };
     
     const myChart = new Chart(
-        document.getElementById('myChart'),
+        document.getElementById('myChart1'),
         config
     );
 });
@@ -97,7 +104,7 @@ month.addEventListener('click', function () {
     };
     
     const myChart = new Chart(
-        document.getElementById('myChart'),
+        document.getElementById('myChart2'),
         config
     );
 });
