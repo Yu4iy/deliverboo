@@ -16,13 +16,13 @@
 
                 <div class="CategoryListContainer col-lg-2 col-md-12">
                     <!-- visibile -->
-                    <ul class="categoryList categoryNoHamb px-4">
-                        <li class="CategoryTitle">
+                    <ul class="categoryList categoryNoHamb px-2">
+                        <li class=" mt-2 mx-2 CategoryTitle">
                             CATEGORIE
                         </li>
-								<li >
-									<button @click="clear()" class=" categoriy-clear category w-100">
-                              Cancella Filtri
+								<li class="mt-2 mx-2" >
+									<button @click="clear()" class=" category-clear category w-100">
+                              Cancella Filtri <span class="category__count"><i class="fas fa-trash-alt"></i></span>
                            </button>
 								</li>
                         <li class="mt-2 mx-2" v-for="(category, index) in categories" :key="`category-${category.slug}`">
@@ -77,10 +77,10 @@
                 <!-- sezione ristorante destra -->
                 <div class="RestaurantSection col-lg-10 col-md-12 px-2">
                     <!-- top -->
-                    <div class="topContainer container-fluid mt-5">
+                    <div class="topContainer container-fluid">
                         <div class="row align-items-center">
                             <!-- title -->
-                            <div class="Title col-sm-12 col-md-6 py-1 my-2">
+                            <div class="Title col-sm-12 col-md-6">
                                 I nostri Ristoranti
                             </div>
                             <!-- searchbar -->
@@ -107,14 +107,14 @@
                     </div>
 
                     <!-- bottom -->
-                    <div class="restaurantList container-fluid mt-5 ">
+                    <div class="restaurantList container-fluid ">
 							  <!-- <span class="restaurant-list-warn">
 								  {{text}}
 							  </span> -->
                         <ul  v-if="restaurants">
                             <!-- restaurant list -->
                         <div class="row" v-if="tempArrayRestaurant.length == 0 ">
-								   <li class="Cards-Rest col-sm-6 col-md-4 my-3" v-for="bestRestaurant in bestRestaurants" :key="`restaurant-${bestRestaurant.id}`">
+								   <li class="Cards-Rest col-sm-6 col-md-4 " v-for="bestRestaurant in bestRestaurants" :key="`restaurant-${bestRestaurant.id}`">
 										  <router-link class="Cards-Link-container" :to="{ name: 'restaurant-menu', params: {slug: bestRestaurant.slug, id: bestRestaurant.id}}">
                                     <!-- card -->
                                     <div class="Card">
@@ -393,17 +393,25 @@ ul {
     // left
     .CategoryListContainer {
         overflow-y: auto;
-        margin-top: 55px;
+        margin-top: 28px;
 
         .categoryList {
-            margin-top: 17px;
+            // margin-top: 17px;
 
             .CategoryTitle {
-                margin-bottom: 76px;
+                margin-bottom: 30px;
                 font-weight: 900;
                 font-size: 18px;
             }
-
+				 .category.category-clear{
+					 &:hover{
+					 background:#b854542d;
+					 border: 1px solid rgba(255, 0, 0, 0.265);
+					 }
+					&:hover span{
+					 color: rgb(61, 4, 4);
+					 }
+				}
             .category {
                 font-size: 16px;
                 text-transform: uppercase;
@@ -456,9 +464,11 @@ ul {
         padding-right: 60px;
         // top
         .topContainer {
+       	 margin-top: 23px;
             .Title {
                 font-size: 1.9rem;
                 font-weight: bold;
+					 margin-bottom: 26px;
             }
 
             .SearchBar {
@@ -484,6 +494,7 @@ ul {
         .restaurantList {
             .Cards-Rest {
                 min-height: 400px;
+					 margin-bottom: 25px;
 
                 .Cards-Link-container {
                     width: 100%;
@@ -492,10 +503,11 @@ ul {
                     text-decoration: none;
                     background-color: white;
                     display: inline-block;
+						  transition: all linear 0.2s;
                     box-shadow: rgba(45, 47, 49, 0.178) 0px 1px 2px 0px,
                         rgba(43, 46, 48, 0.082) 0px 1px 3px 1px;
                     &:hover {
-                        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                        box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 10px;
                     }
 
                     .Card {
