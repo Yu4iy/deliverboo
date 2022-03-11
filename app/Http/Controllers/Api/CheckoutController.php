@@ -102,7 +102,7 @@ class CheckoutController extends Controller
             ->send(new SendConfirmedOrderEmail($new_order));
             Mail::to($restaurant->email)
             /* later(now()->addSeconds(5), new SendConfirmedOrderEmail()); */
-            ->send(new SendToRestaurantOrderEmail($new_order));
+            ->send(new SendToRestaurantOrderEmail($new_order, $restaurant));
     
 
 

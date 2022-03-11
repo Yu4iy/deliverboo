@@ -6720,7 +6720,7 @@ fieldset:disabled .btn {pointer-events:none;opacity:0.65}
         <div class="row" style="display:flex; flex-wrap:wrap">
           <div class="col-12 thanks" style="flex:0 0 auto; width:100%; background-color:#00ccbc; color:#fff; font-size:25px; font-weight:600; padding:30px 0; text-align:center" width="100%" bgcolor="#00ccbc" align="center">Grazie per collaborare con noi!</div>
           <div class="col-12 intro" style="flex:0 0 auto; width:100%; font-size:18px; margin:20px 0" width="100%">
-            Ciao <strong style="font-weight:bolder">nome ristorante</strong>, <br>
+            Ciao <strong style="font-weight:bolder">{{$restaurant->restaurant_name}}</strong>, <br>
             hai un nuovo ordine: <strong>{{$new_order->order_code}}</strong> 
           <div class="col-12 dishes" style="flex:0 0 auto; width:100%; font-size:18px" width="100%">
             Ecco quello che dovrai preparare:
@@ -6733,17 +6733,17 @@ fieldset:disabled .btn {pointer-events:none;opacity:0.65}
                   <th scope="col" style="text-align:-webkit-match-parent; border-color:inherit; border-style:solid; border-width:0" align="-webkit-match-parent">Prezzo</th>
                 </tr>
               </thead>
-              {{-- <tbody style="border-color:inherit; border-style:solid; border-width:0; vertical-align:inherit" valign="inherit">
-                @foreach ($new_order->dish as $dish)
+              <tbody style="border-color:inherit; border-style:solid; border-width:0; vertical-align:inherit" valign="inherit">
+                @foreach ($new_order->dishes as $dish)
                     <tr style="border-color:inherit; border-style:solid; border-width:0">
                   <th scope="row" style="text-align:-webkit-match-parent; border-color:inherit; border-style:solid; border-width:0" align="-webkit-match-parent">
-                    <img src="https://picsum.photos/id/1025/100" alt="nome piatto" style="vertical-align:middle" valign="middle">
+                    <img src="{{ asset('storage/' . $dish->image) }}" alt="nome piatto" style="vertical-align:middle" valign="middle">
                   </th>
                   <td style="border-color:inherit; border-style:solid; border-width:0">{{$dish->name}}</td>
                   <td style="border-color:inherit; border-style:solid; border-width:0">{{$dish->pivot->quantity}}</td>
                   <td style="border-color:inherit; border-style:solid; border-width:0">{{$dish->price}}</td>
                 </tr>
-                @endforeach            --}}
+                @endforeach           
              </tbody>
             </table>
           </div>

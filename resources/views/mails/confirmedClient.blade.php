@@ -1,173 +1,6 @@
-{{-- <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-      crossorigin="anonymous"
-    />
-    <style>
-        * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Nunito", sans-serif;
-}
-
-.container.header {
-    text-align: center;
-    padding: 15px 0;
-}
-.logo {
-    width: 200px;
-}
-
-.thanks {
-    background-color: #00ccbc;
-    padding: 30px 0;
-    text-align: center;
-    color: #fff;
-    font-size: 25px;
-    font-weight: 600;
-}
-
-.intro {
-    margin: 20px 0;
-    font-size: 18px;
-}
-
-.dishes {
-    font-size: 18px;
-}
-
-.table-dishes {
-    margin: 15px 0;
-}
-
-.address {
-    margin: 20px 0 30px 0;
-}
-.address p {
-    font-size: 18px;
-}
-
-.icon-mail {
-    color: #00ccbc;
-    font-size: 18px;
-}
-
-.close-mail {
-    text-align: center;
-    font-size: 30px;
-}
-
-.close-mail .icon-mail {
-    font-size: 30px;
-}
-
-.container.footer {
-    padding: 30px;
-    padding: 20px;
-    margin-top: 30px;
-    color: #fff;
-    font-weight: 500;
-    background-color: #00ccbc;
-}
-
-    </style>
-</head>
-     
-     <div class="container header">
-        <img src="/storage/mail/deliveroo-logo.svg" alt="logo deliveboo" class="logo" />
-      </div>
-   
-  
-      <div class="container">
-        <div class="row">
-          <div class="col-12 thanks">Grazie per averci scelto!</div>
-          <div class="col-12 intro">
-            Ciao <strong>nome cliente</strong>, <br />
-            il tuo ordine numero 5467 è andato a buon fine.
-          </div>
-          <div class="col-12 dishes">
-            Nome ristorante sta preparando i tuoi piatti:
-
-            <table class="table table-striped table-dishes">
-              <thead>
-                <tr>
-                  <th scope="col">Immagine</th>
-                  <th scope="col">Piatto</th>
-                  <th scope="col">Quantità</th>
-                  <th scope="col">Prezzo</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">
-                    <img
-                      src="https://picsum.photos/id/1025/100"
-                      alt="nome piatto"
-                    />
-                  </th>
-                  <td>Salmon & Tuna Poké</td>
-                  <td>2</td>
-                  <td>24.00 €</td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    <img
-                      src="https://picsum.photos/id/1025/100"
-                      alt="nome piatto"
-                    />
-                  </th>
-                  <td>Salmon & Tuna Poké</td>
-                  <td>2</td>
-                  <td>24.00 €</td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    <img
-                      src="https://picsum.photos/id/1025/100"
-                      alt="nome piatto"
-                    />
-                  </th>
-                  <td>Salmon & Tuna Poké</td>
-                  <td>2</td>
-                  <td>24.00 €</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="col-12 address">
-            <h4>
-              Indirizzo di spedizione
-              <i class="fa-solid fa-person-biking icon-mail"></i>
-            </h4>
-            <p>Frabosa Soprana, Via Frabosa Nuova 6, 12082</p>
-          </div>
-          <div class="col-12 close-mail">
-            Buon appetito!
-            <i class="fa-solid fa-utensils icon-mail"></i>
-          </div>
-        </div>
-      </div>
-  
- 
-      <div class="container footer">&copy; DeliveBoo 2022 - Team 4</div> --}}
-   
-      <head>
+<head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <style type="text/css">:root {}
 ::after {box-sizing:border-box}
@@ -6875,9 +6708,11 @@ fieldset:disabled .btn {pointer-events:none;opacity:0.65}
 :host {}
 :root {}
 :host {}
-:root {}</style>
+:root {}
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+</style>
 </head>
-<body style="-webkit-tap-highlight-color:transparent; -webkit-text-size-adjust:100%; margin:0">
+<body style="-webkit-tap-highlight-color:transparent; -webkit-text-size-adjust:100%; margin:0; font-family: 'Nunito', sans-serif;">
   <p style="margin-bottom:1rem; margin-top:0">
 </p>
 <div class="container header" style="margin-left:auto; margin-right:auto; width:100%; padding:15px 0; text-align:center" width="100%" align="center">

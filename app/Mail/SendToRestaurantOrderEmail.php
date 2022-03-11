@@ -22,7 +22,7 @@ class SendToRestaurantOrderEmail extends Mailable
      *
      * @return void
      */
-    public function __construct(Order $new_order, Restaurant $restaurant)
+    public function __construct(Order $new_order, User $restaurant)
     {
         $this->new_order = $new_order;
         $this->restaurant = $restaurant;
