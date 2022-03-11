@@ -180,14 +180,18 @@
             </div>
         </div>
         <div v-else>
-            <h1>MENU VUOTO</h1>
+			  <Loader/>
         </div>
     </div>
 </template>
 <script>
 import axios from "axios";
+import Loader from '../components/Loader';
 export default {
     name: "RestaurantMenu",
+	 components:{
+		 Loader
+	 },
     created() {
         this.getResturant();
     },
@@ -416,7 +420,7 @@ export default {
     }
 }
 .menu-wraper {
-    //  height: 100vh;
+   //   height: 80vh;
     background: #f8fafc;
     display: grid;
     grid-template-columns: 1fr minmax(auto, 360px);
@@ -542,4 +546,7 @@ export default {
     color: #fff;
     font-weight: 700;
 }
+
+
+
 </style>
