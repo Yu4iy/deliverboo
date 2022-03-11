@@ -1,19 +1,9 @@
 <head>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
-@import bootstrap-email;
-.table > :not(caption) > * > * {padding:0.5rem 0.5rem;border-bottom-width:1px}
-.table > :not(:first-child) {border-top:2px solid currentColor}
-.table-sm > :not(caption) > * > * {padding:0.25rem 0.25rem}
-.table-bordered > :not(caption) > * {border-width:1px 0}
-.table-bordered > :not(caption) > * > * {border-width:0 1px}
-.table-borderless > :not(caption) > * > * {border-bottom-width:0}
-.table-borderless > :not(:first-child) {border-top-width:0}
-.table-striped > tbody > tr:nth-of-type(odd) > * {}
-.table-hover > tbody > tr:hover > * {}
 </style>
 </head>
-<body style="-webkit-tap-highlight-color:transparent; -webkit-text-size-adjust:100%; margin:0; font-family: 'Nunito', sans-serif;">
+<body style="-webkit-tap-highlight-color:transparent; -webkit-text-size-adjust:100%; margin:0; font-family: 'Nunito', sans-serif; width:100vw">
   <p style="margin-bottom:1rem; margin-top:0">
 </p>
 <div class="container header" style="margin-left:auto; margin-right:auto; width:100%; padding:15px 0; text-align:center" width="100%" align="center">
@@ -30,7 +20,7 @@
             <strong>{{$restaurant->restaurant_name}}</strong> sta preparando i tuoi piatti:
 
             <table class="table table-striped table-dishes" style="border-collapse:collapse; caption-side:bottom; border-color:#dee2e6; color:#212529; margin-bottom:1rem; vertical-align:top; width:100%; margin:15px 0" valign="top" width="100%">
-              <thead style="border-color:inherit; border-style:solid; border-width:0; vertical-align:bottom" valign="bottom">
+              <thead style="border-color:inherit; border-style:solid; border-width:; vertical-align:bottom" valign="bottom">
                 <tr style="border-color:inherit; border-style:solid; border-width:0">
                   <th scope="col" style="text-align:-webkit-match-parent; border-color:inherit; border-style:solid; border-width:0" align="-webkit-match-parent">Immagine</th>
                   <th scope="col" style="text-align:-webkit-match-parent; border-color:inherit; border-style:solid; border-width:0" align="-webkit-match-parent">Piatto</th>
@@ -40,13 +30,13 @@
               </thead>
               <tbody style="border-color:inherit; border-style:solid; border-width:0; vertical-align:inherit" valign="inherit">
                 @foreach ($new_order->dishes as $dish)
-                    <tr style="border-color:inherit; border-style:solid; border-width:0">
+                    <tr style="border-color:inherit; border-style:solid; border-width:0; background-color:#f2f2f2">
                   <th scope="row" style="text-align:-webkit-match-parent; border-color:inherit; border-style:solid; border-width:0" align="-webkit-match-parent">
-                    <img src="{{ asset('storage/' . $dish->image) }}" alt="nome piatto" style="vertical-align:middle; width:100px; height:100px" valign="middle">
+                    <img src="{{ asset('storage/' . $dish->image) }}" alt="{{$dish->name}}" style="vertical-align:middle; width:100px; height:100px" valign="middle">
                   </th>
-                  <td style="border-color:inherit; border-style:solid; border-width:0">{{$dish->name}}</td>
-                  <td style="border-color:inherit; border-style:solid; border-width:0">{{$dish->pivot->quantity}}</td>
-                  <td style="border-color:inherit; border-style:solid; border-width:0">{{$dish->price}}€</td>
+                  <td style="border-color:#e8eaec; border-style:solid; border-width:1;text-align:center; vertical-align:middle;">{{$dish->name}}</td>
+                  <td style="border-color:#e8eaec; border-style:solid; border-width:1;text-align:center; vertical-align:middle;">{{$dish->pivot->quantity}}</td>
+                  <td style="border-color:#e8eaec; border-style:solid; border-width:1;text-align:center; vertical-align:middle;">{{$dish->price}}€</td>
                 </tr>
                 @endforeach           
              </tbody>
