@@ -1,9 +1,18 @@
 <head> 
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+@import bootstrap-email;
+.table > :not(caption) > * > * {padding:0.5rem 0.5rem;border-bottom-width:1px}
+.table > :not(:first-child) {border-top:2px solid currentColor}
+.table-sm > :not(caption) > * > * {padding:0.25rem 0.25rem}
+.table-bordered > :not(caption) > * {border-width:1px 0}
+.table-bordered > :not(caption) > * > * {border-width:0 1px}
+.table-borderless > :not(caption) > * > * {border-bottom-width:0}
+.table-borderless > :not(:first-child) {border-top-width:0}
+.table-striped > tbody > tr:nth-of-type(odd) > * {}
+.table-hover > tbody > tr:hover > * {}
 </style>
 </head>
-
 <body style="-webkit-tap-highlight-color:transparent; -webkit-text-size-adjust:100%; margin:0; font-family: 'Nunito', sans-serif;">
   <p style="margin-bottom:1rem; margin-top:0">
 </p>
