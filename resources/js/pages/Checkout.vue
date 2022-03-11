@@ -87,7 +87,7 @@
 										</div>
 							</div>
 						</div>
-						<div>
+						<div class="totalPrice">
 							<strong>{{ calculateTotal.toFixed(2) }}</strong>
 						</div>
 						<v-braintree v-if="clientToken"
@@ -275,7 +275,7 @@ export default {
 .bgb{
 	padding: 20px;
 	background: #f8fafc;
-	border-left: 4px solid #00ccbc;
+	border-left: 2px solid #00ccbc;
 }
 
 .border-bottom{
@@ -293,7 +293,7 @@ export default {
 	display: flex;
 	margin: 10px;
 	background: white;
-	border: 4px solid #00ccbc;
+	border: 2px solid #00ccbc;
 	border-radius: 20px;
 	padding: 20px;
 	align-items: center;
@@ -333,6 +333,12 @@ export default {
 	margin-left: 10px;
 }
 
+.totalPrice {
+	display: flex;
+	justify-content: center;
+}
 
-
+input, textarea {
+	border: 2px solid #00ccbc;;
+}
 </style>
