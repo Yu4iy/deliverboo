@@ -619,8 +619,6 @@ ul {
             margin: 0 !important;
             padding: 5px 5px;
         }
-        li {
-        }
     }
 
     .Title {
