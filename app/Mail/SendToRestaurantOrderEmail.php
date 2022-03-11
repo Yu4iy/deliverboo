@@ -14,15 +14,18 @@ class SendToRestaurantOrderEmail extends Mailable
 {
     use Queueable, SerializesModels;
     
-     public $order;
+     private $new_order;
+     private $restaurant;
+ 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Order $order)
+    public function __construct(Order $new_order, Restaurant $restaurant)
     {
-        $this->order = $order;
+        $this->new_order = $new_order;
+        $this->restaurant = $restaurant;
     }
 
     /**
@@ -32,6 +35,10 @@ class SendToRestaurantOrderEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.confirmedRestaurant');
+        return $this->subject('Ordine ricevuto' )->view('mails.confirmedRestaurant')
+        ->with([
+            'new_order' => $this->new_order,
+            'restaurant' => $this->restaurant,
+        ]);
     }
 }

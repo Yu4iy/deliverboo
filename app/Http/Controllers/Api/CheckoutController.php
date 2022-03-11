@@ -32,6 +32,8 @@ class CheckoutController extends Controller
         $restaurant_id = $request->dishes[0]['user_id'];
         $restaurant = User::where('id', $restaurant_id)->first();
         /* $restaurant_email = $restaurant->email; */
+        dump($restaurant);
+    
 
         $amount = $request->amount;
         $nonce = $request->payment_method_nonce;
@@ -69,9 +71,8 @@ class CheckoutController extends Controller
             $new_order->total_price = $request->amount;
 
             $new_order->save();
-            /* MailTrap */
-            /* TODO bisogna rendere dinamico il TO */
-
+            
+            
             $order_id = Order::all()->last()->id;
             foreach($request->dishes as $item) {
                 DB::table('dish_order')->insert([
@@ -80,13 +81,14 @@ class CheckoutController extends Controller
                     'quantity' => $item['quantity'],
                 ]);
             }
-
+            
+            /* MailTrap */
             Mail::to($request->customer_email)
             /* later(now()->addSeconds(5), new SendConfirmedOrderEmail()); */
             ->send(new SendConfirmedOrderEmail());
             Mail::to($restaurant->email)
             /* later(now()->addSeconds(5), new SendConfirmedOrderEmail()); */
-            ->send(new SendToRestaurantOrderEmail($new_order));
+            ->send(new SendToRestaurantOrderEmail($new_order, $restaurant->restaurant_name));
     
 
 

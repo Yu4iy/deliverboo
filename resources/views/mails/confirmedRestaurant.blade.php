@@ -6714,9 +6714,9 @@ fieldset:disabled .btn {pointer-events:none;opacity:0.65}
   <p style="margin-bottom:1rem; margin-top:0">
 </p>
 <div class="container" style="margin-left:auto; margin-right:auto; width:100%" width="100%">
-        <img src="#" alt="logo deliveboo" class="logo" style="vertical-align:middle; width:200px" valign="middle" width="200">
+        <img src="https://loghi-famosi.com/wp-content/uploads/2021/03/Deliveroo-Logo.png" alt="logo deliveboo" class="logo" style="vertical-align:middle; width:200px" valign="middle" width="200">     
       </div>
-      <div class="container" style="margin-left:auto; margin-right:auto; width:100%" width="100%">
+<div class="container" style="margin-left:auto; margin-right:auto; width:100%" width="100%">
         <div class="row" style="display:flex; flex-wrap:wrap">
           <div class="col-12 thanks" style="flex:0 0 auto; width:100%; background-color:#00ccbc; color:#fff; font-size:25px; font-weight:600; padding:30px 0; text-align:center" width="100%" bgcolor="#00ccbc" align="center">Grazie per collaborare con noi!</div>
           <div class="col-12 intro" style="flex:0 0 auto; width:100%; font-size:18px; margin:20px 0" width="100%">
@@ -6738,7 +6738,7 @@ fieldset:disabled .btn {pointer-events:none;opacity:0.65}
                   <th scope="row" style="text-align:-webkit-match-parent; border-color:inherit; border-style:solid; border-width:0" align="-webkit-match-parent">
                     <img src="https://picsum.photos/id/1025/100" alt="nome piatto" style="vertical-align:middle" valign="middle">
                   </th>
-                  <td style="border-color:inherit; border-style:solid; border-width:0">Salmon &amp; Tuna Poké</td>
+                  <td style="border-color:inherit; border-style:solid; border-width:0">Salmon Poké</td>
                   <td style="border-color:inherit; border-style:solid; border-width:0">2</td>
                   <td style="border-color:inherit; border-style:solid; border-width:0">24.00 €</td>
                 </tr>
