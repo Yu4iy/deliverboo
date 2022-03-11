@@ -64,12 +64,20 @@
                     </div>
 
                     <div class="hamburger-menu " :class="{ active: openModal }">
-                        <ul class="categoryList  px-4">
-                            <li class="mt-2 mx-2" v-for="category in categories" :key="`category-${category.slug}`">
-										<button class="category" @click="getFilteredRestaurants(category.slug, category.id, index)">
+                        <ul class="categoryList">
+									<li class="mt-2 mx-2" >
+										<button @click="clear()" class=" category-clear category w-100">
+											Cancella Filtri <span class="category__count"><i class="fas fa-trash-alt"></i></span>
+										</button>
+									</li>
+									<li class="mt-2 mx-2" v-for="(category, index) in categories" :key="`category-${category.slug}`">
+										<!-- <router-link class="category" :to="{ name: 'advanced-search', params: {slug: category.slug }}">
+											{{category.name}}
+										</router-link> -->
+										<button  class="category w-100" @click="getFilteredRestaurants(category.slug, category.id,index) ">
 											{{category.name}} <span class="category__count">{{category.users.length}}</span>
 										</button>
-                            </li>
+									</li>
                         </ul>
                     </div>
                 </div>
@@ -397,6 +405,7 @@ ul {
 
         .categoryList {
             // margin-top: 17px;
+				min-width: 185px;
 
             .CategoryTitle {
                 margin-bottom: 30px;
@@ -413,15 +422,17 @@ ul {
 					 }
 				}
             .category {
-                font-size: 16px;
+                font-size: 13px;
                 text-transform: uppercase;
                 transition: 0.3s;
 					 border:  none;
 					 background: transparent;
-					 padding: 5px 10px;
+					 padding: 8px 35px 8px 10px;
 					 transition: all linear 0.1s;
 					 position: relative;
-					 text-align: start;
+					 display: flex;
+					 align-items: center;
+					 justify-content: start;
 					 background:#54b8b01c;
 					 border-radius: 6px;
 					 border: 1px solid #264f4f00;
