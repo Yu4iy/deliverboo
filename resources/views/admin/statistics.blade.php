@@ -34,16 +34,19 @@
                 </select>
             </div>
         </div>
-        <div class="row">
+        {{-- <div class="row">
             <div class="col">
                 <div>
                     <canvas id="myChart1"></canvas>
                     <canvas id="myChart2"></canvas>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
-        <div class="pd">nooooooooooooooooooooooooooooooooooooooooooooooooooo</div>
+        <Statistics
+            :labels="{{ json_encode($day_labels) }}"
+            :datas="{{ json_encode($day_data) }}"
+        />
 
     </div>
 @endsection
