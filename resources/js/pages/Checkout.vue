@@ -215,6 +215,9 @@
                             @error="onError"
                         >
                         </v-braintree>
+                        <div v-if="payment" class="payment">
+                            <div class="p-3">Pagamento in corso...</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -246,6 +249,7 @@ export default {
             notes: "",
             errors: {},
             success: false,
+            payment: false,
         };
     },
     computed: {
@@ -317,6 +321,7 @@ export default {
 			this.errors.customer_address = 'Questo campo è richiesto'
 			return
 		} */
+            this.payment = true;
             let nonce = payload.nonce;
             // Do something great with the nonce...
             axios
@@ -340,6 +345,7 @@ export default {
                 })
                 .catch((err) => {
                     console.log(err);
+                    this.payment = false;
                 });
         },
         onError(error) {
