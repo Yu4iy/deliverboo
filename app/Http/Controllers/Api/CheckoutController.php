@@ -86,6 +86,7 @@ class CheckoutController extends Controller
 
             $new_order->save();
             
+            
             $order_id = Order::all()->last()->id;
             foreach($request->dishes as $item) {
                 DB::table('dish_order')->insert([

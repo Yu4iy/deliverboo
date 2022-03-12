@@ -46,6 +46,6 @@
     </div>
 @endsection
 
-@section('scripts')
+{{-- @section('scripts')
     <script src="{{ asset('js/chart.js') }}" defer></script>
-@endsection
+@endsection --}}

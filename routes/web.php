@@ -42,8 +42,6 @@ Route::middleware('auth')
 			Route::match(['get', 'post'], '/restore/{id}', 'DishController@restore')->name('dishes.restore');
 			
 			Route::match(['get', 'delete'], '/delete/{id}', 'DishController@forceDelete')->name('dishes.forceDelete');
-
-			Route::get('/statistics', 'HomeController@statistics')->name('statistics');
 	});
 
 /* Route::get('/cart', function() {

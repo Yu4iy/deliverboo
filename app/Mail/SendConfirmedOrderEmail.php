@@ -14,7 +14,6 @@ class SendConfirmedOrderEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-
     /**
      * Create a new message instance.
      *
