@@ -1,12 +1,13 @@
 <template>
     <div class="checkout" v-if="successStatus === false">
-        <h2 class="my-4">Checkout</h2>
-        <div class="container-fluid">
+        <h2 > <i class="fas fa-shopping-cart"></i> Checkout</h2>
+        <div class="container-fluid mb-5 mt-3 cont-2">
             <div class="row">
                 <!-- MAIN  -->
                 <div class="col-md-12 col-lg-8 bgr p-5">
-                    <h4 class="border-bottom py-2">Inserisci dati</h4>
-                    <form class="my-3" method="POST">
+                    <h4 class="border_frm py-2 mx-2">Inserisci i tuoi dati</h4>
+
+                    <form class="my-3 mt-5" method="POST">
                         <div class="row px-3 py-2">
                             <div class="col mb-3">
                                 <label for="name" class="form-label"
@@ -169,7 +170,7 @@
                                         alt=""
                                     />
                                 </div>
-                                <div class="cart-item__info">
+                                <div class="cart-item__info ml-4">
                                     <h5>
                                         {{ item.name }}
                                         <strong class="quantity"
@@ -180,10 +181,10 @@
                                         Price: {{ roundPrice(item.price) }}€
                                     </div>
                                     <div>
-                                        <div>
+                                        <div class="mt-3">
                                             <button
                                                 @click="decrement(item, index)"
-                                                class="px-2  btn btn-secondary"
+                                                class="px-2  btn-cart"
                                             >
                                                 <i
                                                     class="fa-solid fa-minus"
@@ -192,7 +193,7 @@
 
                                             <button
                                                 @click="increment(item, index)"
-                                                class="px-2  btn btn-secondary"
+                                                class="px-2   btn-cart"
                                             >
                                                 <i class="fa-solid fa-plus"></i>
                                             </button>
@@ -202,8 +203,9 @@
                             </div>
                         </div>
 								<div>
-									<div class="totalPrice">
-										<strong>{{ calculateTotal.toFixed(2) }} €</strong>
+									<div class="totalPrice mb-5">
+                                        Prezzo totale:
+										<div>{{ calculateTotal.toFixed(2) }} €</div>
 									</div>
 									<v-braintree
 										v-if="clientToken"
@@ -211,7 +213,7 @@
 										:authorization="clientToken"
 										locale="it_IT"
 										btnText="Checkout"
-										btnClass="btn btn-primary w-100 border border-primary"
+										btnClass="btn btn-primary mt-4 w-100 border border-primary"
 										@success="onSuccess"
 										@error="onError"
 									>
@@ -391,8 +393,13 @@ export default {
     align-items: center;
     flex-direction: column;
     padding: 10px 0 30px;
+
     h2 {
-        color: #00ccbc;
+        margin-top: 65px;
+        font-size: 35px;
+        font-weight: bolder;
+        color: rgba(0, 0, 0, 0.844);
+        
     }
 }
 
@@ -400,14 +407,34 @@ export default {
     background: #f8fafc;
 }
 
+
 .bgb {
     padding: 20px;
+    padding-top: 43px;
     background: #f8fafc;
-    border-left: 2px solid #00ccbc;
+    // border-left: 2px solid #00ccbc;
 }
 
-.border-bottom {
-    border-bottom: 2px solid rgba(0, 0, 0, 0.76);
+.btn-cart{
+    background-color: #00ccbc;
+    margin-right: 5px;
+    padding: 5px 30px;
+    border: none;
+    text-decoration: none;
+    border-radius: 5px;
+    color: white;
+}
+
+.cont-2{
+    padding-left: 70px;
+    padding-right: 80px;
+}
+
+// .border-bottom {
+//     border-bottom: 2px solid rgba(0, 0, 0, 0.76);
+// }
+.border_frm{
+    border-bottom: 1px solid rgb(194, 194, 194);
 }
 
 .cart-wraper {
@@ -419,12 +446,19 @@ export default {
 
 .cart-item {
     display: flex;
-    margin: 10px;
+    margin: 20px;
     background: white;
-    border: 2px solid #00ccbc;
+    border: 1px solid rgb(208, 208, 208);
     border-radius: 20px;
     padding: 20px;
     align-items: center;
+    box-shadow: rgba(45, 47, 49, 0.178) 0px 1px 2px 0px,
+                        rgba(43, 46, 48, 0.082) 0px 1px 3px 1px;
+    
+    &:hover{
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 10px;
+    }
+    
 
     &__wraper-img {
         flex: 0 0 30%;
@@ -463,19 +497,24 @@ export default {
 }
 
 .totalPrice {
-    display: flex;
-    justify-content: center;
-    strong {
-        text-align: center;
-        border: 2px solid #00ccbc;
-        border-radius: 10px;
-        padding: 10px 30px;
+    border-bottom: 1px solid rgb(194, 194, 194);
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+    padding-bottom: 20px;
+    div {
+        font-weight: bolder;
+        font-size: 25px;
+
     }
 }
 
 input,
 textarea {
-    border: 2px solid #00ccbc;
+    &:focus{
+        border: 2px solid #00ccbc;
+        box-shadow: none;
+    }
 }
 
 .lds-ring {
@@ -522,5 +561,13 @@ textarea {
 .btn-test{
 		width: 100% !important;
 
+}
+
+
+@media screen and (max-width: 1270px){
+    .cont-2{
+        padding-left: 30px;
+        padding-right: 50px;
+    }
 }
 </style>
