@@ -90,7 +90,7 @@
                                     {{ dish.description || dish.ingredients }}
                                 </p>
                                 <!-- //*///////? -->
-                                <div>{{ dish.price }}€</div>
+                                <div>{{ roundPrice(dish.price) }}€</div>
                             </div>
                             <div class="d-flex justify-content-between btn-fix">
                                 <button
@@ -129,7 +129,9 @@
                                 </div>
                                 <div class="menu-cart__info">
                                     <h5>{{ cartDish.name }}</h5>
-                                    <div>Price: {{ cartDish.price }}€</div>
+                                    <div>
+                                        Price: {{ roundPrice(cartDish.price) }}€
+                                    </div>
                                     <div class="d-flex justify-content-between">
                                         <div>
                                             <button
@@ -180,18 +182,18 @@
             </div>
         </div>
         <div v-else>
-			  <Loader/>
+            <Loader />
         </div>
     </div>
 </template>
 <script>
 import axios from "axios";
-import Loader from '../components/Loader';
+import Loader from "../components/Loader";
 export default {
     name: "RestaurantMenu",
-	 components:{
-		 Loader
-	 },
+    components: {
+        Loader,
+    },
     created() {
         this.getResturant();
     },
@@ -333,6 +335,9 @@ export default {
                 this.addDishToCart(dish, index);
             }
         },
+        roundPrice(el) {
+            return el.toFixed(2);
+        },
     },
 
     computed: {
@@ -420,7 +425,7 @@ export default {
     }
 }
 .menu-wraper {
-   //   height: 80vh;
+    //   height: 80vh;
     background: #f8fafc;
     display: grid;
     grid-template-columns: 1fr minmax(auto, 360px);
@@ -546,7 +551,4 @@ export default {
     color: #fff;
     font-weight: 700;
 }
-
-
-
 </style>
