@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<section class="sfContainer">
     <section class="trash container pt-100">
         <h1>Trash</h1>
         @if(!$trashed->isEmpty())
@@ -38,5 +39,7 @@
         @else
         <h4>Il cestino è vuoto</h4>
         @endif
-    </section>   
+    </section>  
+</section>
+ 
 @endsection
