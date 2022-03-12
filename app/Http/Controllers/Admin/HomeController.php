@@ -22,4 +22,10 @@ class HomeController extends Controller
 		$orders->load('dishes');
 		return view('admin.orders', compact('orders'));
 	}
+
+
+	public function statistics() {
+
+		return view('admin.statistics');
+	}
 }

@@ -1,5 +1,7 @@
 const mix = require("laravel-mix");
 
+import Chart from 'chart.js/auto';
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -15,7 +17,10 @@ mix.js("resources/js/app.js", "public/js")
     .js("resources/js/front-office.js", "public/js")
     .js("resources/js/checkbox-validation.js", "public/js")
     .js("resources/js/useful-functions.js", "public/js")
+    .js("resources/js/chart.js", "public/js")
     .sass("resources/sass/app.scss", "public/css")
     .options({
         processCssUrls: false,
     });
+
+    
