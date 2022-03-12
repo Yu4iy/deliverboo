@@ -171,7 +171,7 @@
 
                         </div>
 
-                        <div class="form-group row mb-5" id="form-checkbox">
+                        <div class="form-group row mb-5 caterror" id="form-checkbox">
                             <label class="col-md-4 col-form-label text-md-right">Categories*</label>
                             <ul class="col-md-8 col-lg-7 row">
                                 @foreach ($categories as $category)     
@@ -193,8 +193,8 @@
                                 @endforeach
                             </ul>
                             @error('categories')
-                            <div class="text-danger d-block">
-                                <p>{{ $message }}</p>
+                            <div class="text-danger d-block caterror">
+                                <p class="caterror">{{ $message }}</p>
                             </div>
                             @enderror
                         </div>
