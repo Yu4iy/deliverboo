@@ -24,8 +24,14 @@ class HomeController extends Controller
 	}
 
 	public function getStatistics() {
-		$day_data = [10, 50, 100];
-		$day_labels = ['a', 'b', 'c'];
+		$orders = Order::whereHas('dishes', function(Builder $query) {
+			$query->where('user_id', Auth::id());
+		})->get();
+
+		
+
+		$day_data = $orders[0];
+		$day_labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Ju', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 		return view('admin.statistics', compact('day_data', 'day_labels'));
 	}
 }

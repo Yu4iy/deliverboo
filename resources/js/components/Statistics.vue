@@ -21,8 +21,8 @@ export default {
                     datasets: [{
                        label: 'Sales',
                        data: this.datas, 
-                       backgroundColor: 'rgb(255, 99, 132)',
-                       borderColor: 'rgb(255, 99, 132)',    
+                       backgroundColor: '#00ccbc',
+                       borderColor: '#00ccbc',    
                     }],
                     labels: this.labels,
                 }
