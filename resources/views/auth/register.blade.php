@@ -2,17 +2,17 @@
 
 @section('content')
 {{-- @dd($categories[1]) --}}
-<div class="container pt-100">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+<div class="container-fluid pt-100 registerContainer">
+    <div class="row justify-content-center pb-5">
+        <div class=" col-md-8 mb-5">
+            <div class="card ">
+                <div class="cardHeader">{{ __('Register') }}</div>
 
-                <div class="card-body">
+                <div class="card-body mt-5">
                     <form method="POST" enctype="multipart/form-data" action="{{ route('register') }}">
                         @csrf
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-4">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}*</label>
 
                             <div class="col-md-6">
@@ -28,7 +28,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-4">
                             <label for="email"
                                 class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}*</label>
 
@@ -44,7 +44,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-4">
                             <label for="password"
                                 class="col-md-4 col-form-label text-md-right">{{ __('Password') }}*</label>
 
@@ -61,7 +61,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-4">
                             <label for="password-confirm"
                                 class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}*</label>
 
@@ -71,7 +71,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-4">
                             <label for="restaurant_name" class="col-md-4 col-form-label text-md-right">Restaurant
                                 Name*</label>
 
@@ -88,7 +88,7 @@
 
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-4">
                             <label for="address" class="col-md-4 col-form-label text-md-right">Address*</label>
 
                             <div class="col-md-6">
@@ -103,7 +103,7 @@
 
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-4">
                             <label for="city" class="col-md-4 col-form-label text-md-right">City*</label>
 
                             <div class="col-md-6">
@@ -119,7 +119,7 @@
 
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-4">
                             <label for="iva" class="col-md-4 col-form-label text-md-right">IVA*</label>
 
                             <div class="col-md-6">
@@ -134,7 +134,7 @@
 
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-5">
                             <label for="description" class="col-md-4 col-form-label text-md-right">Description</label>
 
                             <div class="col-md-6">
@@ -143,7 +143,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-4">
                             <label for="image" class="col-md-4 col-form-label text-md-right">Upload Image </label>
 
                             <div class="col-md-6">
@@ -152,7 +152,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-5">
                             <label for="delivery_price" class="col-md-4 col-form-label text-md-right">Delivery
                                 Price*</label>
                             <div class="col-md-6">
@@ -171,28 +171,37 @@
 
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group row mb-5" id="form-checkbox">
                             <label class="col-md-4 col-form-label text-md-right">Categories*</label>
-                        </div>
-                        <div class="mb-4 text-md-center" id="form-checkbox">
-                            @foreach ($categories as $category)
-                            <span class="d-inline-block mr-3">
-                                <label for="category{{ $loop->iteration }}">{{ $category->name }}</label>
-                                <input type="checkbox" name="categories[]" id="category{{ $loop->iteration }}" class="checkbox"
-                                    value="{{ $category->id }} " @if ( in_array($category->id, old('categories', [])))
-                                checked @endif>
-                            </span>
-                            @endforeach
+                            <ul class="col-md-8 col-lg-7 row">
+                                @foreach ($categories as $category)     
+                                <li class="pt-2 categorylist col-sm-4 col-md-6 col-lg-4">
+                                    
+                                    <input 
+                                        type="checkbox"
+                                        name="categories[]" 
+                                        id="category{{ $loop->iteration }}" 
+                                        class="checkbox px-2"
+                                        value="{{ $category->id }} " 
+                                        @if ( in_array($category->id, old('categories', [])))
+                                        checked 
+                                        @endif
+                                    >
+                                    <label  for="category{{ $loop->iteration }}">{{ $category->name }}</label>
+                                </li>                  
+                                    
+                                @endforeach
+                            </ul>
                             @error('categories')
-                            <span class="text-danger d-block">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <div class="text-danger d-block">
+                                <p>{{ $message }}</p>
+                            </div>
                             @enderror
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary" id="btn-submit">
+                        <div class="form-group row mb-5 mt-3 justify-content-center">
+                            <div class="col-sm-3 col-md-3 col-lg-2 ">
+                                <button type="submit" class="RegButton" id="btn-submit">
                                     {{ __('Register') }}
                                 </button>
                             </div>
@@ -209,3 +218,6 @@
 <script src="{{ asset('js/checkbox-validation.js') }}" defer></script>
 <script src="{{ asset('js/useful-functions.js') }}" defer></script>
 @endsection
+
+
+
