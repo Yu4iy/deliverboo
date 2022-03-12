@@ -183,7 +183,7 @@
                                         <div>
                                             <button
                                                 @click="decrement(item, index)"
-                                                class="px-2 border-secondary rounded plu-min"
+                                                class="px-2  btn btn-secondary"
                                             >
                                                 <i
                                                     class="fa-solid fa-minus"
@@ -192,7 +192,7 @@
 
                                             <button
                                                 @click="increment(item, index)"
-                                                class="px-2 border-secondary rounded plu-min"
+                                                class="px-2  btn btn-secondary"
                                             >
                                                 <i class="fa-solid fa-plus"></i>
                                             </button>
@@ -201,23 +201,25 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="totalPrice">
-                            <strong>{{ calculateTotal.toFixed(2) }} €</strong>
-                        </div>
-                        <v-braintree
-                            v-if="clientToken"
-                            class="bg-light"
-                            :authorization="clientToken"
-                            locale="it_IT"
-                            btnText="Checkout"
-                            btnClass="btn btn-success"
-                            @success="onSuccess"
-                            @error="onError"
-                        >
-                        </v-braintree>
-                        <div v-if="payment" class="payment">
-                            <div class="p-3">Pagamento in corso...</div>
-                        </div>
+								<div>
+									<div class="totalPrice">
+										<strong>{{ calculateTotal.toFixed(2) }} €</strong>
+									</div>
+									<v-braintree
+										v-if="clientToken"
+										class="bg-light"
+										:authorization="clientToken"
+										locale="it_IT"
+										btnText="Checkout"
+										btnClass="btn btn-primary w-100 border border-primary"
+										@success="onSuccess"
+										@error="onError"
+									>
+									</v-braintree>
+									<div v-if="payment" class="payment">
+										<div class="payments"><strong>Pagamento in corso:</strong><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
+									</div>
+								</div>	
                     </div>
                 </div>
             </div>
@@ -453,6 +455,7 @@ export default {
 .plu-min {
     color: black;
     border: 2px solid black;
+	 padding: 0 10px;
 }
 
 .quantity {
@@ -473,5 +476,51 @@ export default {
 input,
 textarea {
     border: 2px solid #00ccbc;
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 44px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  margin: 8px;
+  border: 8px solid #02ccbc;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #02ccbc transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.payments{
+	display: flex;
+	align-items: center;
+	padding: 10px 0;
+}
+.btn-test{
+		width: 100% !important;
+
 }
 </style>
