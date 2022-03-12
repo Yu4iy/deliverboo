@@ -1,6 +1,7 @@
 .card {
     display: block;
     .card-header {
+		 position: relative;
         .icon-user {
             color: $deliveboo;
             font-size: 30px;
@@ -25,3 +26,36 @@
         }
     }
 }
+
+.img-des{
+	position: relative;
+	left: 50%;
+	transform: translatex(-50%);
+	width: 40%
+}
+
+.dash-welcome{
+	color: transparent;
+	font-size: 40px;
+	animation: welcome 3s forwards;
+}
+@keyframes welcome {
+	0%   {color: transparent;}
+	25%  {color: transparent;}
+	50%  {color: transparent;}
+	75%  {color: transparent;}
+	100% {color: rgba(0, 0, 0, 0.626); position: static;}
+ }
+.dash-title{
+	animation: static 3.7s forwards;
+	position: absolute;
+	user-select: none;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+}
+@keyframes static {
+	0%   {color: black;}
+	100% {color: rgba(0, 0, 0, 0);}
+ }

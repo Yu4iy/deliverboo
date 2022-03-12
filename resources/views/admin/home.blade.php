@@ -1,19 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container pt-100">
+<div class="container pt-100 "  >
+	<img class="img-des" src="{{ asset('img/1.png') }}" alt="">
     <div class="row justify-content-center">
-        <div class="col-md-8 mt-5" >
-            <div class="card">
-                <div class="card-header">
-                    <h1>Ciao
-                        {{ Auth::user()->name }}!
-                        <i class="fa-solid fa-user-check icon-user"></i>
-                    </h1>
-                </div>
-                <div class="card-body">
+		 <div class="col-md-8" >
+			 <div class="card">
+				 <div class="card-header ">
+					 	<h4 class="text-center dash-welcome">
+						 {{ Auth::user()->restaurant_name }}
+						</h4>
+						 {{-- <i class="fa-solid fa-user-check icon-user"></i> --}}
+						<h4 class="text-center dash-title">Welcome {{ Auth::user()->name }}!</h4>
+					</div>
+					<div class="card-body">
+						 {{-- <img class="img-dess" src="{{ asset('img/2.png') }}" alt=""> --}}
                     <p>
-                        <button class="btn btn-dashboard" type="button" data-bs-toggle="collapse"
+                        <button class="btn btn-dashboard w-100" type="button" data-bs-toggle="collapse"
                             data-bs-target="#cooking" aria-expanded="false" aria-controls="cooking">
                             Cosa cucini di buono oggi?
                             <i class="fa-solid fa-utensils"></i>
@@ -27,7 +30,7 @@
                         </div>
                     </div>
                     <p>
-                        <button class="btn btn-dashboard" type="button" data-bs-toggle="collapse"
+                        <button class="btn btn-dashboard w-100" type="button" data-bs-toggle="collapse"
                             data-bs-target="#orders" aria-expanded="false" aria-controls="orders">
                             Come vanno gli affari? <i class="fa-solid fa-chart-line"></i>
                         </button>
