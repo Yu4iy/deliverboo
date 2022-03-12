@@ -32,6 +32,7 @@ Route::middleware('auth')
 			Route::get('/', 'HomeController@index')->name('home');
 
 			Route::get('/orders', 'HomeController@getOrders')->name('orders');
+			Route::get('/statistics', 'HomeController@getStatistics')->name('statistics');
 			//dishes cruds
 			Route::resource('/dishes', 'DishController');
 

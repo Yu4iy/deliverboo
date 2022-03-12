@@ -22,4 +22,10 @@ class HomeController extends Controller
 		$orders->load('dishes');
 		return view('admin.orders', compact('orders'));
 	}
+
+	public function getStatistics() {
+		$day_data = [10, 50, 100];
+		$day_labels = ['a', 'b', 'c'];
+		return view('admin.statistics', compact('day_data', 'day_labels'));
+	}
 }
