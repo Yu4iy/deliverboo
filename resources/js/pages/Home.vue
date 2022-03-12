@@ -430,9 +430,10 @@ ul {
 					 padding: 8px 35px 8px 10px;
 					 transition: all linear 0.1s;
 					 position: relative;
-					 display: flex;
-					 align-items: center;
-					 justify-content: start;
+					//  display: flex;
+					//  align-items: center;
+					//  justify-content: start;
+					text-align: start;
 					 background:#54b8b01c;
 					 border-radius: 6px;
 					 border: 1px solid #264f4f00;
@@ -450,7 +451,7 @@ ul {
 						 line-height: 25px;
 						 text-align: center;
 						 border: 1px solid #1b45453d;
-						 
+						 transform: translatey(-3px);
 
 						 
 					 }
@@ -618,8 +619,6 @@ ul {
             background: #e3e4e4b4;
             margin: 0 !important;
             padding: 5px 5px;
-        }
-        li {
         }
     }
 

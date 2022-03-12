@@ -85,7 +85,7 @@ class CheckoutController extends Controller
             $new_order->total_price = $amount;
 
             $new_order->save();
-
+            
             $order_id = Order::all()->last()->id;
             foreach($request->dishes as $item) {
                 DB::table('dish_order')->insert([
@@ -94,15 +94,14 @@ class CheckoutController extends Controller
                     'quantity' => $item['quantity'],
                 ]);
             }
-
+            
             /* MailTrap */
-            /* TODO bisogna rendere dinamico il TO */
             Mail::to($request->customer_email)
             /* later(now()->addSeconds(5), new SendConfirmedOrderEmail()); */
-            ->send(new SendConfirmedOrderEmail());
+            ->send(new SendConfirmedOrderEmail($new_order, $restaurant));
             Mail::to($restaurant->email)
             /* later(now()->addSeconds(5), new SendConfirmedOrderEmail()); */
-            ->send(new SendToRestaurantOrderEmail());
+            ->send(new SendToRestaurantOrderEmail($new_order, $restaurant));
     
 
 
