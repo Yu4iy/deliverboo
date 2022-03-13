@@ -269,8 +269,8 @@ export default {
             if (
                 this.localData.filter((e) => e.name === newDish.name).length > 0
             ) {
-                console.log(this.localData);
-                this.localData[index].quantity++;
+               //  console.log(this.localData);
+               //  this.localData[index].quantity++;
             } else {
                 this.localData.push(newDish);
             }
