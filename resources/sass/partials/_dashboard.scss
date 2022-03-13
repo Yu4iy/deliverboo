@@ -1,61 +1,71 @@
 .card {
-    display: block;
-    .card-header {
-		 position: relative;
-        .icon-user {
-            color: $deliveboo;
-            font-size: 30px;
-        }
-    }
-    .card-body {
-        .btn-dashboard {
-            background: #00ccbc;
-            color: #fff;
-            font-weight: 700;
-            padding: 8px 10px;
-            border-radius: 5px;
-            border: none;
-            margin-top: 20px;
-        }
-        .link-dashboard {
-            color: #00ccbc;
-        }
-        .link-dashboard:hover {
-            color: #00ccbc;
-            text-decoration: none;
-        }
-    }
+	display: block;
+	.card-header {
+		position: relative;
+		 .icon-user {
+			  color: $deliveboo;
+			  font-size: 30px;
+		 }
+	}
+	.card-body {
+		 .btn-dashboard {
+			  background: #00ccbc;
+			  color: #fff;
+			  font-weight: 700;
+			  padding: 8px 10px;
+			  border-radius: 5px;
+			  border: none;
+			  margin-top: 20px;
+			  transition: linear 0.2s;
+			  &:hover{
+				  background: #02b1a3;
+			  }
+		 }
+		 .link-dashboard {
+			  color: #00ccbc;
+		 }
+		 .link-dashboard:hover {
+			  color: #00ccbc;
+			  text-decoration: none;
+		 }
+	}
 }
 
 .img-des{
-	position: relative;
-	left: 50%;
-	transform: translatex(-50%);
-	width: 40%
+  position: relative;
+  left: 50%;
+  transform: translatex(-50%);
+  width: 40%
 }
 
 .dash-welcome{
-	color: transparent;
-	font-size: 40px;
-	animation: welcome 3s forwards;
+  color: transparent;
+  font-size: 40px;
+  animation: welcome 3s forwards;
+  @media only screen and (max-width: 800px) {
+	  font-size: 26px;
+	 }
 }
 @keyframes welcome {
-	0%   {color: transparent;}
-	25%  {color: transparent;}
-	50%  {color: transparent;}
-	75%  {color: transparent;}
-	100% {color: rgba(0, 0, 0, 0.626); position: static;}
- }
+  0%   {color: transparent;}
+  25%  {color: transparent;}
+  50%  {color: transparent;}
+  75%  {color: transparent;}
+  100% {color: rgba(0, 0, 0, 0.626); position: static;}
+}
 .dash-title{
-	animation: static 3.7s forwards;
-	position: absolute;
-	user-select: none;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+  animation: static 3.7s forwards;
+  position: absolute;
+  user-select: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @media only screen and (max-width: 650px) {
+	  font-size: 17px;
+	 }
 
 }
 @keyframes static {
-	0%   {color: black;}
-	100% {color: rgba(0, 0, 0, 0);}
- }
+  0%   {color: black;}
+  100% {color: rgba(0, 0, 0, 0);}
+}
