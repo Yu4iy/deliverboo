@@ -211,7 +211,7 @@
                             locale="it_IT"
                             btnText="Checkout"
                             btnClass="btn btn-success"
-                            @success="onSuccess"
+                            @success="onSuccess()"
                             @error="onError"
                         >
                         </v-braintree>

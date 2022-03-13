@@ -35,9 +35,8 @@ class RestaurantController extends Controller
 	
 	public function bestRestaurants()
 	{
-		$bestRestaurants = User::paginate(6);
+		$bestRestaurants = User::with('categories')->paginate(6);
 		return response()->json($bestRestaurants);
-
 	}
 
 	public function CategoryRestaurant()
