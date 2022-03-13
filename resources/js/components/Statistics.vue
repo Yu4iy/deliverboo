@@ -16,14 +16,21 @@ export default {
     data(){
         return{
             chartData: {
-                type: 'line',
+                type: 'bar',
                 data: {
                     datasets: [{
-                       label: 'Sales',
+                       label: 'Total Sales',
                        data: this.datas, 
-                       backgroundColor: 'rgb(255, 99, 132)',
-                       borderColor: 'rgb(255, 99, 132)',    
-                    }],
+                       backgroundColor: '#00ccbc',
+                       borderColor: '#00ccbc',    
+                    }
+                    /* {
+                       label: 'Orders',
+                       data: [10, 20, 30, 40, 40, 60, 30, 20, 40, 20, 30, 20, 10], 
+                       backgroundColor: '#00cc',
+                       borderColor: '#00cc',    
+                    } */
+                    ],
                     labels: this.labels,
                 }
             }
@@ -32,6 +39,7 @@ export default {
     mounted() {
     const ctx = document.getElementById('statistics');
     new Chart(ctx, this.chartData);
+    console.log(this.salesData, this.labels)
   }
 }
 </script>

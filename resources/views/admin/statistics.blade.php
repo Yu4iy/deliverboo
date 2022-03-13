@@ -42,10 +42,9 @@
                 </div>
             </div>
         </div> --}}
-
         <Statistics
             :labels="{{ json_encode($day_labels) }}"
-            :datas="{{ json_encode($day_data) }}"
+            :datas="{{ json_encode($total_sales_data) }}"
         />
 
     </div>
