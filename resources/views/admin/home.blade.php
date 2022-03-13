@@ -38,8 +38,8 @@
                         </p>
                         <div class="collapse" id="orders">
                             <div class="card card-body">
-                                <a href="{{route('admin.statistics')}}" class="link-dashboard">Cliccando qui</a> puoi vedere le statistiche relative ai
-                                tuoi ordini!
+                                Qui puoi vedere le <a href="{{route('admin.statistics')}}" class="link-dashboard">statistiche</a> relative ai
+                                tuoi <a href="{{ route('admin.orders') }}" class="link-dashboard"> ordini</a>!
                             </div>
                         </div>
     

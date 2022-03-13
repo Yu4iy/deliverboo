@@ -42,7 +42,10 @@
                 </div>
             </div>
         </div> --}}
-        <Statistics class="mt-5"
+        <div class="orderTitileContainer pt-5">
+            <h1>Statistiche dell'ultimo mese</h1>
+        </div>
+        <Statistics class="pb-5 mt-4"
             :labels="{{ json_encode($day_labels) }}"
             :datas="{{ json_encode($total_sales_data) }}"
             :orders="{{ json_encode($total_orders_number) }}"
