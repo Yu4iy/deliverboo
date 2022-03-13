@@ -17,40 +17,20 @@
                 <div class="CategoryListContainer col-lg-2 col-md-12">
                     <!-- visibile -->
                     <ul class="categoryList categoryNoHamb px-2">
-                        <li class="mt-2 mx-2 CategoryTitle">CATEGORIE</li>
-                        <li class="mt-2 mx-2">
-                            <button
-                                @click="clear()"
-                                class="category-clear category w-100"
-                            >
-                                Cancella Filtri
-                                <span class="category__count"
-                                    ><i class="fas fa-trash-alt"></i
-                                ></span>
-                            </button>
+                        <li class=" mt-2 mx-2 CategoryTitle">
+                            CATEGORIE
                         </li>
-                        <li
-                            class="mt-2 mx-2"
-                            v-for="(category, index) in categories"
-                            :key="`category-${category.slug}`"
-                        >
+								<li class="mt-2 mx-2" >
+									<button @click="clear()" class=" category-clear category w-100">
+                              Cancella Filtri <span class="category__count"><i class="fas fa-trash-alt"></i></span>
+                           </button>
+								</li>
+                        <li class="mt-2 mx-2" v-for="(category, index) in categories" :key="`category-${category.slug}`">
                             <!-- <router-link class="category" :to="{ name: 'advanced-search', params: {slug: category.slug }}">
                                 {{category.name}}
                             </router-link> -->
-                            <button
-                                class="category w-100"
-                                @click="
-                                    getFilteredRestaurants(
-                                        category.slug,
-                                        category.id,
-                                        index
-                                    )
-                                "
-                            >
-                                {{ category.name }}
-                                <span class="category__count">{{
-                                    category.users.length
-                                }}</span>
+                            <button  class="category w-100" @click="getFilteredRestaurants(category.slug, category.id,index) ">
+                                {{category.name}} <span class="category__count">{{category.users.length}}</span>
                             </button>
                         </li>
                     </ul>
@@ -83,43 +63,21 @@
                         </span>
                     </div>
 
-                    <div class="hamburger-menu" :class="{ active: openModal }">
+                    <div class="hamburger-menu " :class="{ active: openModal }">
                         <ul class="categoryList">
-                            <li class="mt-2 mx-2">
-                                <button
-                                    @click="clear()"
-                                    class="category-clear category w-100"
-                                >
-                                    Cancella Filtri
-                                    <span class="category__count"
-                                        ><i class="fas fa-trash-alt"></i
-                                    ></span>
-                                </button>
-                            </li>
-                            <li
-                                class="mt-2 mx-2"
-                                v-for="(category, index) in categories"
-                                :key="`category-${category.slug}`"
-                            >
-                                <!-- <router-link class="category" :to="{ name: 'advanced-search', params: {slug: category.slug }}">
+									<li class="mt-2 mx-2" >
+										<button @click="clear()" class=" category-clear category w-100">
+											Cancella Filtri <span class="category__count"><i class="fas fa-trash-alt"></i></span>
+										</button>
+									</li>
+									<li class="mt-2 mx-2" v-for="(category, index) in categories" :key="`category-${category.slug}`">
+										<!-- <router-link class="category" :to="{ name: 'advanced-search', params: {slug: category.slug }}">
 											{{category.name}}
 										</router-link> -->
-                                <button
-                                    class="category w-100"
-                                    @click="
-                                        getFilteredRestaurants(
-                                            category.slug,
-                                            category.id,
-                                            index
-                                        )
-                                    "
-                                >
-                                    {{ category.name }}
-                                    <span class="category__count">{{
-                                        category.users.length
-                                    }}</span>
-                                </button>
-                            </li>
+										<button  class="category w-100" @click="getFilteredRestaurants(category.slug, category.id,index) ">
+											{{category.name}} <span class="category__count">{{category.users.length}}</span>
+										</button>
+									</li>
                         </ul>
                     </div>
                 </div>
@@ -157,153 +115,99 @@
                     </div>
 
                     <!-- bottom -->
-                    <div class="restaurantList container-fluid">
-                        <!-- <span class="restaurant-list-warn">
+                    <div class="restaurantList container-fluid ">
+							  <!-- <span class="restaurant-list-warn">
 								  {{text}}
 							  </span> -->
-                        <ul v-if="restaurants">
+                        <ul  v-if="restaurants">
                             <!-- restaurant list -->
-                            <div
-                                class="row"
-                                v-if="tempArrayRestaurant.length == 0"
-                            >
-                                <li
-                                    class="Cards-Rest col-sm-6 col-md-4"
-                                    v-for="bestRestaurant in bestRestaurants"
-                                    :key="`restaurant-${bestRestaurant.id}`"
-                                >
-                                    <router-link
-                                        class="Cards-Link-container"
-                                        :to="{
-                                            name: 'restaurant-menu',
-                                            params: {
-                                                slug: bestRestaurant.slug,
-                                                id: bestRestaurant.id,
-                                            },
-                                        }"
-                                    >
-                                        <!-- card -->
-                                        <div class="Card">
-                                            <!-- image -->
-                                            <figure
-                                                class="img-cont"
-                                                v-if="bestRestaurant.image"
-                                            >
-                                                <img
-                                                    class="img-fluid"
-                                                    :src="`/storage/${bestRestaurant.image}`"
-                                                    :alt="
-                                                        bestRestaurant.restaurant_name
-                                                    "
-                                                />
-                                            </figure>
-                                            <figure class="img-cont" v-else>
-                                                <img
-                                                    src="https://www.nafservizi.it/wp-content/uploads/2020/10/default_image_01.png"
-                                                    :alt="
-                                                        bestRestaurant.restaurant_name
-                                                    "
-                                                />
-                                            </figure>
+                        <div class="row" v-if="tempArrayRestaurant.length == 0 ">
+								   <li class="Cards-Rest col-sm-6 col-md-4 " v-for="bestRestaurant in bestRestaurants" :key="`restaurant-${bestRestaurant.id}`">
+										  <router-link class="Cards-Link-container" :to="{ name: 'restaurant-menu', params: {slug: bestRestaurant.slug, id: bestRestaurant.id}}">
+                                    <!-- card -->
+                                    <div class="Card">
+                                        <!-- image -->
+                                        <figure class="img-cont" v-if="bestRestaurant.image">
+                                             <img class="img-fluid" :src="bestRestaurant.image" :alt="bestRestaurant.restaurant_name">
+                                         </figure>
+                                         <figure class="img-cont" v-else>
+                                             <img src="https://www.nafservizi.it/wp-content/uploads/2020/10/default_image_01.png" :alt="bestRestaurant.restaurant_name">
+                                         </figure>
+                                        
 
-                                            <!-- dati ristorante -->
-                                            <div class="card-details p-3 mx-2">
-                                                <!-- restauran-name -->
-                                                <h5>
-                                                    {{
-                                                        bestRestaurant.restaurant_name
-                                                    }}
-                                                </h5>
+                                        <!-- dati ristorante -->
+                                        <div class="card-details pt-3 pl-3 pr-3 pb-1 mx-2">
+                                            <!-- restauran-name -->
+                                            <h5>{{bestRestaurant.restaurant_name}}</h5>
+                                            <div>
+                                                <div class="card-City">{{bestRestaurant.city}}</div>
+                                                <div>{{bestRestaurant.address}}</div>															                                            
+                                            </div>
+														  	<div class="mt-2">
+																<span v-for="(categoriy,index) in bestRestaurant.categories" :key="`cate-${index}`">| {{categoriy.name }} | </span>
+															</div>
+                                        </div>
+
+
+                                    </div>
+                                </router-link>   
+                            </li>
+								</div> 
+								<div class="row" v-else>
+                            <li class="Cards-Rest col-sm-6 col-md-4 my-3" v-for="bestRestaurant in tempArrayRestaurant" :key="`restaurant-${bestRestaurant.id}`">
+										  <router-link class="Cards-Link-container" :to="{ name: 'restaurant-menu', params: {slug: bestRestaurant.slug, id: bestRestaurant.id}}">
+                                    <!-- card -->
+                                    <div class="Card">
+                                        <!-- image -->
+                                        <figure
+                                            class="img-cont"
+                                            v-if="bestRestaurant.image"
+                                        >
+                                            <img
+                                                class="img-fluid"
+                                                :src="bestRestaurant.image"
+                                                :alt="
+                                                    bestRestaurant.restaurant_name
+                                                "
+                                            />
+                                        </figure>
+                                        <figure class="img-cont" v-else>
+                                            <img
+                                                src="https://www.nafservizi.it/wp-content/uploads/2020/10/default_image_01.png"
+                                                :alt="
+                                                    bestRestaurant.restaurant_name
+                                                "
+                                            />
+                                        </figure>
+
+                                        <!-- dati ristorante -->
+                                        <div class="card-details p-3 mx-2">
+                                            <!-- restauran-name -->
+                                            <h5>
+                                                {{
+                                                    bestRestaurant.restaurant_name
+                                                }}
+                                            </h5>
+                                            <div>
+                                                <div class="card-City">
+                                                    {{ bestRestaurant.city }}
+                                                </div>
                                                 <div>
-                                                    <div class="card-City">
-                                                        {{
-                                                            bestRestaurant.city
-                                                        }}
-                                                    </div>
-                                                    <div>
-                                                        {{
-                                                            bestRestaurant.address
-                                                        }}
-                                                    </div>
+                                                    {{ bestRestaurant.address }}
                                                 </div>
                                             </div>
 														  	<div class="mt-2">
 																<span v-for="(categoriy,index) in bestRestaurant.categories" :key="`cate-${index}`">| {{categoriy.name }} | </span>
 															</div>
                                         </div>
-                                    </router-link>
-                                </li>
-                            </div>
-                            <div class="row" v-else>
-                                <li
-                                    class="Cards-Rest col-sm-6 col-md-4 my-3"
-                                    v-for="bestRestaurant in tempArrayRestaurant"
-                                    :key="`restaurant-${bestRestaurant.id}`"
-                                >
-                                    <router-link
-                                        class="Cards-Link-container"
-                                        :to="{
-                                            name: 'restaurant-menu',
-                                            params: {
-                                                slug: bestRestaurant.slug,
-                                                id: bestRestaurant.id,
-                                            },
-                                        }"
-                                    >
-                                        <!-- card -->
-                                        <div class="Card">
-                                            <!-- image -->
-                                            <figure
-                                                class="img-cont"
-                                                v-if="bestRestaurant.image"
-                                            >
-                                                <img
-                                                    class="img-fluid"
-                                                    :src="`/storage/${bestRestaurant.image}`"
-                                                    :alt="
-                                                        bestRestaurant.restaurant_name
-                                                    "
-                                                />
-                                            </figure>
-                                            <figure class="img-cont" v-else>
-                                                <img
-                                                    src="https://www.nafservizi.it/wp-content/uploads/2020/10/default_image_01.png"
-                                                    :alt="
-                                                        bestRestaurant.restaurant_name
-                                                    "
-                                                />
-                                            </figure>
+                                    </div>
+                                </router-link>
+                            </li>
+								</div>
 
-                                            <!-- dati ristorante -->
-                                            <div class="card-details p-3 mx-2">
-                                                <!-- restauran-name -->
-                                                <h5>
-                                                    {{
-                                                        bestRestaurant.restaurant_name
-                                                    }}
-                                                </h5>
-                                                <div>
-                                                    <div class="card-City">
-                                                        {{
-                                                            bestRestaurant.city
-                                                        }}
-                                                    </div>
-                                                    <div>
-                                                        {{
-                                                            bestRestaurant.address
-                                                        }}
-                                                    </div>
-                                                </div>
-                                            </div>
-														  	<div class="mt-2">
-																<span v-for="(categoriy,index) in bestRestaurant.categories" :key="`cate-${index}`">| {{categoriy.name }} | </span>
-															</div>
-                                        </div>
-                                    </router-link>
-                                </li>
-                            </div>
+									 
                         </ul>
-
+								
                         <div v-else>
                             <h4 class="d-flex align-items-start">Loading restaurants <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></h4>
                         </div>
@@ -467,7 +371,7 @@ export default {
 		//   }
 		},
 
-        getCategoryRestaurant() {
+        getCategoryRestaurant(){
             //chiamata axios
             axios
                 .get(`http://127.0.0.1:8000/api/category`)
@@ -484,8 +388,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.categoriy-clear {
-    background: red;
+.categoriy-clear{
+	background: red;
 }
 ul {
     li {
@@ -517,61 +421,69 @@ ul {
 
         .categoryList {
             // margin-top: 17px;
-            min-width: 185px;
+				min-width: 185px;
 
             .CategoryTitle {
                 margin-bottom: 30px;
                 font-weight: 900;
                 font-size: 18px;
             }
-            .category.category-clear {
-                &:hover {
-                    background: #b854542d;
-                    border: 1px solid rgba(255, 0, 0, 0.265);
-                }
-                &:hover span {
-                    color: rgb(61, 4, 4);
-                }
-            }
+				 .category.category-clear{
+					 &:hover{
+					 background:#b854542d;
+					 border: 1px solid rgba(255, 0, 0, 0.265);
+					 }
+					&:hover span{
+					 color: rgb(61, 4, 4);
+					 }
+				}
             .category {
                 font-size: 13px;
                 text-transform: uppercase;
                 transition: 0.3s;
-                border: none;
-                background: transparent;
-                padding: 8px 35px 8px 10px;
-                transition: all linear 0.1s;
-                position: relative;
-                //  display: flex;
-                //  align-items: center;
-                //  justify-content: start;
-                text-align: start;
-                background: #54b8b01c;
-                border-radius: 6px;
-                border: 1px solid #264f4f00;
+					 border:  none;
+					 background: transparent;
+					 padding: 8px 35px 8px 10px;
+					 transition: all linear 0.1s;
+					 position: relative;
+					//  display: flex;
+					//  align-items: center;
+					//  justify-content: start;
+					text-align: start;
+					 background:#54b8b01c;
+					 border-radius: 6px;
+					 border: 1px solid #264f4f00;
 
-                &__count {
-                    background: #54aca52b;
-                    position: absolute;
-                    right: 5px;
-                    border-radius: 100%;
-                    width: 25px;
-                    height: 25px;
-                    line-height: 25px;
-                    text-align: center;
-                    border: 1px solid #1b45453d;
-                    transform: translatey(-3px);
-                }
-                &:hover {
+
+
+
+					 &__count{
+						 background: #54aca52b;
+						 position: absolute;
+						 right: 5px;
+						 border-radius: 100%;
+						 width: 25px;
+						 height: 25px;
+						 line-height: 25px;
+						 text-align: center;
+						 border: 1px solid #1b45453d;
+						 transform: translatey(-3px);
+
+						 
+					 }
+                &:hover{
                     color: #011e1c;
-                    background: #439d9640;
+					 background:#439d9640;
+
                 }
             }
-            .active {
-                background: #48989152;
-                border-radius: 6px;
-                border: 1px solid #264f4f72;
-            }
+				 .active{
+						 background: #48989152;
+						 border-radius: 6px;
+						 border: 1px solid #264f4f72;
+						 
+					 }
+
         }
     }
 
@@ -580,11 +492,11 @@ ul {
         padding-right: 60px;
         // top
         .topContainer {
-            margin-top: 23px;
+       	 margin-top: 23px;
             .Title {
                 font-size: 1.9rem;
                 font-weight: bold;
-                margin-bottom: 26px;
+					 margin-bottom: 26px;
             }
 
             .SearchBar {
@@ -610,7 +522,7 @@ ul {
         .restaurantList {
             .Cards-Rest {
                 min-height: 400px;
-                margin-bottom: 25px;
+					 margin-bottom: 25px;
 
                 .Cards-Link-container {
                     width: 100%;
@@ -619,7 +531,7 @@ ul {
                     text-decoration: none;
                     background-color: white;
                     display: inline-block;
-                    transition: all linear 0.2s;
+						  transition: all linear 0.2s;
                     box-shadow: rgba(45, 47, 49, 0.178) 0px 1px 2px 0px,
                         rgba(43, 46, 48, 0.082) 0px 1px 3px 1px;
                     &:hover {
