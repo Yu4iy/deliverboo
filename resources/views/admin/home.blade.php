@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="sfContainer">
+<section>
     <div class="container pt-100 "  >
         <img class="img-des" src="{{ asset('img/1.png') }}" alt="">
         <div class="row justify-content-center">

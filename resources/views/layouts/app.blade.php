@@ -70,7 +70,7 @@
                         @endif" href="{{ route('admin.dishes.index') }}">Dishes</a>
                             </li>
                             <li class="nav-item mr-3">
-                                <a class="nav-link cursor-pointer @if (Request::route()->getName()==='orders')
+                                <a class="nav-link cursor-pointer @if (Request::route()->getName()==='admin.orders')
                             active
                         @endif" href="{{ route('admin.orders') }}">Orders</a>
                             </li>

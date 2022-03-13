@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="dishes-menu sfContainer">
+<section class="dishes-menu">
 
     <div class="menu">
         <div class="container pt-50">

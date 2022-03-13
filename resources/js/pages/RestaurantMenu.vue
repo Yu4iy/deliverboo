@@ -2,7 +2,11 @@
     <div class="menu">
         <div v-if="this.info != null">
             <div class="menu-banner">
-                <img class="menu-banner__bg-img" :src="info.image" alt="" />
+                <img
+                    class="menu-banner__bg-img"
+                    :src="`/storage/${info.image}`"
+                    alt=""
+                />
                 <div class="menu-banner__name">{{ info.restaurant_name }}</div>
                 <div class="menu-banner__city">{{ info.city }}</div>
                 <div class="menu-banner__adress">{{ info.address }}</div>
@@ -269,8 +273,8 @@ export default {
             if (
                 this.localData.filter((e) => e.name === newDish.name).length > 0
             ) {
-               //  console.log(this.localData);
-               //  this.localData[index].quantity++;
+                //  console.log(this.localData);
+                //  this.localData[index].quantity++;
             } else {
                 this.localData.push(newDish);
             }
@@ -516,7 +520,7 @@ export default {
     border-radius: 10px;
     @media only screen and (max-width: 900px) {
         width: 100%;
-		  max-width: 600px;	
+        max-width: 600px;
     }
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
         rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -550,31 +554,29 @@ export default {
     background: #32bab3;
     color: #fff;
     font-weight: 700;
-	 &:hover{
-		background: #2ea5a0;
-	 }
+    &:hover {
+        background: #2ea5a0;
+    }
 }
-.btn-absolute{
-	position: relative;
-   padding: 0 15px;
+.btn-absolute {
+    position: relative;
+    padding: 0 15px;
 
-	@media only screen and (max-width: 550px) {
-   padding: 15px 0;
-
-  }
+    @media only screen and (max-width: 550px) {
+        padding: 15px 0;
+    }
 }
-.text-vertical{
-	writing-mode: vertical-rl;
-  	text-orientation: upright;
-	text-transform: uppercase;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	font-weight: 700;
-	transform: translate(-50%, -50%);
-   @media only screen and (max-width: 550px) {
-      writing-mode: horizontal-tb;
-		
-  }
+.text-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    text-transform: uppercase;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-weight: 700;
+    transform: translate(-50%, -50%);
+    @media only screen and (max-width: 550px) {
+        writing-mode: horizontal-tb;
+    }
 }
 </style>
