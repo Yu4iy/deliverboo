@@ -34,7 +34,7 @@
                 <div class="mb-3">
                     <label for="ingredients" class="form-label">Ingredienti*</label>
                     <input class="form-control" type="text" id="ingredients" name="ingredients"
-                        value="{{old('ingredients', $dish->ingredients)}}" pattern="[a-zA-Z ,]+" required>
+                        value="{{old('ingredients', $dish->ingredients)}}" pattern="[a-zA-Zàèìòù ,]+" required>
                     <!-- Visualizzazione mirata per l'errore -->
                     @error('ingredients')
                     <div class="text-danger">{{$message}}</div>
