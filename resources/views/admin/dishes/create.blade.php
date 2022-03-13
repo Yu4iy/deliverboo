@@ -12,7 +12,7 @@
                     Aggiungi un piatto
                 </div>
                 <div class="menu-row__nav">
-                    <a href="{{route('admin.dishes.index')}}">Torna al tuo Menu</a>
+                    <a href="{{route('admin.dishes.index')}}"><i class="fa-solid fa-arrow-left"></i></a>
                 </div>
             </div>
             <!-- Form creazione piatto -->
@@ -34,7 +34,7 @@
                 <div class="mb-3">
                     <label for="ingredients" class="form-label">Ingredienti*</label>
                     <input class="form-control" type="text" id="ingredients" name="ingredients"
-                        value="{{old('ingredients')}}" pattern="[a-zA-Z ,]+" required>
+                        value="{{old('ingredients')}}" pattern="[a-zA-Zàèìòù ,]+" required>
 
                     <!-- Visualizzazione mirata per l'errore -->
                     @error('ingredients')
