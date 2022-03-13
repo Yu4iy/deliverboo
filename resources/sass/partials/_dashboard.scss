@@ -16,6 +16,10 @@
             border-radius: 5px;
             border: none;
             margin-top: 20px;
+				transition: linear 0.2s;
+				&:hover{
+					background: #02b1a3;
+				}
         }
         .link-dashboard {
             color: #00ccbc;
@@ -38,6 +42,9 @@
 	color: transparent;
 	font-size: 40px;
 	animation: welcome 3s forwards;
+	@media only screen and (max-width: 800px) {
+		font-size: 26px;
+	  }
 }
 @keyframes welcome {
 	0%   {color: transparent;}
@@ -53,6 +60,9 @@
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	@media only screen and (max-width: 650px) {
+		font-size: 17px;
+	  }
 
 }
 @keyframes static {
