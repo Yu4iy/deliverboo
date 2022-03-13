@@ -11,10 +11,6 @@
 .navbar-light {
     .navbar-nav {
         .nav-item {
-			  transition: linear 0.2s;
-			  &:hover{
-				  background: #b2c4c428;
-			  }
             .nav-link.active {
                 color: $deliveboo;
             }

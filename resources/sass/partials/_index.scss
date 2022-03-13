@@ -32,13 +32,9 @@
             border: none;
             margin-right: 15px;
             text-decoration: none;
-				transition: linear 0.2s;
             &:last-child {
                 margin: 0;
             }
-				&:hover{
-					background: #02b1a3;
-				}
         }
 		  @media only screen and (max-width: 800px) {
 			a{
@@ -197,4 +193,4 @@
 		margin: 0 3px 0 0;
 	}
 
-}
+  }

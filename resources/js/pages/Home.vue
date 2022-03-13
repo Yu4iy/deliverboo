@@ -136,16 +136,14 @@
                                         
 
                                         <!-- dati ristorante -->
-                                        <div class="card-details pt-3 pl-3 pr-3 pb-1 mx-2">
+                                        <div class="card-details p-3 mx-2">
                                             <!-- restauran-name -->
                                             <h5>{{bestRestaurant.restaurant_name}}</h5>
                                             <div>
                                                 <div class="card-City">{{bestRestaurant.city}}</div>
-                                                <div>{{bestRestaurant.address}}</div>															                                            
+                                                <div>{{bestRestaurant.address}}</div>
+                                                
                                             </div>
-														  	<div class="mt-2">
-																<span v-for="(categoriy,index) in bestRestaurant.categories" :key="`cate-${index}`">| {{categoriy.name }} | </span>
-															</div>
                                         </div>
 
 
@@ -196,9 +194,6 @@
                                                     {{ bestRestaurant.address }}
                                                 </div>
                                             </div>
-														  	<div class="mt-2">
-																<span v-for="(categoriy,index) in bestRestaurant.categories" :key="`cate-${index}`">| {{categoriy.name }} | </span>
-															</div>
                                         </div>
                                     </div>
                                 </router-link>
@@ -209,7 +204,7 @@
                         </ul>
 								
                         <div v-else>
-                            <h4 class="d-flex align-items-start">Loading restaurants <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></h4>
+                            <h4>Loading restaurants...</h4>
                         </div>
 
                         <!-- paginazione bottoni -->
@@ -235,7 +230,6 @@ export default {
           categories: null,
 			 text:null,
 			 openModal:false,
-			 prova:[]
 
       }
     },
@@ -254,7 +248,6 @@ export default {
     methods: {
 		 clear(){
 			this.tempArrayRestaurant = []
-			this.prova = []
 			const btns = document.querySelectorAll('.category')
 			btns.forEach(element => {
 			element.classList.remove("active")	
@@ -286,28 +279,19 @@ export default {
 			//   console.log(categorySlug,'__________________testCategory________');
 			// const triger = this.tempArrayRestaurant.some(person => person.pivot.category_id !== id)
 			// if(triger){
-            // axios.get(`http://127.0.0.1:8000/api/restaurants/${categorySlug}`)
-            //     .then(res => {
+            axios.get(`http://127.0.0.1:8000/api/restaurants/${categorySlug}`)
+                .then(res => {
 						 
 						 // senza impaginazione
                     //  this.bestRestaurants = res.data;
 
                     // con impaginazione
-						const caz = this.bestRestaurants;
 						//  this.tempArrayRestaurant.concat(test)
-						console.log( caz ,'TEST LAST');
-						caz.forEach(element => {
-							// element.filter(e => e.slug == categorySlug)
-							if (element.categories.filter(e => e.slug == categorySlug).length > 0) {
-								this.prova.push(element)
-							}
-							console.log(this.prova);					
-						});
+                  const test =  res.data[0].users;
 						// if(test.length == 0){
-							// 	this.text = 'Non ci sono ristoranti per questa categoria😢'
+						// 	this.text = 'Non ci sono ristoranti per questa categoria😢'
 						// }else{
-							// 	this.text = ''
-						const test =  this.prova;
+						// 	this.text = ''
 						// }
 						const btns = document.querySelectorAll('.category')
 						btns[index + 1].classList.add("active")
@@ -364,7 +348,7 @@ export default {
                        current: res.data.current_page,
                        last: res.data.last_page
                     }; */
-               //  })
+                })
                //  .catch(err => log.error(err));
       //   }else{
 		// 	  console.log('ERROR');
@@ -758,63 +742,5 @@ ul {
     100% {
         opacity: 100;
     }
-}
-
-
-
-.lds-ellipsis {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-.lds-ellipsis div {
-  position: absolute;
-  top: 13px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.598);
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
-}
-.lds-ellipsis div:nth-child(1) {
-  left: 13px;
-  animation: lds-ellipsis1 0.6s infinite;
-}
-.lds-ellipsis div:nth-child(2) {
-  left: 4px;
-  animation: lds-ellipsis2 0.6s infinite;
-}
-.lds-ellipsis div:nth-child(3) {
-  left: 16px;
-  animation: lds-ellipsis2 0.6s infinite;
-}
-.lds-ellipsis div:nth-child(4) {
-  left: 28px;
-  animation: lds-ellipsis3 0.6s infinite;
-}
-@keyframes lds-ellipsis1 {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-@keyframes lds-ellipsis3 {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0);
-  }
-}
-@keyframes lds-ellipsis2 {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(24px, 0);
-  }
 }
 </style>

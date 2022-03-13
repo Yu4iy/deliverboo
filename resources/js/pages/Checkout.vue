@@ -1,6 +1,6 @@
 <template>
     <div class="checkout" v-if="successStatus === false">
-        <h2 class="checkout-title" > <i class="fas fa-shopping-cart"></i> Checkout</h2>
+        <h2 > <i class="fas fa-shopping-cart"></i> Checkout</h2>
         <div class="container-fluid mb-5 mt-3 cont-2">
             <div class="row">
                 <!-- MAIN  -->
@@ -569,8 +569,5 @@ textarea {
         padding-left: 30px;
         padding-right: 50px;
     }
-}
-.checkout-title{
-	color: #4d4e4e !important;
 }
 </style>
