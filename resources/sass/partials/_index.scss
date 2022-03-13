@@ -1,4 +1,4 @@
-.dishes-menu{
+.dishes-menu {
     background-color: $contSfondo;
 }
 
@@ -9,17 +9,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-	 @media only screen and (max-width: 600px) {
-		justify-content: space-around;
-
-	  }
+    @media only screen and (max-width: 600px) {
+        justify-content: space-around;
+    }
     &__title {
         font-size: 30px;
         font-weight: 700;
-		  @media only screen and (max-width: 600px) {
-			font-size: 22px;
-
-		  }
+        @media only screen and (max-width: 600px) {
+            font-size: 22px;
+        }
     }
 
     &__nav {
@@ -36,12 +34,11 @@
                 margin: 0;
             }
         }
-		  @media only screen and (max-width: 800px) {
-			a{
-				margin: 0 3px 0 0;
-			}
-		
-		  }
+        @media only screen and (max-width: 800px) {
+            a {
+                margin: 0 3px 0 0;
+            }
+        }
     }
 }
 
@@ -75,9 +72,9 @@
     &:hover {
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
-	 @media only screen and (max-width: 1200px) {
-		width: 100%;
-  	}
+    @media only screen and (max-width: 1200px) {
+        width: 100%;
+    }
     &__row {
         display: flex;
         justify-content: space-between;
@@ -89,9 +86,9 @@
 
     &__title {
         font-weight: 700;
-		  @media only screen and (max-width: 600px) {
-			font-size: 18px;
-	  }
+        @media only screen and (max-width: 600px) {
+            font-size: 18px;
+        }
     }
 
     &__nav {
@@ -128,9 +125,9 @@
 }
 .menu-main {
     display: flex;
-	 @media only screen and (max-width: 650px) {
-		flex-direction: column-reverse;
-  }
+    @media only screen and (max-width: 650px) {
+        flex-direction: column-reverse;
+    }
     &__desc {
         padding-right: 10px;
         width: 70%;
@@ -138,17 +135,18 @@
             list-style: none;
             margin: 10px 0;
         }
-		  @media only screen and (max-width: 650px) {
-			width: 100%;
-	 	 }
+        @media only screen and (max-width: 650px) {
+            width: 100%;
+        }
     }
 
     &__img {
         width: 30%;
         background: rgb(133, 132, 132);
-		  @media only screen and (max-width: 650px) {
-			width: 100%;
-	 	 }
+        @media only screen and (max-width: 650px) {
+            width: 100%;
+            height: 300px;
+        }
         img {
             // object-fit: contain;
             object-fit: cover;
@@ -188,9 +186,8 @@
     }
 }
 @media only screen and (max-width: 800px) {
-	.mobile-dash{
-		display: none;
-		margin: 0 3px 0 0;
-	}
-
-  }
+    .mobile-dash {
+        display: none;
+        margin: 0 3px 0 0;
+    }
+}
