@@ -26,7 +26,8 @@ class HomeController extends Controller
 
 	public function getStatistics() {
 		$total_sales_data = []; //y
-		/* $day_labels = []; */ 
+		$total_orders_number = []; //y
+		
 		$data = Order::whereHas('dishes', function(Builder $query) {
 			$query->where('user_id', Auth::id());
 		})->get()->groupBy(function($item) {
@@ -41,9 +42,23 @@ class HomeController extends Controller
 		for($d = $from; $d->lte($to); $d->addDay()) {
 			$day_labels[] = $d->format('d/m');
 		}
+
 		$test = [];
 		foreach($data as $key => $item) {
 			$test[$key] = $item;
+		}
+
+		$orders_number = [];
+		foreach($day_labels as $date) {
+			if(array_key_exists($date, $test)) {
+				$orders_number[$date] = count($test[$date]);
+			} else {
+				$orders_number[$date] = 0;
+			}
+		}
+		
+		foreach($orders_number as $label => $total_orders) {
+			$total_orders_number[] = $total_orders;
 		}
 
 		$total_sales_array = [];
@@ -61,6 +76,6 @@ class HomeController extends Controller
 		foreach($total_sales_array as $label => $total_sales) {
 			$total_sales_data[]=$total_sales;
 		}
-		return view('admin.statistics', compact('total_sales_data', 'day_labels'));
+		return view('admin.statistics', compact('total_sales_data', 'day_labels', 'total_orders_number'));
 	}
 }

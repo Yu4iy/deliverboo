@@ -12,6 +12,7 @@ export default {
     props: {
         datas: Array,
         labels: Array,
+        orders: Array,
     },
     data(){
         return{
@@ -19,17 +20,17 @@ export default {
                 type: 'bar',
                 data: {
                     datasets: [{
-                       label: 'Total Sales',
+                       label: 'Total Sales €',
                        data: this.datas, 
                        backgroundColor: '#00ccbc',
                        borderColor: '#00ccbc',    
-                    }
-                    /* {
+                    },
+                    {
                        label: 'Orders',
-                       data: [10, 20, 30, 40, 40, 60, 30, 20, 40, 20, 30, 20, 10], 
-                       backgroundColor: '#00cc',
-                       borderColor: '#00cc',    
-                    } */
+                       data: this.orders, 
+                       backgroundColor: '#08776e',
+                       borderColor: '#08776e',    
+                    }
                     ],
                     labels: this.labels,
                 }
