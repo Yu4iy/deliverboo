@@ -390,83 +390,46 @@ export default {
         },
 
         getFilteredRestaurants(categorySlug, id, index) {
-            //   console.log(categorySlug,'__________________testCategory________');
-            // const triger = this.tempArrayRestaurant.some(person => person.pivot.category_id !== id)
-            // if(triger){
-            axios
-                .get(`http://127.0.0.1:8000/api/restaurants/${categorySlug}`)
-                .then((res) => {
-                    // senza impaginazione
-                    //  this.bestRestaurants = res.data;
+            // axios
+            // .get(`http://127.0.0.1:8000/api/restaurants/${categorySlug}`)
+            // .then((res) => {
+            const test = this.bestRestaurants;
+            console.log(test, "test log");
 
-                    // con impaginazione
-                    //  this.tempArrayRestaurant.concat(test)
-                    const test = res.data[0].users;
-                    console.log(test, "test log");
+            test.forEach((element) => {
+                console.log(
+                    element.categories.includes("poke"),
+                    "foreach category"
+                );
+            });
 
-                    this.dataCategory = res.data;
-                    console.log(this.dataCategory, "dataCategory");
-                    // if(test.length == 0){
-                    // 	this.text = 'Non ci sono ristoranti per questa categoria😢'
-                    // }else{
-                    // 	this.text = ''
-                    // }
-                    const btns = document.querySelectorAll(".category");
-                    btns[index + 1].classList.add("active");
+            // const arrayFiltrato = test.filter(
+            //     (e) =>
+            //         e.categories.filter((c) => c.slug == categorySlug) ==
+            //         categorySlug
+            // );
 
-                    console.log(id, "ID");
-                    for (let i = 0; i < test.length; i++) {
-                        let axiosObject = test[i];
+            // console.log(arrayFiltrato, "arrayFiltrato");
+            // this.dataCategory = res.data;
+            // console.log(this.dataCategory, "dataCategory");
 
-                        if (
-                            !this.tempArrayRestaurant.filter(
-                                (e) => e.id === axiosObject.id
-                            ).length > 0
-                        ) {
-                            this.tempArrayRestaurant.push(axiosObject);
-                            console.log(this.tempArrayRestaurant, "---------");
-                        }
-                    }
+            // const btns = document.querySelectorAll(".category");
+            // btns[index + 1].classList.add("active");
 
-                    //  console.log(test,'-----------------------------------------bestRestdddddddddaurants');
+            // console.log(id, "ID");
+            // for (let i = 0; i < test.length; i++) {
+            //     let axiosObject = test[i];
 
-                    //  test.forEach(element => {
-                    // 	if(this.tempArrayRestaurant.filter((e) => e.id === element.id).length > 0 ){
-
-                    // 		console.log(element, 'ELEMENT');
-
-                    // 		const newArray = this.tempArrayRestaurant.filter(item => item.pivot.category_id !== element.pivot.category_id)
-                    // 		this.tempArrayRestaurant = newArray
-                    // 		console.log(this.tempArrayRestaurant);
-                    // 		// if(this.tempArrayRestaurant.filter((e) => e.pivot.category_id === element.pivot.category_id).length == 0 ){
-                    // 		// 	this.tempArrayRestaurant.unshift(element)
-
-                    // 		// }
-                    // 	}else{
-                    // 		// if(!tempArrayRestaurant.includes(element)){
-                    // 			this.tempArrayRestaurant.unshift(element)
-                    // 		// }
-
-                    // 	}
-                    //  });
-
-                    //  this.tempArrayRestaurant.filter((e) => e.slug !== test.slug) ;
-
-                    //   if(res.data[0].users.length == 0){
-                    // 	  	this.text = 'Non ci sono ristoranti per questa categoria😢'
-                    //   }else{
-                    // 	  this.text = ''
-                    //   }
-                    //   console.log(this.bestRestaurants)
-                    /* this.pagination = {
-                       current: res.data.current_page,
-                       last: res.data.last_page
-                    }; */
-                });
-            //  .catch(err => log.error(err));
-            //   }else{
-            // 	  console.log('ERROR');
-            //   }
+            //     if (
+            //         !this.tempArrayRestaurant.filter(
+            //             (e) => e.id === axiosObject.id
+            //         ).length > 0
+            //     ) {
+            //         this.tempArrayRestaurant.push(axiosObject);
+            //         console.log(this.tempArrayRestaurant, "---------");
+            //     }
+            // },
+            // });
         },
 
         getCategoryRestaurant() {
