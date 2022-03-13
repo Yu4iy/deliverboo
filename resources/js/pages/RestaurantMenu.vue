@@ -95,9 +95,9 @@
                             <div class="d-flex justify-content-between btn-fix">
                                 <button
                                     @click="checkTestCart(dish, index)"
-                                    class="btn btn-brand-color"
+                                    class="btn btn-brand-color btn-absolute"
                                 >
-                                    <i class="fa-solid fa-plus"></i>
+                                    <span class="text-vertical">add</span>
                                 </button>
                             </div>
                         </div>
@@ -279,7 +279,7 @@ export default {
             // this.localData.push()
         },
         increment(dish, index) {
-            this.addDishToCart(dish, index);
+            this.localData[index].quantity++;
             this.saveCartDishes();
         },
         decrement(dish, index) {
@@ -516,7 +516,7 @@ export default {
     border-radius: 10px;
     @media only screen and (max-width: 900px) {
         width: 100%;
-        max-width: 300px;
+		  max-width: 600px;	
     }
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
         rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -550,5 +550,31 @@ export default {
     background: #32bab3;
     color: #fff;
     font-weight: 700;
+	 &:hover{
+		background: #2ea5a0;
+	 }
+}
+.btn-absolute{
+	position: relative;
+   padding: 0 15px;
+
+	@media only screen and (max-width: 550px) {
+   padding: 15px 0;
+
+  }
+}
+.text-vertical{
+	writing-mode: vertical-rl;
+  	text-orientation: upright;
+	text-transform: uppercase;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	font-weight: 700;
+	transform: translate(-50%, -50%);
+   @media only screen and (max-width: 550px) {
+      writing-mode: horizontal-tb;
+		
+  }
 }
 </style>
