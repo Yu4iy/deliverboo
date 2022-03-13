@@ -1,101 +1,94 @@
-ul{
+ul {
     list-style: none;
 }
 
-section.orders{
+section.orders {
     background-color: rgba(213, 233, 232, 0.501);
 }
 
-
-.ordersContainer{
+.ordersContainer {
     padding-top: 130px;
 
-
-    .orderTitileContainer{
+    .orderTitileContainer {
         padding: 35px 30px 0 30px;
 
-        h1{
+        h1 {
             font-weight: 900;
         }
     }
 
-    .ordersCardContainer{
+    .ordersCardContainer {
         padding: 40px;
     }
 
-    .ordersCards{
+    .ordersCards {
         padding: 10px;
         margin-bottom: 25px;
         min-height: 470px;
 
-        .CardContainerBorder{
+        .CardContainerBorder {
             height: 100%;
             padding: 25px;
             background-color: white;
             border: 1px solid rgb(202, 202, 202);
             border-radius: 10px;
             box-shadow: rgba(45, 47, 49, 0.178) 0px 1px 2px 0px,
-                        rgba(43, 46, 48, 0.082) 0px 1px 3px 1px;
+                rgba(43, 46, 48, 0.082) 0px 1px 3px 1px;
             &:hover {
                 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
             }
 
-            i{
+            i {
                 margin-right: 5px;
                 color: #00bab1;
             }
 
-            .data_ora{
+            .data_ora {
                 font-size: 11px;
                 padding-left: 24px;
             }
 
-            h5{
+            h5 {
                 font-weight: bolder;
             }
 
-            .cardData{
-                li{
+            .cardData {
+                li {
                     padding: 10px;
                     border-bottom: 1px solid rgb(202, 202, 202);
                     color: rgb(67, 67, 67);
 
-                    div{
-                        span{
+                    div {
+                        span {
                             font-weight: bolder;
                             font-size: 16px;
                             color: black;
                         }
                     }
 
-                    .infoData{
+                    .infoData {
                         font-size: 14px;
                     }
-                    .orderQuantity{
+                    .orderQuantity {
                         font-weight: bolder;
                     }
                 }
             }
         }
-
-        
     }
-
 }
 
-.sfContainer{
+.sfContainer {
     background-color: $contSfondo;
-    height: 100vh;
+    // height: 100vh;
 }
 
 @media screen and (max-width: 991px) {
-    .ordersContainer{
+    .ordersContainer {
         max-width: 920px;
     }
 
-    
-    h1{
+    h1 {
         text-align: center;
     }
-
 }

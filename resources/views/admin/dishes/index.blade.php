@@ -28,7 +28,7 @@
             <div class="alert alert-success">
                 {{ session()->get('message') }}
             </div>
-            	@elseif (session()->get('message-edit'))
+            @elseif (session()->get('message-edit'))
                 <div class="alert alert-success">
                     <strong>{{session('message-edit')}}</strong> modificato con successo.
                 </div>
