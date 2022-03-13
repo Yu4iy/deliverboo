@@ -12,7 +12,7 @@
                     Modifica il piatto: {{$dish->name}}
                 </div>
                 <div class="menu-row__nav">
-                    <a href="{{route('admin.dishes.index')}}">Torna al tuo Menu</a>
+                    <a href="{{route('admin.dishes.index')}}"><i class="fa-solid fa-arrow-left"></i></a>
                 </div>
             </div>
             <!-- Form creazione piatto -->
