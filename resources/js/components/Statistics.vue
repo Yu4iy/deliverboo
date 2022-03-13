@@ -12,18 +12,26 @@ export default {
     props: {
         datas: Array,
         labels: Array,
+        orders: Array,
     },
     data(){
         return{
             chartData: {
-                type: 'line',
+                type: 'bar',
                 data: {
                     datasets: [{
-                       label: 'Sales',
+                       label: 'Total Sales €',
                        data: this.datas, 
-                       backgroundColor: 'rgb(255, 99, 132)',
-                       borderColor: 'rgb(255, 99, 132)',    
-                    }],
+                       backgroundColor: '#00ccbc',
+                       borderColor: '#00ccbc',    
+                    },
+                    {
+                       label: 'Orders',
+                       data: this.orders, 
+                       backgroundColor: '#08776e',
+                       borderColor: '#08776e',    
+                    }
+                    ],
                     labels: this.labels,
                 }
             }
@@ -32,6 +40,7 @@ export default {
     mounted() {
     const ctx = document.getElementById('statistics');
     new Chart(ctx, this.chartData);
+    console.log(this.salesData, this.labels)
   }
 }
 </script>

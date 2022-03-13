@@ -6,10 +6,10 @@
         <h2 class="title-chart d-none">Ecco le tue statistiche:</h2>
         <div class="row">
             <div class="col">
-                <button type="button" class="year btn btn-dark">Anno</button>
+                {{-- <button type="button" class="year btn btn-dark">Anno</button>
                 <button type="button" class="month btn btn-dark">Mese</button>
 
-                <button type="button" class="btn btn-dark prova">Prova</button>
+                <button type="button" class="btn btn-dark prova">Prova</button> --}}
 
                 <select class="d-none select-month" name="month" id="month-select">
                     <option value="January">January</option>
@@ -42,10 +42,10 @@
                 </div>
             </div>
         </div> --}}
-
-        <Statistics
+        <Statistics class="mt-5"
             :labels="{{ json_encode($day_labels) }}"
-            :datas="{{ json_encode($day_data) }}"
+            :datas="{{ json_encode($total_sales_data) }}"
+            :orders="{{ json_encode($total_orders_number) }}"
         />
 
     </div>
