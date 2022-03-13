@@ -456,9 +456,6 @@ export default {
                 })
                 .catch((err) => log.error(err));
         },
-        // getImage() {
-        //     const image = this.
-        // }
     },
 };
 </script>
