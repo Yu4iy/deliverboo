@@ -1,5 +1,5 @@
 <template>
-    <section class="pt-5">
+    <section class="pt-5 section-main">
         <Header />
         <main>
             <router-view></router-view>
@@ -15,14 +15,17 @@ import Footer from "../components/Footer";
 export default {
     name: "App",
     components: {
-      //   Header,
+        //   Header,
         Footer,
     },
 };
 </script>
 
-<style lang="scss">
-.pts-5{
-	padding: 60px;
+<style scoped lang="scss">
+.pts-5 {
+    padding: 60px;
+}
+.section-main {
+    background-color: #fff;
 }
 </style>

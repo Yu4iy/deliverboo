@@ -430,7 +430,7 @@ export default {
 }
 .menu-wraper {
     //   height: 80vh;
-    background: #f8fafc;
+    // background: #f8fafc;
     display: grid;
     grid-template-columns: 1fr minmax(auto, 360px);
     grid-template-rows: 1fr;
@@ -443,7 +443,7 @@ export default {
 // menu
 .menu-main {
     border-radius: 10px;
-    background: #f7f8f8;
+    // background: #f7f8f8;
     margin: 20px 20px;
     padding: 0 0px;
     overflow: auto;

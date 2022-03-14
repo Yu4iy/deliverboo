@@ -1,6 +1,8 @@
 <template>
     <div class="checkout" v-if="successStatus === false">
-        <h2 class="checkout-title" > <i class="fas fa-shopping-cart"></i> Checkout</h2>
+        <h2 class="checkout-title">
+            <i class="fas fa-shopping-cart"></i> Checkout
+        </h2>
         <div class="container-fluid mb-5 mt-3 cont-2">
             <div class="row">
                 <!-- MAIN  -->
@@ -184,7 +186,7 @@
                                         <div class="mt-3">
                                             <button
                                                 @click="decrement(item, index)"
-                                                class="px-2  btn-cart"
+                                                class="px-2 btn-cart"
                                             >
                                                 <i
                                                     class="fa-solid fa-minus"
@@ -193,7 +195,7 @@
 
                                             <button
                                                 @click="increment(item, index)"
-                                                class="px-2   btn-cart"
+                                                class="px-2 btn-cart"
                                             >
                                                 <i class="fa-solid fa-plus"></i>
                                             </button>
@@ -202,26 +204,33 @@
                                 </div>
                             </div>
                         </div>
-								<div>
-									<div class="totalPrice mb-5">
-                                        Prezzo totale:
-										<div>{{ calculateTotal.toFixed(2) }} €</div>
-									</div>
-									<v-braintree
-										v-if="clientToken"
-										class="bg-light"
-										:authorization="clientToken"
-										locale="it_IT"
-										btnText="Checkout"
-										btnClass="btn btn-primary mt-4 w-100 border border-primary"
-										@success="onSuccess"
-										@error="onError"
-									>
-									</v-braintree>
-									<div v-if="payment" class="payment">
-										<div class="payments"><strong>Pagamento in corso:</strong><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
-									</div>
-								</div>	
+                        <div>
+                            <div class="totalPrice mb-5">
+                                Prezzo totale:
+                                <div>{{ calculateTotal.toFixed(2) }} €</div>
+                            </div>
+                            <v-braintree
+                                v-if="clientToken"
+                                :authorization="clientToken"
+                                locale="it_IT"
+                                btnText="Checkout"
+                                btnClass="btn btn-primary mt-4 w-100 border border-primary"
+                                @success="onSuccess"
+                                @error="onError"
+                            >
+                            </v-braintree>
+                            <div v-if="payment" class="payment">
+                                <div class="payments">
+                                    <strong>Pagamento in corso:</strong>
+                                    <div class="lds-ring">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -399,23 +408,21 @@ export default {
         font-size: 35px;
         font-weight: bolder;
         color: rgba(0, 0, 0, 0.844);
-        
     }
 }
 
-.bgr {
-    background: #f8fafc;
-}
-
+// .bgr {
+//     background: #f8fafc;
+// }
 
 .bgb {
     padding: 20px;
     padding-top: 43px;
-    background: #f8fafc;
+    // background: #f8fafc;
     // border-left: 2px solid #00ccbc;
 }
 
-.btn-cart{
+.btn-cart {
     background-color: #00ccbc;
     margin-right: 5px;
     padding: 5px 30px;
@@ -425,7 +432,7 @@ export default {
     color: white;
 }
 
-.cont-2{
+.cont-2 {
     padding-left: 70px;
     padding-right: 80px;
 }
@@ -433,7 +440,7 @@ export default {
 // .border-bottom {
 //     border-bottom: 2px solid rgba(0, 0, 0, 0.76);
 // }
-.border_frm{
+.border_frm {
     border-bottom: 1px solid rgb(194, 194, 194);
 }
 
@@ -453,12 +460,11 @@ export default {
     padding: 20px;
     align-items: center;
     box-shadow: rgba(45, 47, 49, 0.178) 0px 1px 2px 0px,
-                        rgba(43, 46, 48, 0.082) 0px 1px 3px 1px;
-    
-    &:hover{
+        rgba(43, 46, 48, 0.082) 0px 1px 3px 1px;
+
+    &:hover {
         box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 10px;
     }
-    
 
     &__wraper-img {
         flex: 0 0 30%;
@@ -489,7 +495,7 @@ export default {
 .plu-min {
     color: black;
     border: 2px solid black;
-	 padding: 0 10px;
+    padding: 0 10px;
 }
 
 .quantity {
@@ -505,72 +511,69 @@ export default {
     div {
         font-weight: bolder;
         font-size: 25px;
-
     }
 }
 
 input,
 textarea {
-    &:focus{
+    &:focus {
         border: 2px solid #00ccbc;
         box-shadow: none;
     }
 }
 
 .lds-ring {
-  display: inline-block;
-  position: relative;
-  width: 40px;
-  height: 44px;
+    display: inline-block;
+    position: relative;
+    width: 40px;
+    height: 44px;
 }
 .lds-ring div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 32px;
-  height: 32px;
-  margin: 8px;
-  border: 8px solid #02ccbc;
-  border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #02ccbc transparent transparent transparent;
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    margin: 8px;
+    border: 8px solid #02ccbc;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #02ccbc transparent transparent transparent;
 }
 .lds-ring div:nth-child(1) {
-  animation-delay: -0.45s;
+    animation-delay: -0.45s;
 }
 .lds-ring div:nth-child(2) {
-  animation-delay: -0.3s;
+    animation-delay: -0.3s;
 }
 .lds-ring div:nth-child(3) {
-  animation-delay: -0.15s;
+    animation-delay: -0.15s;
 }
 @keyframes lds-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
-.payments{
-	display: flex;
-	align-items: center;
-	padding: 10px 0;
+.payments {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
 }
-.btn-test{
-		width: 100% !important;
-
+.btn-test {
+    width: 100% !important;
 }
 
-
-@media screen and (max-width: 1270px){
-    .cont-2{
+@media screen and (max-width: 1270px) {
+    .cont-2 {
         padding-left: 30px;
         padding-right: 50px;
     }
 }
-.checkout-title{
-	color: #4d4e4e !important;
+.checkout-title {
+    color: #4d4e4e !important;
 }
 </style>
