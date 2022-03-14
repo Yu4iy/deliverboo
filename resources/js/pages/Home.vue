@@ -4,7 +4,7 @@
         <div class="homeBanner">
             <img
                 class="img-fluid"
-                src="https://www.harvester.co.uk/content/dam/harvester/images/2020/takeaway/deliveroo-page-banner.jpg.asset/1603367871424.jpg"
+                src="/storage/images/element-baner.jpg"
                 alt="banner-img"
             />
         </div>
@@ -163,34 +163,84 @@
 							  </span> -->
                         <ul v-if="restaurants">
                             <!-- restaurant list -->
-                        <div class="row" v-if="tempArrayRestaurant.length == 0 ">
-								   <li class="Cards-Rest col-sm-6 col-md-4 " v-for="bestRestaurant in bestRestaurants" :key="`restaurant-${bestRestaurant.id}`">
-										  <router-link class="Cards-Link-container" :to="{ name: 'restaurant-menu', params: {slug: bestRestaurant.slug, id: bestRestaurant.id}}">
-                                    <!-- card -->
-                                    <div class="Card">
-                                        <!-- image -->
-                                        <figure class="img-cont" v-if="bestRestaurant.image">
-                                             <img class="img-fluid" :src="`/storage/${bestRestaurant.image}`" :alt="bestRestaurant.restaurant_name">
-                                         </figure>
-                                         <figure class="img-cont" v-else>
-                                             <img src="https://www.nafservizi.it/wp-content/uploads/2020/10/default_image_01.png" :alt="bestRestaurant.restaurant_name">
-                                         </figure>
-                                        
+                            <div
+                                class="row"
+                                v-if="tempArrayRestaurant.length == 0"
+                            >
+                                <li
+                                    class="Cards-Rest col-sm-6 col-md-4"
+                                    v-for="bestRestaurant in bestRestaurants"
+                                    :key="`restaurant-${bestRestaurant.id}`"
+                                >
+                                    <router-link
+                                        class="Cards-Link-container"
+                                        :to="{
+                                            name: 'restaurant-menu',
+                                            params: {
+                                                slug: bestRestaurant.slug,
+                                                id: bestRestaurant.id,
+                                            },
+                                        }"
+                                    >
+                                        <!-- card -->
+                                        <div class="Card">
+                                            <!-- image -->
+                                            <figure
+                                                class="img-cont"
+                                                v-if="bestRestaurant.image"
+                                            >
+                                                <img
+                                                    class="img-fluid"
+                                                    :src="`/storage/${bestRestaurant.image}`"
+                                                    :alt="
+                                                        bestRestaurant.restaurant_name
+                                                    "
+                                                />
+                                            </figure>
+                                            <figure class="img-cont" v-else>
+                                                <img
+                                                    src="https://www.nafservizi.it/wp-content/uploads/2020/10/default_image_01.png"
+                                                    :alt="
+                                                        bestRestaurant.restaurant_name
+                                                    "
+                                                />
+                                            </figure>
 
-                                        <!-- dati ristorante -->
-                                        <div class="card-details pt-3 pl-3 pr-3 pb-1 mx-2">
-                                            <!-- restauran-name -->
-                                            <h5>{{bestRestaurant.restaurant_name}}</h5>
-                                            <div>
-                                                <div class="card-City">{{bestRestaurant.city}}</div>
-                                                <div>{{bestRestaurant.address}}</div>															                                            
+                                            <!-- dati ristorante -->
+                                            <div
+                                                class="card-details pt-3 pl-3 pr-3 pb-1 mx-2"
+                                            >
+                                                <!-- restauran-name -->
+                                                <h5>
+                                                    {{
+                                                        bestRestaurant.restaurant_name
+                                                    }}
+                                                </h5>
+                                                <div>
+                                                    <div class="card-City">
+                                                        {{
+                                                            bestRestaurant.city
+                                                        }}
+                                                    </div>
+                                                    <div>
+                                                        {{
+                                                            bestRestaurant.address
+                                                        }}
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <span
+                                                        v-for="(
+                                                            categoriy, index
+                                                        ) in bestRestaurant.categories"
+                                                        :key="`cate-${index}`"
+                                                        >|
+                                                        {{ categoriy.name }} |
+                                                    </span>
+                                                </div>
                                             </div>
-														  	<div class="mt-2">
-																<span v-for="(categoriy,index) in bestRestaurant.categories" :key="`cate-${index}`">| {{categoriy.name }} | </span>
-															</div>
                                         </div>
-												</div>	 
-                                 </router-link>
+                                    </router-link>
                                 </li>
                             </div>
                             <div class="row" v-else>
@@ -253,9 +303,16 @@
                                                         }}
                                                     </div>
                                                 </div>
-														  	<div class="mt-2">
-																<span v-for="(categoriy,index) in bestRestaurant.categories" :key="`cate-${index}`">| {{categoriy.name }} | </span>
-															</div>
+                                                <div class="mt-2">
+                                                    <span
+                                                        v-for="(
+                                                            categoriy, index
+                                                        ) in bestRestaurant.categories"
+                                                        :key="`cate-${index}`"
+                                                        >|
+                                                        {{ categoriy.name }} |
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </router-link>
@@ -264,7 +321,15 @@
                         </ul>
 
                         <div v-else>
-                            <h4 class="d-flex align-items-start">Loading restaurants <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></h4>
+                            <h4 class="d-flex align-items-start">
+                                Loading restaurants
+                                <div class="lds-ellipsis">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </h4>
                         </div>
 
                         <!-- paginazione bottoni -->
@@ -284,15 +349,14 @@ export default {
     components: {},
 
     data() {
-      return {
-          bestRestaurants: null,
-			 tempArrayRestaurant:[],
-          categories: null,
-			 text:null,
-			 openModal:false,
-			 prova:[]
-
-      }
+        return {
+            bestRestaurants: null,
+            tempArrayRestaurant: [],
+            categories: null,
+            text: null,
+            openModal: false,
+            prova: [],
+        };
     },
 
     computed: {
@@ -307,17 +371,17 @@ export default {
     },
 
     methods: {
-		 clear(){
-			this.tempArrayRestaurant = []
-			this.prova = []
-			const btns = document.querySelectorAll('.category')
-			btns.forEach(element => {
-			element.classList.remove("active")	
-			});
-			this.text = ''
-		 },
+        clear() {
+            this.tempArrayRestaurant = [];
+            this.prova = [];
+            const btns = document.querySelectorAll(".category");
+            btns.forEach((element) => {
+                element.classList.remove("active");
+            });
+            this.text = "";
+        },
 
-        getBestRestaurants(page = 1){
+        getBestRestaurants(page = 1) {
             //chiamata axios
             axios
                 .get(`http://127.0.0.1:8000/api/bestRestaurants?page=${page}`)
@@ -338,93 +402,91 @@ export default {
         },
 
         getFilteredRestaurants(categorySlug, id, index) {
-			//   console.log(categorySlug,'__________________testCategory________');
-			// const triger = this.tempArrayRestaurant.some(person => person.pivot.category_id !== id)
-			// if(triger){
+            //   console.log(categorySlug,'__________________testCategory________');
+            // const triger = this.tempArrayRestaurant.some(person => person.pivot.category_id !== id)
+            // if(triger){
             // axios.get(`http://127.0.0.1:8000/api/restaurants/${categorySlug}`)
             //     .then(res => {
-						 
-						 // senza impaginazione
-                    //  this.bestRestaurants = res.data;
 
-                    // con impaginazione
-						const caz = this.bestRestaurants;
-						//  this.tempArrayRestaurant.concat(test)
-						console.log( caz ,'TEST LAST');
-						caz.forEach(element => {
-							// element.filter(e => e.slug == categorySlug)
-							if (element.categories.filter(e => e.slug == categorySlug).length > 0) {
-								this.prova.push(element)
-							}
-							console.log(this.prova);					
-						});
-						// if(test.length == 0){
-							// 	this.text = 'Non ci sono ristoranti per questa categoria😢'
-						// }else{
-							// 	this.text = ''
-						const test =  this.prova;
-						// }
-						const btns = document.querySelectorAll('.category')
-						btns[index + 1].classList.add("active")
-				
-						console.log(id,"ID");
-						for (let i = 0; i < test.length; i++) {
-							let axiosObject = test[i]
-							
-							if (!this.tempArrayRestaurant.filter(e => e.id === axiosObject.id).length > 0) {
-								this.tempArrayRestaurant.push(axiosObject)
-							}
-				
-							
+            // senza impaginazione
+            //  this.bestRestaurants = res.data;
 
-						
-						}
+            // con impaginazione
+            const caz = this.bestRestaurants;
+            //  this.tempArrayRestaurant.concat(test)
+            console.log(caz, "TEST LAST");
+            caz.forEach((element) => {
+                // element.filter(e => e.slug == categorySlug)
+                if (
+                    element.categories.filter((e) => e.slug == categorySlug)
+                        .length > 0
+                ) {
+                    this.prova.push(element);
+                }
+                console.log(this.prova);
+            });
+            // if(test.length == 0){
+            // 	this.text = 'Non ci sono ristoranti per questa categoria😢'
+            // }else{
+            // 	this.text = ''
+            const test = this.prova;
+            // }
+            const btns = document.querySelectorAll(".category");
+            btns[index + 1].classList.add("active");
 
+            console.log(id, "ID");
+            for (let i = 0; i < test.length; i++) {
+                let axiosObject = test[i];
 
+                if (
+                    !this.tempArrayRestaurant.filter(
+                        (e) => e.id === axiosObject.id
+                    ).length > 0
+                ) {
+                    this.tempArrayRestaurant.push(axiosObject);
+                }
+            }
 
-						//  console.log(test,'-----------------------------------------bestRestdddddddddaurants');
-					
+            //  console.log(test,'-----------------------------------------bestRestdddddddddaurants');
 
-						//  test.forEach(element => {
-						// 	if(this.tempArrayRestaurant.filter((e) => e.id === element.id).length > 0 ){
-								
-						// 		console.log(element, 'ELEMENT');
-								
-									
-						// 		const newArray = this.tempArrayRestaurant.filter(item => item.pivot.category_id !== element.pivot.category_id)
-						// 		this.tempArrayRestaurant = newArray
-						// 		console.log(this.tempArrayRestaurant);
-						// 		// if(this.tempArrayRestaurant.filter((e) => e.pivot.category_id === element.pivot.category_id).length == 0 ){
-						// 		// 	this.tempArrayRestaurant.unshift(element)
+            //  test.forEach(element => {
+            // 	if(this.tempArrayRestaurant.filter((e) => e.id === element.id).length > 0 ){
 
-						// 		// }
-						// 	}else{
-						// 		// if(!tempArrayRestaurant.includes(element)){
-						// 			this.tempArrayRestaurant.unshift(element)
-						// 		// }
+            // 		console.log(element, 'ELEMENT');
 
-						// 	}
-						//  });
+            // 		const newArray = this.tempArrayRestaurant.filter(item => item.pivot.category_id !== element.pivot.category_id)
+            // 		this.tempArrayRestaurant = newArray
+            // 		console.log(this.tempArrayRestaurant);
+            // 		// if(this.tempArrayRestaurant.filter((e) => e.pivot.category_id === element.pivot.category_id).length == 0 ){
+            // 		// 	this.tempArrayRestaurant.unshift(element)
 
-						 
-						//  this.tempArrayRestaurant.filter((e) => e.slug !== test.slug) ;
+            // 		// }
+            // 	}else{
+            // 		// if(!tempArrayRestaurant.includes(element)){
+            // 			this.tempArrayRestaurant.unshift(element)
+            // 		// }
 
-						//   if(res.data[0].users.length == 0){
-						// 	  	this.text = 'Non ci sono ristoranti per questa categoria😢'
-						//   }else{
-						// 	  this.text = ''
-						//   }
-                  //   console.log(this.bestRestaurants)
-                    /* this.pagination = {
+            // 	}
+            //  });
+
+            //  this.tempArrayRestaurant.filter((e) => e.slug !== test.slug) ;
+
+            //   if(res.data[0].users.length == 0){
+            // 	  	this.text = 'Non ci sono ristoranti per questa categoria😢'
+            //   }else{
+            // 	  this.text = ''
+            //   }
+            //   console.log(this.bestRestaurants)
+            /* this.pagination = {
                        current: res.data.current_page,
                        last: res.data.last_page
                     }; */
-               //  })
-               //  .catch(err => log.error(err));
-      //   }else{
-		// 	  console.log('ERROR');
-		//   }
-		},
+            //  })
+            //  .catch(err => log.error(err));
+            //   }else{
+            // 	  console.log('ERROR');
+            //   }
+        },
 
         getCategoryRestaurant() {
             //chiamata axios
@@ -807,61 +869,59 @@ ul {
     }
 }
 
-
-
 .lds-ellipsis {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
 }
 .lds-ellipsis div {
-  position: absolute;
-  top: 13px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.598);
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    position: absolute;
+    top: 13px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.598);
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 .lds-ellipsis div:nth-child(1) {
-  left: 13px;
-  animation: lds-ellipsis1 0.6s infinite;
+    left: 13px;
+    animation: lds-ellipsis1 0.6s infinite;
 }
 .lds-ellipsis div:nth-child(2) {
-  left: 4px;
-  animation: lds-ellipsis2 0.6s infinite;
+    left: 4px;
+    animation: lds-ellipsis2 0.6s infinite;
 }
 .lds-ellipsis div:nth-child(3) {
-  left: 16px;
-  animation: lds-ellipsis2 0.6s infinite;
+    left: 16px;
+    animation: lds-ellipsis2 0.6s infinite;
 }
 .lds-ellipsis div:nth-child(4) {
-  left: 28px;
-  animation: lds-ellipsis3 0.6s infinite;
+    left: 28px;
+    animation: lds-ellipsis3 0.6s infinite;
 }
 @keyframes lds-ellipsis1 {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 @keyframes lds-ellipsis3 {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0);
-  }
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
 }
 @keyframes lds-ellipsis2 {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(24px, 0);
-  }
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(24px, 0);
+    }
 }
 </style>

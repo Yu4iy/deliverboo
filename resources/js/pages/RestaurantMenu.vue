@@ -365,7 +365,7 @@ export default {
     }
 }
 .menu {
-    padding: 0;
+    padding: 0 0 80px 0;
 }
 // MENU BANNER
 .container-menu {
@@ -377,10 +377,20 @@ export default {
     }
 }
 .menu-banner {
-    background: rgba(0, 0, 0, 0.596);
     padding: 40px 40px;
     overflow: hidden;
     position: relative;
+    z-index: 1;
+    &:before {
+        content: "";
+        position: absolute;
+        background: rgba(0, 0, 0, 0.596);
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+    }
     @media only screen and (max-width: 550px) {
         padding: 10px 15px;
     }
