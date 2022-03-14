@@ -17,6 +17,7 @@
 @import "partials/checkout";
 @import "partials/orders";
 @import "partials/register";
+@import "partials/trash";
 
 * {
     padding: 0;
@@ -27,6 +28,9 @@
 body {
     background-color: rgba(213, 233, 232, 0.501);
 }
+
+
+
 // html, body{
 // 	height: 100%;
 // }

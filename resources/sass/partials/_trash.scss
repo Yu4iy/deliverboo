@@ -1,0 +1,22 @@
+.thead-brand{
+	background: #00ccbc;
+	color: #fff;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+.w-thead-brand{
+	width: 15%;
+	@media only screen and (max-width: 1000px) {
+		width: 10%;
+		
+  }
+}
+.table-custom tr{
+	font-weight: 700;
+	// color: #fff;
+}
+.restore{
+	@media only screen and (max-width: 1000px) {
+		display: none;
+  }
+}

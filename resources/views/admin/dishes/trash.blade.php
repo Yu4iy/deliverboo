@@ -5,16 +5,19 @@
     <section class="trash container pt-100">
         <h1>Trash</h1>
         @if(!$trashed->isEmpty())
-        <table class="table">
-            <thead>
+        <table class="table table-hover table-striped table-custom">
+            <thead class="thead-brand">
                 <tr>
-                    <th>
+                    <th class="">
                         ID
                     </th>
-                    <th>
+                    <th  class="">
                         Name
                     </th>
-                    <th colspan="2">
+						  <th  class="">
+							Price
+					  	  </th>
+                    <th class="w-thead-brand">
                         Actions
                     </th>
                 </tr>
@@ -29,8 +32,11 @@
                         <td>
                             {{ $trash_item->name }}
                         </td>
-                        <td>
-                            <a href="{{ route('admin.dishes.restore', $trash_item->id) }}" class="btn btn-success">Restore</a>
+								<th>
+									{{ $trash_item->price }}€
+							   </th>
+                        <td class="">
+                            <a href="{{ route('admin.dishes.restore', $trash_item->id) }}" class="btn thead-brand"><span class="restore">Restore</span> <i class="fas fa-trash-restore"></i></a>
                         </td>
                     </tr>
                 @endforeach
